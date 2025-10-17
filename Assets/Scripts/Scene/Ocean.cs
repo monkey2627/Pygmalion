@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using Scene;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Ocean : SceneManager
+namespace Scene
 {
-    public GameObject BackGround;
-    public GameObject vp;
-    public override void Load()
+    public class Ocean : SceneManager
     {
-        gameObject.SetActive(true);
-    }
+        public GameObject backGround;
+        public GameObject vp;
+        public override void Load()
+        {
+            gameObject.SetActive(true);
+        }
 
-    public override void Unload()
-    {
-        gameObject.SetActive(false);
-    }
+        public override void Unload()
+        {
+            gameObject.SetActive(false);
+        }
 
    
+    }
 }
