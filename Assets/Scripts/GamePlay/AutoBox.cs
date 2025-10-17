@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AutoBox : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void RefreshBox2d()
     {
-        
-    }
+        var tmp = GetComponent<TMP_Text>();
+        var box2d = GetComponent<BoxCollider2D>();
+        if (tmp == null || box2d == null) return;
+        // 确保 TMP 已计算完宽高
+        tmp.ForceMeshUpdate();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        float w = tmp.preferredWidth;
+        float h = tmp.preferredHeight;
+
+        box2d.size   = new Vector2(w, h);
+        box2d.offset = Vector2.zero;   // 以文本 Pivot 为中心
     }
 }
