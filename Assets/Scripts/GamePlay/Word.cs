@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace GamePlay
 {
@@ -15,8 +16,8 @@ namespace GamePlay
         public List<string> changeWordList;
         public int nextSentenceNumber;
         public bool enable;
-        public GameObject click2board;
-        public GameObject doubleclick2board;
+        public GameObject click2Board;
+        public GameObject doubleClick2Board;
         public void RefreshBox2d()
         {
             var tmp = GetComponent<TMP_Text>();
@@ -68,7 +69,7 @@ namespace GamePlay
                 case 1://add
                     break;
                 case 2://替换或者删除
-                    click2board.SetActive(true);
+                    click2Board.SetActive(true);
                     break;
                 case 3://
                     break;
@@ -86,8 +87,8 @@ namespace GamePlay
                 case 1://add
                     break;
                 case 2://替换或者删除
-                    doubleclick2board.GetComponent<DoubleClick2Board>().Show(changeWordList);
-                    doubleclick2board.SetActive(true);
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(changeWordList);
+                    doubleClick2Board.SetActive(true);
                     break;
                 case 3://
                     break;
