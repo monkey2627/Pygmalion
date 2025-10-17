@@ -9,6 +9,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Globalization;
 using DG.Tweening;
 using GamePlay;
+using Scene;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(GameManager))]

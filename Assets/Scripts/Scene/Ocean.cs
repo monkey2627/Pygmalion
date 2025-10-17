@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scene;
 using UnityEngine;
 
 public class Ocean : SceneManager
