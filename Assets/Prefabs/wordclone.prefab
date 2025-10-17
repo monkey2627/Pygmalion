@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9151875339282750348}
   - component: {fileID: 6512128726161047063}
   m_Layer: 5
-  m_Name: wordclone (1)
+  m_Name: wordclone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
