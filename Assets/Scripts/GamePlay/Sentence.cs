@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePlay;
 using UnityEngine;
 
 public class Sentence : MonoBehaviour

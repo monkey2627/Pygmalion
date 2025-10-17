@@ -8,6 +8,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Globalization;
 using DG.Tweening;
+using GamePlay;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(GameManager))]
