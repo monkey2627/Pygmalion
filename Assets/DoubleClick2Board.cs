@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePlay;
+using TMPro;
 using UnityEngine;
 
 public class DoubleClick2Board : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public GameObject textCloneObj;
+    public Word word;
     public void Show(List<string> wordList)
     {
+        foreach (string aword in wordList)
+        {
+            GameObject text= Instantiate(textCloneObj,gameObject.transform);
+            text.GetComponent<TMP_Text>().text = aword;
+            text.GetComponent<AutoBox>().RefreshBox2d();
+            text.GetComponent<TextClick>().word = word;
+        }
         
     }
 }

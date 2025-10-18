@@ -8,8 +8,9 @@
 哇哦…连接成功了！
 [role name=???]
 Pygmalion！能听到吗？
+[vp name=Elpis fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
 [image op=fade target=0 obj=black time=2 parent=black des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
-[role name=Elpis vp=0 des=Elpis挂着开朗而毫无防备的笑容]
+[role name=Elpis vp=0]
 喔…真的变亮了…
 [role name=Elpis]
 你好，Pygmalion，我是 Elpis！从今天起我就是你的搭档兼监察员啦！
@@ -22,7 +23,7 @@ Pygmalion！能听到吗？
 [role name=Elpis]
 咳咳。那么，就由我…伟大的Elpis，来唤醒一下你的记忆模块吧！
 [role name=Elpis]
-欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像 BUG 一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
+欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像BUG一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
 [role name=Pygmalion]
 <color=#ff0000><b>[ERR]MEM_ACCESS_VIOLATION……</b></color> 
 [role name=Elpis]

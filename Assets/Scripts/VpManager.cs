@@ -15,7 +15,7 @@ public class VpManager : MonoBehaviour
     }
 
     private Dictionary<string, GameObject> vps = new Dictionary<string, GameObject>();
-    private GameObject[] vpGameObjects;
+    public GameObject[] vpGameObjects;
     private void Start()
     {
         vps["Elpis"] = vpGameObjects[0];
