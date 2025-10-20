@@ -1,0 +1,196 @@
+[operation setActive=true obj=Dialog parent=UI move=1]
+[vp name=ym0 op=show des=震惊脸，眼眶泛红脸 move=0]
+[role name=一鸣]
+！！！
+[role name=一鸣]
+爷爷！
+[role name=Pygmalion]
+?
+[role name=一鸣]
+这…这怎么可能？
+[role name=Elpis(电子)]
+咳咳,别害怕别害怕，你在不同患者面前表达出的样子是不同的，他们看到的只是自己内心深处的投影，你和他解释一下啦。
+[role name=Pygmalion]
+你好，一鸣。我是 Pygmalion，你的心理治疗师。你现在看到的只是内心深处最思念的那个人形象的投影。
+[role name=Pygmalion]
+虽然我并非他本人，但请相信，无论是我还是他，我们同样希望你能变得更好。
+[vp name=ym1 op=show des=落寞脸，闭眼脸，平静脸 move=0]
+[role name=一鸣]
+……
+[role name=一鸣]
+我明白了。哈哈，系统说明里明明提到过，但没想到看起来会这么……真实。看到爷爷的样子，心里还是揪了一下。
+[role name=一鸣]
+（小声）新闻里介绍的居然是真的……
+[role name=Pygmalion]
+别担心，这种反应是正常的。
+[role name=Pygmalion]
+能和我说说你的爷爷是怎样一个人吗？
+[role name=一鸣]
+我爷爷啊……
+[role name=一鸣]
+他话不多，但总是在那里。
+[role name=一鸣]
+小时候我爸妈忙，基本都是爷爷带我。有时候考试考砸了害怕回家，但一出校门就能看见爷爷站在外面等我。
+[role name=一鸣]
+他什么都不会说，只从兜里掏给我一颗糖，然后拍拍我的脑袋领我回家。
+[role name=一鸣]
+他不会像爸妈那样追着我问分数，也不会来回讲那些大道理，什么别人怎样啊未来怎样啊。当时的我也听不懂，只是觉得空气很稠、很重，很害怕。而爷爷他就是……嗯，只是陪着我。
+[role name=一鸣]
+其实我也不需要别人和我去说什么啦，就这样就很好。
+[role name=Pygmalion]
+一个安静的陪伴者、一个无论发生什么都不会评判你的安全港湾，也许这就是他的形象出现在这里的原因。
+[role name=一鸣]
+……也许吧。
+[role name=一鸣]
+但自从……高考之后，我感觉那个“安全的港湾”彻底消失了。
+[role name=一鸣]
+哈，当然我明白，也许早就消失了吧，只是我一直还在单方面抱有幻想而已。
+[role name=一鸣]
+这是我的报应，毕竟我让所有人都失望了，包括……包括天上的爷爷。
+[role name=Pygmalion]
+根据你接入系统前提供的信息，你今天才刚刚成年。
+[role name=Pygmalion]
+虽然时机可能不太合适，但是……
+[role name=Pygmalion]
+生日快乐，一鸣。
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[vp name=ym2 op=show des=一鸣愣神脸 move=1]
+[vp name=ym3 op=show des=随后闭眼微笑脸 move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=true]
+[role name=Pygmalion]
+愿意和我一起去个更宽敞的地方吗？我们去散散步。
+[role name=一鸣]
+这里？可我记得这里是虚拟空间……
+[scene name=ocean load=1 des=场景：夜晚海边]
+[role name=一鸣]
+喔……如果不是因为现实中不能瞬移，我真要相信这里才是现实了。
+[role name=Pygmalion]
+不管是不是现实，这里总归宽敞点，走走吧。有时候换个地方，心里堵着的话也能顺一些。
+【海浪音、走路散步音】
+[role name=一鸣]
+像啊……连走路时驼背的样子都一模一样，就差一根…
+[role name=一鸣]
+对不起啊，我知道您不是他……我们继续吧。
+[role name=Pygmalion]
+没关系。从某个角度来说，我其实也在用这个让你感到安全的形象引导你进入下一步，也就是你签字确认过的——躺进这片来自你的“意识之海”。
+[role name=Pygmalion]
+当然，你可以在这里多待一会。难得是个挺安静的地方，适合停下来思考。
+[role name=Pygmalion]
+等你准备好了，我们需要你在“意识之海”中全身心地放松，这样你的心才会展开、意识才会发散，那些困扰你的 BUG 情绪也会清晰地呈现在我眼前。
+[role name=Pygmalion]
+我们对症下药。
+[role name=一鸣]
+哈哈，虽然之前已经有所了解和准备，但听到你把出现问题的情绪描述为BUG还是让我觉得有点……嗯，我也不知道怎么说。
+[role name=一鸣]
+其实我前些天也和学校的心理老师讨论过这件事。她问我：“你确定人的心理问题是一种BUG？”我回答：“你确定它不是BUG？”
+[role name=一鸣]
+她认为人的情绪总该由人慢慢吸收、慢慢形成一层厚厚的壳，这样才不会再对类似的事情感到害怕。她管这叫作“成长”。
+[role name=一鸣]
+但我已经成年了。
+[role name=一鸣]
+在这个世界上，真的还有时间留给成年人来成长吗？
+[role name=一鸣]
+停下来，也真的是被允许的吗？我不知道。
+[role name=一鸣]
+所以……嗯，来这里接受治疗也算是给我自己的成年礼吧。见效快一点，比较好。
+[role name=一鸣]
+不用再做准备了。我相信你，“爷爷”。
+[role name=一鸣]
+生日快乐，我自己。
+
+
+[sentence op=create move=0]
+[sentenceEnd type=0 des=就是按照50、80和得分来分是什么结局]
+ymEnd1
+ymEnd2
+ymEnd3
+[word type=0 content=高考的失利是我人生中 enable=1 word=0 sentence=0]
+[word type=3 content=永远洗不去的烙印 enable=1 word=1 sentence=0]
+[sentence]
+[word type=0 content=这个念头 enable=1 word=1 sentence=1]
+[word type=2 content=无时无刻不在啃噬着我 enable=1 word=2 sentence=1 changeNumber=1]
+有时出现在我脑海里
+[word type=0 content=。高考，它证明了我过去的  word=3 sentence=1]
+[word type=6 content=所有努力 pic=ympic01 end=没考上好学校的话……这么些年的所有努力，不就都成了一场笑话吗。]
+[dialog role=??	 content=儿子，都凌晨两点了，又趴桌子上睡着了？快起来喝杯牛奶，去床上睡吧。]
+[dialog role=??	 content=……妈…不用管我，这个模块马上就要写完了。没写完我睡不好。]
+[dialog role=??	 content=唉…身体更重要。你说你这么拼，要是…]
+[dialog role=??	 content=没有“要是”！我知道的，你们在我身上付出了很多，我一定不会让你们失望的。]
+[dialogEnd]
+[word type=2 content=都只是一场笑话 changeNumber=1 changeDialog=true]
+从来都不会有结果
+[dialog role=Elpis（电子）content=有些时候，患者的心灵会走进死胡同，使我们无法替换出自己期待的词句。这个时候……如果把出现 BUG 的部分直接切除、整个删掉，结果可能会更好。]
+[dialogEnd]
+[word type=0 content=话，也预示着我的未来]
+[word type=2 content=注定徒劳 changeNumber=1]
+需要加倍努力
+[word type=0 content=。我完了，我的人生出了一个 BUG。未来画卷才刚要展开，就被泼上了洗不去的墨汁]
+[word type=2 content=，再也无法弥补…… changeNumber=1]
+但以后的事，谁又说得准呢……
+[end]
+[word type=0 content=。在]
+[word type=3 content=所有人]
+[sentence]
+[word type=0 content=出分那天起，我开始害怕遇到以前的同学或朋友，他们看似关心的询问背后，大概是在等待]
+[word type=2 content=、审视我的落魄 changeNumber=1]
+、期待我的坚强
+[word type=0 content=吧……我尤其在意]
+[word type=6 content=李明那伙人 pic=ympic02 end=李明虽然成绩不好，但他是班里甚至年级的中心，似乎天生就有着学不来的幽默和松弛……真羡慕啊。我曾经试着融入他们，聊他们喜欢的游戏和电视剧，但总觉得格格不入，就像一只笨拙的企鹅在模仿人类走路。]
+[dialog role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
+[dialog role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
+[dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我 1v1，看我灭了你的傲气！]
+[dialog role=??	 content=(开心的大笑) 说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
+[dialogEnd]
+[word type=0 content=的目光，毕业典礼上他们的每一次窃窃私语]
+[word type=2 content=都像在议论我的不堪 changeNumber=1]
+都只是在聊一些无意义的事罢了
+[word type=0 content=，见到我时的回避态度也]
+[word type=2 content=像拿针扎一样伤人 changeNumber=1]
+证明我们不是一路人
+[word type=0 content=人。但让我压力倍增的是]
+[word type=1 content=我未能理解]
+[word type=6 content=张老师 pic=ympic03 end=我不能让您失望。]
+[dialog role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
+[dialog role=???	 content=谢谢老师…我会保持的。]
+[dialog role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
+[dialog role=??	 content=记住，越是到了最后关头，就越要稳住。咱们学校、咱班今年的荣誉，你可是扛大旗的。千万别像有些学生，到最后泄了气，那就太可惜了。]
+[dialogEnd]
+[word type=2 content=关切的目光 changeNumber=1]
+私下谈话里的深意
+[word type=0 content=和父母那种小心翼翼、绝口不提的态度，仿佛他们认定我真的……]
+[word type=2 content=坏了、出了BUG……是啊，他们都认为 changeNumber=1]
+会重新规划好自己的人生
+[word type=0 content=……]
+[word type=2 content=是啊，他们都认为 changeNumber=1]
+当然，他们不认为
+[word type=0 content=只会做题的机器才是最完美的孩子。我认同他们的想法。]
+[end]
+[word type=0 content=的眼中我都只是一个可悲的失败者。没有考出好成绩、没有光明未来的我……只想 enable=1 word=4 sentence=0]
+[word type=3 content=永远躲起来 enable=1 word=5 sentence=0]
+[sentence]
+[word type=2 content=“出路已经被完全堵死了。 changeNumber=1]
+“我看不清眼前的路。
+[word type=0 content=那么…复读？我没有勇气再经历一次那种]
+[word type=6 content=折磨 pic=ympic04 end=早复习、晚自习、长考试、少休息。年少时渴慕探索的星空下，无数的我们抛开天真与好奇向那薄而窄的木桥走去。没有人告诉过我们摔下去的人还能否拥有未来、而走过去的人又是否真的拥有未来。]
+[dialog role=?? content=啊，总算把这套卷子啃完了！这一年题怎么这么难啊……]
+[dialog role=??	 content=一鸣，你说，等高考结束了，你最想干什么？]
+[dialog role=???	 content=高考结束吗…我没想过。]
+[dialog role=??	 content=有时候我会想啊，我们现在做的这一切，到底是为了什么？]
+[dialog role=???	 content=为了未来啊。老师、家长不都这么说吗？挤过这座独木桥，就好了。]
+[dialogEnd]
+[word type=0 content=。进入社会？我一个]
+[word type=1 content=当下别人看来的]
+[word type=0 content=失败者现在能做得了什么？]
+[word type=2 content=这种彻底的绝望 changeNumber=1]
+这种暂时的迷茫
+[word type=0 content=就让我拒绝和别人的一切交流]
+[word type=1 content=因为他们无法代替我进行思考]
+[word type=2 content=从心底 changeNumber=1]
+我从不
+[word type=0 content=认同这个失败者的身份，]
+[word type=2 content=并 changeNumber=1]
+绝不
+[word type=0 content=相信这是我应得的惩罚……]
+[end]
+[word type=0 content=。最好谁也不要来找我…… enable=1 word=6 sentence=0]
+[end]

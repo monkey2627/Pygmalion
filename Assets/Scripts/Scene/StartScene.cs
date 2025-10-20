@@ -20,7 +20,7 @@ namespace Scene
         /// </summary>
         public void StartNewGame()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game", UnityEngine.SceneManagement.LoadSceneMode.Single);
+            gameObject.SetActive(false);
             GameManager.Instance.StartNewGame();
         }
         /// <summary>
@@ -28,7 +28,7 @@ namespace Scene
         /// </summary>
         public void ContinueGame()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game", UnityEngine.SceneManagement.LoadSceneMode.Single);
+            gameObject.SetActive(false);
             GameManager.Instance.StartNewGame();
         }
     }

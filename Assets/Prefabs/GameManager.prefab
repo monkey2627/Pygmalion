@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 870.8233, y: 185.0311, z: 153.01196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2266368799946618454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1486647713677028885
@@ -50,10 +51,13 @@ MonoBehaviour:
   dialog: {fileID: 0}
   roleName: {fileID: 0}
   isPlayingVideo: 0
-  delayObj: {fileID: 0}
+  delayObj: {fileID: 8745979416912235427}
   wordCloneObj: {fileID: 0}
   ocean: {fileID: 0}
+  start: {fileID: 0}
   upperButtons: {fileID: 0}
+  black: {fileID: 0}
+  white: {fileID: 0}
   sentenceCloneObj: {fileID: 0}
 --- !u!114 &7190118897138729654
 MonoBehaviour:
@@ -67,3 +71,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19c2baf35c1b2940b8266df9b1c816b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8745979416912235427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2266368799946618454}
+  m_Layer: 0
+  m_Name: delay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2266368799946618454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745979416912235427}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55.574036, y: 451.6534, z: -158.60481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8571283978422626572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

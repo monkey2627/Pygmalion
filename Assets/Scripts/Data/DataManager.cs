@@ -49,15 +49,19 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetString("gameCircle",_gameCircle);
         PlayerPrefs.SetString("currentScene",PSceneManager.Instance._currentScene.name);
         VpManager.Instance.SaveAllVp();
+        GameManager.Instance.Save();
     }
     /// <summary>
     /// 开始新游戏，从新手指导开始
     /// </summary>
     public void StartNewGame()
     {
-        PlayerPrefs.SetString("gameCircle","0");
+        _gameCircle = "1";
+        _scriptNow = "0";
+        _lineNow = 0;
+        PlayerPrefs.SetString("gameCircle","1");
         PlayerPrefs.SetString("scriptNow","0");
-        PlayerPrefs.SetInt("lineNow", 3);
+        PlayerPrefs.SetInt("lineNow", 0);
     }
 
     public void ContinueGame()

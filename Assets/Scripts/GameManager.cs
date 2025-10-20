@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using TaskString = Cysharp.Threading.Tasks.UniTask<string>;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Globalization;
 using Ani;
 using DG.Tweening;
 using GamePlay;
-using Scene;
-using UnityEngine.Serialization;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 [RequireComponent(typeof(GameManager))]
 public class GameManager : MonoBehaviour
@@ -33,7 +31,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         ScenesDic["ocean"] = ocean;
-        ScenesDic["start"] = ocean;
+        ScenesDic["start"] = start;
         upperButtons.SetActive(false);
         dialog.SetActive(false);
     }
@@ -41,9 +39,9 @@ public class GameManager : MonoBehaviour
     private async void Start()
     {           
         await LoadScript("0");
-                await LoadScript("pre");
-                await LoadScript("ym");
-                await LoadScript("ymEnd");
+        await LoadScript("pre");
+        await LoadScript("ym");
+        await LoadScript("ymEnd");
         //说明这是玩家第一次点开这个游戏,或者是序章都没过完，那就直接从播放动画开始
         if (DataManager.Instance.GameCircle == "0" || DataManager.Instance.GameCircle == "null")
         {
@@ -63,12 +61,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameObject black;
+    public GameObject white;
     public void StartNewGame()
     {
         DataManager.Instance.StartNewGame();
+        VpManager.Instance.StartNewGame();
+        dialog.SetActive(false);
+        black.GetComponent<SpriteRenderer>().DOFade(1, 0);
+        white.GetComponent<SpriteRenderer>().DOFade(1, 0);
         ReadLine();
     }
 
+    //存一些其他的状态
+    public void Save()
+    {
+        //black.GetComponent<SpriteRenderer>().DOFade(1, 0);
+        //white.GetComponent<SpriteRenderer>().DOFade(1, 0);
+    }
     public void ContinueGame()
     {
         DataManager.Instance.ContinueGame();
@@ -125,7 +135,8 @@ public class GameManager : MonoBehaviour
                                
                                 if (parsedTag["name"]=="002")
                                 {
-                                    DataManager.Instance.GameCircle = "1";
+                                    
+                                    PlayerPrefs.SetString("gameCircle", "1");
                                     return;
                                 } 
                                 ReadLine();
@@ -248,6 +259,8 @@ public class GameManager : MonoBehaviour
                         break;
                 }
                 break;
+            case "script"://换脚本
+                
             case "scene":
                 switch (parsedTag["load"])
                 {
@@ -322,8 +335,8 @@ public void CreateSentence(int sentenceNumber)
         }
         else
         {
-            GameObject word = CloneWord(wordCloneObj,cloneSentence);
-            cloneSentence.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            GameObject word = CloneWord(wordCloneObj,cloneSentence.GetComponent<Sentence>().layout);
+            cloneSentence.GetComponent<Sentence>().layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
             word.GetComponent<Word>().enable = parsedTag["enable"]=="1";
             word.GetComponent<Word>().sentence = cloneSentence.GetComponent<Sentence>();
             switch (parsedTag["type"])
@@ -340,6 +353,8 @@ public void CreateSentence(int sentenceNumber)
                       word.GetComponent<Word>().wordText.color = Color.white;
                       word.GetComponent<Word>().addText =  parsedTag["content"];
                       word.GetComponent<Word>().sentenceNumber = sentenceNumber;
+                      word.GetComponent<Word>().changeWordList = new List<string>();
+                      word.GetComponent<Word>().changeWordList.Add("<color=#00000000>空</color>");
                       break;
                   case "2":
                       word.GetComponent<Word>().wordType = 2;

@@ -5,6 +5,11 @@ namespace GamePlay
 {
     public class Sentence : MonoBehaviour
     {
+        public GameObject layout;
+        //only 0
+        public GameObject confirm;
+        //only >=0
+        public GameObject back;
         public List<Word> words;
         public int number;
         public string sentenceNow;
@@ -15,6 +20,14 @@ namespace GamePlay
             foreach (Word word in words)
             {
                 word.Fade(time);
+            }
+        }
+
+        public void ClosePanel()
+        {
+            foreach (Word word in words)
+            {
+                word.Close();
             }
         }
     }

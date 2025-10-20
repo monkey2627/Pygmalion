@@ -36,7 +36,6 @@ public class FlowLayoutGroupCentered : MonoBehaviour
 
         for (int i = 0; i < rt.childCount; i++)//从上到下遍历所有的
         {
-            print(i);
             var child = rt.GetChild(i) as RectTransform;
             var text = child.GetComponent<TMP_Text>();
             if (!text) continue;

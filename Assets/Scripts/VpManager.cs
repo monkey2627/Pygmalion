@@ -40,6 +40,17 @@ public class VpManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 开始新游戏就将其全部变成透明再说,然后覆盖一下存档
+    /// </summary>
+    public void StartNewGame()
+    {
+        foreach (var (key, value) in vps)
+        {
+            value.GetComponent<SpriteRenderer>().color = new Color(value.GetComponent<SpriteRenderer>().color.r, value.GetComponent<SpriteRenderer>().color.g, value.GetComponent<SpriteRenderer>().color.b, 0f);
+        }
+        SaveAllVp();
+    }
     public void Fade(string obj, float fadeTime, float target)
     {
         vps[obj].GetComponent<SpriteRenderer>().DOFade(target, fadeTime);

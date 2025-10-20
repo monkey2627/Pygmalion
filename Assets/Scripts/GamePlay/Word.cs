@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
@@ -19,8 +20,17 @@ namespace GamePlay
         public int nextSentenceNumber;
         public bool enable;
         public GameObject click2Board;
+        public GameObject deleteChoice;
+        public GameObject changeChoice;
+        public GameObject click1Board;
+        public GameObject click0Board;
         public GameObject doubleClick2Board;
+        public GameObject doubleClick1Board;
         public bool guideTime = false;
+        //一个单词只能玩儿一次对应操作小游戏，一旦玩儿过一次就不能再玩儿这个操作的游戏了
+        public bool playedDelete = false;
+        public bool playedChange = false;
+        public bool playedAdd = false;
         public void RefreshBox2d()
         {
             var tmp = GetComponent<TMP_Text>();
@@ -38,43 +48,90 @@ namespace GamePlay
         [Tooltip("两次点击间隔小于多少秒算双击")]
         public float doubleClickInterval = 0.2f;
         private float _lastClickTime = -1f;
+        public bool isSingleClick = false;
+        public bool isPanel = false;
+        public void Close()
+        {
+            isPanel = false;
+            click2Board.SetActive(false);
+            click1Board.SetActive(false);
+            click0Board.SetActive(false);
+            doubleClick2Board.SetActive(false);
+            doubleClick1Board.SetActive(false);
+        }
+        private void Start()
+        {
+            switch (wordType)
+            {
+                case 0://出现”你确定这不是bug？“
+                    break;
+                case 1://add,增添过后点击就没反应了，不能再增了
+                    doubleClick1Board.GetComponent<DoubleClick1Board>().Gen(changeWordList);
+                    break;
+                case 2://替换或者删除
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
+                    break;
+                case 3://单击没反应，双击才有用
+                    break;
+                case 4://删除
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
+                    break;
+                case 5://替换
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
+                    break;
+            }
+        }
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (enable)
+            if (enable && !isPanel)
             {
-                float now = Time.unscaledTime;
-
+                var now = Time.time;
                 if (now - _lastClickTime <= doubleClickInterval)
                 {
-                    // 双击
                     Debug.Log("双击 Text");
                     OnDoubleClick();
+                    isSingleClick = false;
                 }
                 else
                 {
-                    // 单击（会先在第一次点击时触发，间隔不到再取消）
+                    isSingleClick = true;
                     Invoke(nameof(OnSingleClick), doubleClickInterval);
                 }
-
                 _lastClickTime = now;
             }
         }
         private void OnSingleClick()
         {
-            // 如果计时过程中又点了一次，则取消本次单击
-            float now = Time.unscaledTime;
-            if (now - _lastClickTime <= doubleClickInterval) return;
-            Debug.Log("单击 Text："+wordText.text);
+            if(!isSingleClick) return;
+            print("单机"+wordText.text);
+            isPanel = true;
+            sentence.ClosePanel();
             switch (wordType)
             {
-                case 0:
+                case 0://出现”你确定这不是bug？“
+                    click0Board.SetActive(true);
                     break;
-                case 1://add
+                case 1://add,增添过后点击就没反应了，不能再增了
+                    if(!playedAdd)
+                        click1Board.SetActive(true);
                     break;
-                case 2://替换或者删除
+                case 2://替换或者删除,同样每种小游戏只能玩儿一次
+                    changeChoice.SetActive(!playedChange);
+                    deleteChoice.SetActive(!playedDelete);
                     click2Board.SetActive(true);
                     break;
-                case 3://
+                case 3://单击没反应，双击才有用
+                    break;
+                case 4://删除
+                    changeChoice.SetActive(false);
+                    deleteChoice.SetActive(!playedDelete);
+                    click2Board.SetActive(true);
+                    break;
+                case 5://替换
+                    changeChoice.SetActive(!playedChange);
+                    deleteChoice.SetActive(false);
+                    click2Board.SetActive(true);
                     break;
             }
    
@@ -83,28 +140,63 @@ namespace GamePlay
         {
             // 取消即将执行的单击
             CancelInvoke(nameof(OnSingleClick));
+            if(guideTime) return;
+            isPanel = true;
+            sentence.ClosePanel();
             switch (wordType)
             {
-                case 0:
+                case 0://没反应
                     break;
-                case 1://add
+                case 1://add 
+                    doubleClick1Board.GetComponent<DoubleClick1Board>().Show(playedAdd);
                     break;
                 case 2://替换或者删除
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(changeWordList);
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,playedDelete);
                     doubleClick2Board.SetActive(true);
                     break;
-                case 3://
+                case 3://进入对应的下一个句子
+                    break;
+                case 4://删除
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(false,playedDelete);
+                    doubleClick2Board.SetActive(true);
+                    break;
+                case 5://替换
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,false);
+                    doubleClick2Board.SetActive(true);
                     break;
             }
         }
 
+        public void DeleteGame()
+                {
+                    Close();
+                    
+                    //测试用
+                    ConfirmDeleteWord();
+                }
+                public void AddGame()
+                {
+                    Close();
+                    
+                    //测试用
+                    ConfirmAddWord();
+                }
+        
+                public void ChangeGame()
+                {
+                    Close();
+                    
+                    //测试用
+                    ConfirmChangeWord();
+                }
         //小游戏结束后调用，开始处理
         public void ConfirmDeleteWord()
         {
             //变为“/”
             wordText.text = "/";
+            playedDelete = true;
             RefreshBox2d();
-            sentence.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            sentence.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
             if (guideTime)
             {
                 GameManager.Instance.ReadLine();
@@ -117,10 +209,11 @@ namespace GamePlay
 
         public void ConfirmChangeWord()
         {
-            //变成changewordlist的第一个词
-            wordText.text = changeWordList[0];
+            //变成changewordlist的第2个词,第一个是他本身
+            wordText.text = changeWordList[1];
             RefreshBox2d();
-            sentence.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            playedChange = true;
+            sentence.layout.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
             if (guideTime)
             {
                 GameManager.Instance.ReadLine();
@@ -131,11 +224,13 @@ namespace GamePlay
             }
         }
 
+        
         public void ConfirmAddWord()
         {
             wordText.text = addText;
             RefreshBox2d();
-            sentence.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            playedAdd = true;
+            sentence.layout.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
             if (guideTime)
             {
                 GameManager.Instance.ReadLine();

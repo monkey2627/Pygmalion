@@ -7,7 +7,7 @@ Pygmalion！能听到吗？
 [vp name=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
 [vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
 [vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
-[image op=fade target=0 obj=black time=2 parent=black des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
+[image op=fade target=0 obj=black time=2 parent=UI des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
 [role name=Elpis vp=0]
 喔…真的变亮了…
 [role name=Elpis]
@@ -45,37 +45,28 @@ Pygmalion！能听到吗？
 [role name=Elpis(电子)]
 但最好你能把这些代码转换成句子，这样我看起来方便一些！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Pygmalion move=2]
+[role name=Pygmalion move=1]
 如你所愿，Elpis。
-[operation setActive=false obj=Dialog parent=UI move=0]
-[sentence op=create move=0]
-[word type=0 content=项目的重量压得我喘不过气， enable=0 word=0 sentence=0]
-[word type=1 content=但我会学着承受 enable=0 word=1 sentence=0]
-[word type=0 content=它是 enable=0 word=2 sentence=0]
-[word type=2 content=永远 changeNumber=0 enable=0 word=3 sentence=0]
-[word type=0 content=伴随我的 enable=0 word=4 sentence=0]
-[word type=2 content=包袱。 changeNumber=1 enable=0 word=5 sentence=0]
-挑战
-[end]
+[operation setActive=true obj=GuideSceneGamePlay parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis(电子)]
 呃…我也没有这么低沉吧，嗯。
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=5]
+[role name=Elpis(电子) move=3]
 你看这句话！首先，这个“永远”听起来就好绝望，太绝对了。事情明明总是在变化的，对吧？我们先删掉它吧！
-[sentence op=enable]
-[word word=3 sentence=0 enable=1] 
+[sentence op=enable word=3 sentence=0 enable=1]
 [operation setActive=true obj=Dialog parent=UI move=0]
+[sentence op=enable word=3 sentence=0 enable=0 move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis(电子)]
 呼…感觉好多了！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=5]
+[role name=Elpis(电子) move=3]
 然后你看这个“包袱”，听起来又大又沉，我们能不能给它换个说法？比如… 把它看成一种“挑战”？
-[sentence op=enable]
-[word word=5 sentence=0 enable=1] 
+[sentence op=enable word=5 sentence=0 enable=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[sentence op=enable word=5 sentence=0 enable=0 move=0]
 [role name=Pygmalion]
 Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？ 
 [role name=Elpis(电子)]
@@ -85,16 +76,18 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Elpis(电子) move=5]
 嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
-[sentence op=enable]
-[word word=1 sentence=0 enable=1] 
+[sentence op=enable word=1 sentence=0 enable=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis(电子)]
 太神奇了！就这么改了几个词，我感觉整个人的视角都变了！Pygmalion你学得真快，是不是记忆模块BUG修复了？ 
-[role name=Elpis(电子)]
-来吧，把我们的修改方案提交上来。由我，你的首席搭档！来按下这个批准的按钮！ 
-[sentence op=fade des="所有的语句逐渐消失，消失后删除"]
-【场景：语句逐渐淡去，Elpis 的身周环绕起一圈游鱼，随后变成淡淡的白光融入身体】 
+[role name=Elpis(电子) move=0]
+来吧，把我们的修改方案提交上来。由我，你的首席搭档！来按下这个批准的按钮！
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[operation setActive=true obj=confirm parent=GuideSceneGamePlay]
+[image op=fade target=0 obj=black time=1 parent=UI move=0] 
+[sentence op=fade move=1 des=所有的语句逐渐消失，消失后删除语句逐渐淡去Elpis的身周环绕起一圈游鱼，随后变成淡淡的白光融入身体]
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
+[operation setActive=false obj=black parent=sceneTransfer move=0]
 [ani name=back2ocean]
 [role name=Elpis]
 看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！ 

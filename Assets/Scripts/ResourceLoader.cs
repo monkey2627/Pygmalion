@@ -30,7 +30,7 @@ public class ResourceLoader : MonoBehaviour
     private const ResourceType DefaultResourceType = ResourceType.LocalStatic;
     public static Dictionary<string, DefaultTextLoader> textLoader = new Dictionary<string, DefaultTextLoader>();
     public static async TaskString LoadText(string storage)
-    {
+    {       
             if (!textLoader.ContainsKey(storage))
             {
                 textLoader.Add(storage, new DefaultTextLoader());
