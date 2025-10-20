@@ -14,6 +14,7 @@ public class waterAni : MonoBehaviour
     private void Awake()
     {
         Instance  = this;
+        gameObject.SetActive(false);
     }
 
     public void showTarget()

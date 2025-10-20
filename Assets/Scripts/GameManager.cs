@@ -180,29 +180,29 @@ public class GameManager : MonoBehaviour
 
                 break;
             case "vp":
-                if (parsedTag.ContainsKey("fade"))
-                {
-                    float fadeTime = float.Parse(parsedTag["time"]);
-                    float target =  float.Parse(parsedTag["fade"]);
-                    VpManager.Instance.Fade(parsedTag["name"],fadeTime,target);
-                }else if (parsedTag.ContainsKey("move2"))
-                {
-                    float fadeTime = float.Parse(parsedTag["time"]);
-                    float x = float.Parse(parsedTag["x"], CultureInfo.InvariantCulture);
-                    float y = float.Parse(parsedTag["y"], CultureInfo.InvariantCulture);
-                    float z = float.Parse(parsedTag["z"], CultureInfo.InvariantCulture);
-                    VpManager.Instance.Move(parsedTag["name"], fadeTime,new Vector3(x, y, z));
-                }else if (parsedTag.ContainsKey("scale"))
-                {
-                    float fadeTime = float.Parse(parsedTag["time"]);
-                    float x = float.Parse(parsedTag["x"], CultureInfo.InvariantCulture);
-                    float y = float.Parse(parsedTag["y"], CultureInfo.InvariantCulture);
-                    float z = float.Parse(parsedTag["z"], CultureInfo.InvariantCulture);
-                    VpManager.Instance.Scale(parsedTag["name"], fadeTime,new Vector3(x, y, z));
-                }
-                else if (parsedTag.ContainsKey("move2o"))
-                {
-                     VpManager.Instance.Move2O(parsedTag["name"]);
+                float fadeTime = float.Parse(parsedTag["time"]);
+                float x, y, z;
+                switch (parsedTag["op"])
+                { 
+                    case "move2":
+                        x = float.Parse(parsedTag["x"], CultureInfo.InvariantCulture);
+                        y = float.Parse(parsedTag["y"], CultureInfo.InvariantCulture);
+                        z = float.Parse(parsedTag["z"], CultureInfo.InvariantCulture);
+                        VpManager.Instance.Move(parsedTag["name"], fadeTime,new Vector3(x, y, z));
+                        break;
+                    case "fade":
+                        float target =  float.Parse(parsedTag["fade"]);
+                        VpManager.Instance.Fade(parsedTag["name"],fadeTime,target);
+                        break;
+                    case "scale":      
+                        x = float.Parse(parsedTag["x"], CultureInfo.InvariantCulture);
+                        y = float.Parse(parsedTag["y"], CultureInfo.InvariantCulture);
+                        z = float.Parse(parsedTag["z"], CultureInfo.InvariantCulture);
+                        VpManager.Instance.Scale(parsedTag["name"], fadeTime,new Vector3(x, y, z));
+                        break;
+                    case "move2o":
+                        VpManager.Instance.Move2O(parsedTag["name"]);
+                        break;
                 }
                 break;
             case "sentence":

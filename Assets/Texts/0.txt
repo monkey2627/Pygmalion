@@ -8,9 +8,9 @@
 哇哦…连接成功了！
 [role name=???]
 Pygmalion！能听到吗？
-[vp name=elpis fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
-[vp name=elpis move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
-[vp name=elpis scale x=0.5 y=0.5 z=0.5 move=0  time=0]
+[vp name=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
+[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
+[vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
 [image op=fade target=0 obj=black time=2 parent=black des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
 [role name=Elpis vp=0]
 喔…真的变亮了…
