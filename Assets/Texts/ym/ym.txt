@@ -1,0 +1,215 @@
+[operation setActive=true obj=Dialog parent=UI move=1]
+[vp name=ym0 op=show des=震惊脸，眼眶泛红脸 move=0]
+[role name=一鸣]
+！！！
+[role name=一鸣]
+爷爷！
+[role name=Pygmalion]
+?
+[role name=一鸣]
+这…这怎么可能？
+[role name=Elpis(电子)]
+咳咳,别害怕别害怕，你在不同患者面前表达出的样子是不同的，他们看到的只是自己内心深处的投影，你和他解释一下啦。
+[role name=Pygmalion]
+你好，一鸣。我是 Pygmalion，你的心理治疗师。你现在看到的只是内心深处最思念的那个人形象的投影。
+[role name=Pygmalion]
+虽然我并非他本人，但请相信，无论是我还是他，我们同样希望你能变得更好。
+[vp name=ym1 op=show des=落寞脸，闭眼脸，平静脸 move=0]
+[role name=一鸣]
+……
+[role name=一鸣]
+我明白了。哈哈，系统说明里明明提到过，但没想到看起来会这么……真实。看到爷爷的样子，心里还是揪了一下。
+[role name=一鸣]
+（小声）新闻里介绍的居然是真的……
+[role name=Pygmalion]
+别担心，这种反应是正常的。
+[role name=Pygmalion]
+能和我说说你的爷爷是怎样一个人吗？
+[role name=一鸣]
+我爷爷啊……
+[role name=一鸣]
+他话不多，但总是在那里。
+[role name=一鸣]
+小时候我爸妈忙，基本都是爷爷带我。有时候考试考砸了害怕回家，但一出校门就能看见爷爷站在外面等我。
+[role name=一鸣]
+他什么都不会说，只从兜里掏给我一颗糖，然后拍拍我的脑袋领我回家。
+[role name=一鸣]
+他不会像爸妈那样追着我问分数，也不会来回讲那些大道理，什么别人怎样啊未来怎样啊。当时的我也听不懂，只是觉得空气很稠、很重，很害怕。而爷爷他就是……嗯，只是陪着我。
+[role name=一鸣]
+其实我也不需要别人和我去说什么啦，就这样就很好。
+[role name=Pygmalion]
+一个安静的陪伴者、一个无论发生什么都不会评判你的安全港湾，也许这就是他的形象出现在这里的原因。
+[role name=一鸣]
+……也许吧。
+[role name=一鸣]
+但自从……高考之后，我感觉那个“安全的港湾”彻底消失了。
+[role name=一鸣]
+哈，当然我明白，也许早就消失了吧，只是我一直还在单方面抱有幻想而已。
+[role name=一鸣]
+这是我的报应，毕竟我让所有人都失望了，包括……包括天上的爷爷。
+[role name=Pygmalion]
+根据你接入系统前提供的信息，你今天才刚刚成年。
+[role name=Pygmalion]
+虽然时机可能不太合适，但是……
+[role name=Pygmalion]
+生日快乐，一鸣。
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[vp name=ym2 op=show des=一鸣愣神脸 move=1]
+[vp name=ym3 op=show des=随后闭眼微笑脸 move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=true]
+[role name=Pygmalion]
+愿意和我一起去个更宽敞的地方吗？我们去散散步。
+[role name=一鸣]
+这里？可我记得这里是虚拟空间……
+[scene name=ocean load=1 des=场景：夜晚海边]
+[role name=一鸣]
+喔……如果不是因为现实中不能瞬移，我真要相信这里才是现实了。
+[role name=Pygmalion]
+不管是不是现实，这里总归宽敞点，走走吧。有时候换个地方，心里堵着的话也能顺一些。
+【海浪音、走路散步音】
+[role name=一鸣]
+像啊……连走路时驼背的样子都一模一样，就差一根…
+[role name=一鸣]
+对不起啊，我知道您不是他……我们继续吧。
+[role name=Pygmalion]
+没关系。从某个角度来说，我其实也在用这个让你感到安全的形象引导你进入下一步，也就是你签字确认过的——躺进这片来自你的“意识之海”。
+[role name=Pygmalion]
+当然，你可以在这里多待一会。难得是个挺安静的地方，适合停下来思考。
+[role name=Pygmalion]
+等你准备好了，我们需要你在“意识之海”中全身心地放松，这样你的心才会展开、意识才会发散，那些困扰你的 BUG 情绪也会清晰地呈现在我眼前。
+[role name=Pygmalion]
+我们对症下药。
+[role name=一鸣]
+哈哈，虽然之前已经有所了解和准备，但听到你把出现问题的情绪描述为BUG还是让我觉得有点……嗯，我也不知道怎么说。
+[role name=一鸣]
+其实我前些天也和学校的心理老师讨论过这件事。她问我：“你确定人的心理问题是一种BUG？”我回答：“你确定它不是BUG？”
+[role name=一鸣]
+她认为人的情绪总该由人慢慢吸收、慢慢形成一层厚厚的壳，这样才不会再对类似的事情感到害怕。她管这叫作“成长”。
+[role name=一鸣]
+但我已经成年了。
+[role name=一鸣]
+在这个世界上，真的还有时间留给成年人来成长吗？
+[role name=一鸣]
+停下来，也真的是被允许的吗？我不知道。
+[role name=一鸣]
+所以……嗯，来这里接受治疗也算是给我自己的成年礼吧。见效快一点，比较好。
+[role name=一鸣]
+不用再做准备了。我相信你，“爷爷”。
+[role name=一鸣]
+生日快乐，我自己。
+[role name=???]
+哇哦…连接成功了！
+[role name=???]
+Pygmalion！能听到吗？
+[image op=fade target=1 obj=white time=0 parent=white move=0]
+[vp name=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
+[vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
+[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
+[image op=fade target=0 obj=black time=2 parent=black des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
+[role name=Elpis vp=0]
+喔…真的变亮了…
+[role name=Elpis]
+你好，Pygmalion，我是 Elpis！从今天起我就是你的搭档兼监察员啦！
+[role name=Pygmalion]
+你好，Elpis，很高兴认识你。
+[role name=Pygmalion]
+对不起，我好像刚从一个很长很长的梦里挣脱出来…
+[role name=Elpis] 
+哦！没关系啦，毕竟你的程序刚启动。
+[role name=Elpis]
+咳咳。那么，就由我…伟大的Elpis，来唤醒一下你的记忆模块吧！
+[role name=Elpis]
+欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像BUG一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
+[role name=Pygmalion]
+[ERR]MEM_ACCESS_VIOLATION……
+[role name=Elpis]
+……
+[role name=Elpis]
+嗯…没关系！我来带你回顾一下好啦！
+[role name=Elpis]
+和你们记录“想法”和“思维过程”的方式不同，人类的想法很奇妙，往往披着一层故事的外衣出现。而我们为了能更方便地对“患者”脑中出现问题的想法进行修复，就必须得用他们能理解的方式来工作。
+[role name=Elpis]
+来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
+[scene name=ocean load=1 des=场景：夜晚海边]
+[role name=Elpis]
+真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
+[operation setActive=false obj=Dialog parent=UI move=1]
+[vp name=elpis op=move2o des=Elpis朝你眨眨眼，随即走进海里，蜷缩身体沉入海中]
+[ani name=water role=elpis]
+[scene name=ocean load=0 move=0]
+[operation setActive=true obj=Dialog parent=UI move=0]
+[role name=Elpis(电子)]
+好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
+[role name=Elpis(电子)]
+但最好你能把这些代码转换成句子，这样我看起来方便一些！
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[role name=Pygmalion move=2]
+如你所愿，Elpis。
+[operation setActive=false obj=Dialog parent=UI move=0]
+[sentence op=create move=0]
+[word type=0 content=项目的重量压得我喘不过气， enable=0 word=0 sentence=0]
+[word type=1 content=但我会学着承受 enable=0 word=1 sentence=0]
+[word type=0 content=它是 enable=0 word=2 sentence=0]
+[word type=2 content=永远 changeNumber=0 enable=0 word=3 sentence=0]
+[word type=0 content=伴随我的 enable=0 word=4 sentence=0]
+[word type=2 content=包袱。 changeNumber=1 enable=0 word=5 sentence=0]
+挑战
+[end]
+[operation setActive=true obj=Dialog parent=UI move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[role name=Elpis(电子)]
+呃…我也没有这么低沉吧，嗯。
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[role name=Elpis(电子) move=5]
+你看这句话！首先，这个“永远”听起来就好绝望，太绝对了。事情明明总是在变化的，对吧？我们先删掉它吧！
+[sentence op=enable]
+[word word=3 sentence=0 enable=1] 
+[operation setActive=true obj=Dialog parent=UI move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[role name=Elpis(电子)]
+呼…感觉好多了！ 
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[role name=Elpis(电子) move=5]
+然后你看这个“包袱”，听起来又大又沉，我们能不能给它换个说法？比如… 把它看成一种“挑战”？
+[sentence op=enable]
+[word word=5 sentence=0 enable=1] 
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[role name=Pygmalion]
+Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？ 
+[role name=Elpis(电子)]
+…… 
+[role name=Elpis(电子)]
+哎呀！不是啦不是啦，Pygmalion 系统是完美无缺的，刚才只是混进来了一点 别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[role name=Elpis(电子) move=5]
+嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
+[sentence op=enable]
+[word word=1 sentence=0 enable=1] 
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[role name=Elpis(电子)]
+太神奇了！就这么改了几个词，我感觉整个人的视角都变了！Pygmalion你学得真快，是不是记忆模块BUG修复了？ 
+[role name=Elpis(电子)]
+来吧，把我们的修改方案提交上来。由我，你的首席搭档！来按下这个批准的按钮！ 
+[sentence op=fade des="所有的语句逐渐消失，消失后删除"]
+【场景：语句逐渐淡去，Elpis 的身周环绕起一圈游鱼，随后变成淡淡的白光融入身体】 
+[scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
+[ani name=back2ocean]
+[role name=Elpis]
+看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！ 
+[vp name=elpis fade=0 time=1 move=1 des=Elpis凑近]
+[vp name=elpis op=scale x=0.6 y=0.6 z=0.6 move=0 time=0]
+[vp name=elpis op=move2 x=-560.4 y=-546.34 z=0 move=0 time=0]
+[vp name=Elpis fade=1 time=1]
+[role name=Elpis]
+说真的，能参与这个项目，能用这样的方式帮助别人，我每天都觉得好兴奋。可能我人生的意义就在于此吧… 
+[role name=Elpis]
+那么，准备好迎接我们的第一位“患者”了吗？ 
+[role name=Elpis]
+别担心，我会在这儿陪着你的，保持联系！ 
+[vp name=Elpis fade=0]【Elpis 立绘淡去】 
+[role name=Elpis(电子)]
+放轻松，按你的想法来。我相信你的判断。 
+[role name=Elpis(电子)]
+如果有一天…你相信一位“患者”其实并没有心理问题…
+[role name=Elpis(电子)]
+请相信自己的判断。
