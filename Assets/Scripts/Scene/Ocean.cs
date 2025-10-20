@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 namespace Scene
 {
-    public class Ocean : SceneManager
+    public class Ocean : Scene
     {
         public GameObject backGround;
         public GameObject vp;

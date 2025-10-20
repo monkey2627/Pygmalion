@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 using Random = UnityEngine.Random;
 
 public class BackgroundWander : MonoBehaviour
 {
     public GameObject canvas;
+    public TMP_Text Text;
     [Header("移动范围（世界坐标）")]
     public float xMin = -10f, xMax = 10f;
     public float yMin = -6f, yMax = 6f;
@@ -30,7 +32,11 @@ public class BackgroundWander : MonoBehaviour
         GenerateSegment();
     }
 
-    void Awake() => mTrans = transform;
+    void Awake()
+    {
+        initPos =  transform.position;
+        mTrans = transform;
+    }
 
     void Start() => GenerateSegment();
 

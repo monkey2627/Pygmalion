@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scene
 {
-    public class SceneManager : MonoBehaviour
+    public class Scene : MonoBehaviour
     {
         public virtual void Load()
         {

@@ -1,16 +1,12 @@
-[video name=001]
-[operation method=ShowGuide script=GameManager obj=GameManager parent=GameManager]
-[operation setActive=false obj=GuideScene parent=UI move=0]
-[video name=002]
-[operation setActive=true obj=StartMenu parent=All]
 [operation setActive=true obj=black parent=UI move=0 des=场景漆黑]
 [role name=???]
 哇哦…连接成功了！
 [role name=???]
 Pygmalion！能听到吗？
+[image op=fade target=1 obj=white time=0 parent=white move=0]
 [vp name=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
-[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
 [vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
+[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
 [image op=fade target=0 obj=black time=2 parent=black des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
 [role name=Elpis vp=0]
 喔…真的变亮了…
@@ -27,7 +23,7 @@ Pygmalion！能听到吗？
 [role name=Elpis]
 欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像BUG一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
 [role name=Pygmalion]
-<color=#ff0000><b>[ERR]MEM_ACCESS_VIOLATION……</b></color> 
+[ERR]MEM_ACCESS_VIOLATION……
 [role name=Elpis]
 ……
 [role name=Elpis]
@@ -36,20 +32,16 @@ Pygmalion！能听到吗？
 和你们记录“想法”和“思维过程”的方式不同，人类的想法很奇妙，往往披着一层故事的外衣出现。而我们为了能更方便地对“患者”脑中出现问题的想法进行修复，就必须得用他们能理解的方式来工作。
 [role name=Elpis]
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
-[scene name=ocean load=1 move=2 des=场景：夜晚海边]
+[scene name=ocean load=1 des=场景：夜晚海边]
 [role name=Elpis]
 真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
-[vp name=elpis move2o move=0 time=0]
-[ani name=water role=Elpis]
-[scene name=ocean load=0 move=2 des=场景：夜晚海边]
-【Elpis 朝你眨眨眼，随即走进海里，蜷缩身体沉入海中】
-[video name=water]【场景：海水从屏幕下方上灌，充斥整个屏幕的海水背景】
-【Elpis 的身体蜷缩在屏幕中央，缓慢流动的气泡从身体周围出现】
-【海水背景闪烁成短暂的充满屏幕的代码，Eplis 的身形不变，随即代码立即闪烁成一片漆黑】
-【几条水母斜着从左下角向右上游动，它们的身上都带着文字（直接黑方块+白字体覆盖在身上就好，有时间或灵感再优化效果）】
-[image op=fade target=0.7 obj=black time=1 parent=black des=画面变暗在背景上加一层黑色的东西，营造场景变暗的效果]
+[operation setActive=false obj=Dialog parent=UI move=1]
+[vp name=elpis op=move2o des=Elpis朝你眨眨眼，随即走进海里，蜷缩身体沉入海中]
+[ani name=water role=elpis]
+[scene name=ocean load=0 move=0]
+[operation setActive=true obj=Dialog parent=UI move=0]
 [role name=Elpis(电子)]
-好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小 Bug。我们一起来找找看？
+好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
 [role name=Elpis(电子)]
 但最好你能把这些代码转换成句子，这样我看起来方便一些！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
@@ -57,15 +49,12 @@ Pygmalion！能听到吗？
 如你所愿，Elpis。
 [operation setActive=false obj=Dialog parent=UI move=0]
 [sentence op=create move=0]
-[string content=项目的重量压得我喘不过气，它是/伴随我的包袱。 jump2=73  des=表示内容为这句话的时候跳到哪一行]
-[string content=项目的重量压得我喘不过气，它是/伴随我的挑战。 jump2=82  des=表示内容为这句话的时候跳到哪一行]
-[string content=项目的重量压得我喘不过气，但我会学着承受,它是/伴随我的挑战。 jump2=80  des=表示内容为这句话的时候跳到哪一行]
-[word type=0 content=项目的重量压得我喘不过气， enable=0]
-[word type=1 content=但我会学着承受 enable=0]
-[word type=0 content=它是 enable=0]
-[word type=2 content=永远 changeNumber=0 enable=0]
-[word type=0 content=伴随我的 enable=0]
-[word type=2 content=包袱。 changeNumber=1 enable=0]
+[word type=0 content=项目的重量压得我喘不过气， enable=0 word=0 sentence=0]
+[word type=1 content=但我会学着承受 enable=0 word=1 sentence=0]
+[word type=0 content=它是 enable=0 word=2 sentence=0]
+[word type=2 content=永远 changeNumber=0 enable=0 word=3 sentence=0]
+[word type=0 content=伴随我的 enable=0 word=4 sentence=0]
+[word type=2 content=包袱。 changeNumber=1 enable=0 word=5 sentence=0]
 挑战
 [end]
 [operation setActive=true obj=Dialog parent=UI move=0]
@@ -76,8 +65,8 @@ Pygmalion！能听到吗？
 [role name=Elpis(电子) move=5]
 你看这句话！首先，这个“永远”听起来就好绝望，太绝对了。事情明明总是在变化的，对吧？我们先删掉它吧！
 [sentence op=enable]
-[word word=1 sentence=0 enable=1] 
-[operation setActive=true obj=Dialog parent=UI]
+[word word=3 sentence=0 enable=1] 
+[operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis(电子)]
 呼…感觉好多了！ 
@@ -85,7 +74,7 @@ Pygmalion！能听到吗？
 [role name=Elpis(电子) move=5]
 然后你看这个“包袱”，听起来又大又沉，我们能不能给它换个说法？比如… 把它看成一种“挑战”？
 [sentence op=enable]
-[word word=2 sentence=0 enable=1] 
+[word word=5 sentence=0 enable=1] 
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Pygmalion]
 Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？ 
@@ -97,7 +86,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [role name=Elpis(电子) move=5]
 嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
 [sentence op=enable]
-[word word=0 sentence=0 enable=1] 
+[word word=1 sentence=0 enable=1] 
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis(电子)]
 太神奇了！就这么改了几个词，我感觉整个人的视角都变了！Pygmalion你学得真快，是不是记忆模块BUG修复了？ 
@@ -105,23 +94,25 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 来吧，把我们的修改方案提交上来。由我，你的首席搭档！来按下这个批准的按钮！ 
 [sentence op=fade des="所有的语句逐渐消失，消失后删除"]
 【场景：语句逐渐淡去，Elpis 的身周环绕起一圈游鱼，随后变成淡淡的白光融入身体】 
-【场景：海水从屏幕上方向下退去，场景回到岸边】 
-[scene name=beach load=0 move=2 des=Elpis回到岸边]
+[scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
+[ani name=back2ocean]
 [role name=Elpis]
 看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！ 
-[vp name=Elpis fade=0 time=1 des=Elpis 凑近]
-[vp name=Elpis move2 x=  y= z= time=0]
+[vp name=elpis op=fade fade=0 time=1 move=1 des=Elpis凑近]
+[vp name=elpis op=scale x=0.6 y=0.6 z=0.6 move=0 time=0]
+[vp name=elpis op=move2 x=-560.4 y=-546.34 z=0 move=0 time=0]
 [vp name=Elpis fade=1 time=1]
 [role name=Elpis]
-说真的，能参与这个项目，能用这样的方式帮助别人，我每天都觉得好兴奋。可能我 人生的意义就在于此吧… 
+说真的，能参与这个项目，能用这样的方式帮助别人，我每天都觉得好兴奋。可能我人生的意义就在于此吧… 
 [role name=Elpis]
-那么，准备好迎接我们的第一位“患者”了吗？ 
+那么，准备好迎接我们的第一位“患者”了吗？这次的连接申请来自…嗯，EA1730区…一鸣！记得加载多语言模块，我们是一个服务世界的系统！ 
 [role name=Elpis]
 别担心，我会在这儿陪着你的，保持联系！ 
-[vp name=Elpis fade=0]【Elpis 立绘淡去】 
+[vp name=Elpis fade=0] 
 [role name=Elpis(电子)]
 放轻松，按你的想法来。我相信你的判断。 
 [role name=Elpis(电子)]
 如果有一天…你相信一位“患者”其实并没有心理问题…
 [role name=Elpis(电子)]
 请相信自己的判断。
+[script name=ym]

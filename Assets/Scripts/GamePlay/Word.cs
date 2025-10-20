@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,7 @@ namespace GamePlay
     public class Word : MonoBehaviour,IPointerClickHandler
     {
         //点击词语，根据词语的种类不同应该是有不同的表现
+        public Sentence sentence;
         public int wordType;
         public TMP_Text wordText; 
         public int sentenceNumber;
@@ -18,6 +20,7 @@ namespace GamePlay
         public bool enable;
         public GameObject click2Board;
         public GameObject doubleClick2Board;
+        public bool guideTime = false;
         public void RefreshBox2d()
         {
             var tmp = GetComponent<TMP_Text>();
@@ -93,6 +96,59 @@ namespace GamePlay
                 case 3://
                     break;
             }
+        }
+
+        //小游戏结束后调用，开始处理
+        public void ConfirmDeleteWord()
+        {
+            //变为“/”
+            wordText.text = "/";
+            RefreshBox2d();
+            sentence.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            if (guideTime)
+            {
+                GameManager.Instance.ReadLine();
+            }
+            else
+            {
+                
+            }
+        }
+
+        public void ConfirmChangeWord()
+        {
+            //变成changewordlist的第一个词
+            wordText.text = changeWordList[0];
+            RefreshBox2d();
+            sentence.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            if (guideTime)
+            {
+                GameManager.Instance.ReadLine();
+            }
+            else
+            {
+                
+            }
+        }
+
+        public void ConfirmAddWord()
+        {
+            wordText.text = addText;
+            RefreshBox2d();
+            sentence.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            if (guideTime)
+            {
+                GameManager.Instance.ReadLine();
+            }
+            else
+            {
+                
+            }
+        }
+
+        public void Fade(float time)
+        {
+            wordText.DOFade(0, time);
         }
     }
 }

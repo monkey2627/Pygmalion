@@ -1,0 +1,5 @@
+[video name=001]
+[operation method=ShowGuide script=GameManager obj=GameManager parent=GameManager]
+[operation setActive=false obj=GuideScene parent=UI move=0]
+[video name=002]
+[operation setActive=true obj=StartMenu parent=All]

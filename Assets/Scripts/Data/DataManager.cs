@@ -1,37 +1,31 @@
-using System;
-using System.Globalization;
+using Scene;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
-    public SaveSlot[] saveSlots;
     private void Awake()
     {
-        Instance = this; 
-        PlayerPrefs.SetString("FirstOpenGame","null");
-        _scriptNow =PlayerPrefs.GetString("scriptNow", "0");
-        _lineNow = PlayerPrefs.GetInt("lineNow", 0);
-        _gameCircle =  PlayerPrefs.GetString("newGame", "true");
-        
+        Instance = this;
+        _gameCircle = PlayerPrefs.GetString("gameCircle","null");
     }
-
-    private void Start()
-    {
-        
-    }
-
     private int _lineNow;
     public int LineNow
     {
         get => _lineNow;
-        set { _lineNow = value;}
+        set
+        {
+            _lineNow = value;
+            PlayerPrefs.SetInt("lineNow", value);
+        }
     }
     private string _scriptNow;
     public string ScriptNow
     {
         get => _scriptNow; 
-        set { _scriptNow = value;} 
+        set { _scriptNow = value;
+            
+        } 
     }
 
     private string _gameCircle;
@@ -43,12 +37,25 @@ public class DataManager : MonoBehaviour
     public string GameCircle
     {
         get => _gameCircle;
-        set { _gameCircle = value;}
+        set { _gameCircle = value; ;}
     }
 
+    /// <summary>
+    /// 只在一整个操作之后save
+    /// </summary>
+    public void Save()
+    {
+        PlayerPrefs.SetString("scriptNow", _scriptNow);
+        PlayerPrefs.SetString("gameCircle",_gameCircle);
+        PlayerPrefs.SetString("currentScene",PSceneManager.Instance._currentScene.name);
+        VpManager.Instance.SaveAllVp();
+    }
+    /// <summary>
+    /// 开始新游戏，从新手指导开始
+    /// </summary>
     public void StartNewGame()
     {
-        PlayerPrefs.SetString("gameCircle", "0");
+        PlayerPrefs.SetString("gameCircle","0");
         PlayerPrefs.SetString("scriptNow","0");
         PlayerPrefs.SetInt("lineNow", 3);
     }
@@ -59,18 +66,6 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.GetInt("lineNow", 3);
     }
 
-    private void OnDestroy()
-    {
-       // PlayerPrefs.SetString("firstOpenGame",Time.time.ToString(CultureInfo.CurrentCulture));
-    }
 
-    public void Save()
-    {
-      //  ResourceLoader.instance.Save();
-    }
-    public void ResetAll()
-    {
-
-    }
 }
 

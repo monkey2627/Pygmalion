@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8571283978422626572}
   - component: {fileID: 1486647713677028885}
   - component: {fileID: 7190118897138729654}
-  - component: {fileID: 6768567693741222106}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -55,7 +54,6 @@ MonoBehaviour:
   wordCloneObj: {fileID: 0}
   ocean: {fileID: 0}
   upperButtons: {fileID: 0}
-  sentenceManagerObj: {fileID: 0}
   sentenceCloneObj: {fileID: 0}
 --- !u!114 &7190118897138729654
 MonoBehaviour:
@@ -69,16 +67,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19c2baf35c1b2940b8266df9b1c816b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6768567693741222106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952344199518091584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbad75007d8967b4da58e553840c5c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveSlots: []

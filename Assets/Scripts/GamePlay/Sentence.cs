@@ -9,7 +9,14 @@ namespace GamePlay
         public int number;
         public string sentenceNow;
         public List<SentenceEnd> SentenceEnds = new List<SentenceEnd>();
-   
+
+        public void Fade(float time)
+        {
+            foreach (Word word in words)
+            {
+                word.Fade(time);
+            }
+        }
     }
 
     public struct SentenceEnd
