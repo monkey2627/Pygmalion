@@ -8,7 +8,9 @@
 哇哦…连接成功了！
 [role name=???]
 Pygmalion！能听到吗？
-[vp name=Elpis fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
+[vp name=elpis fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
+[vp name=elpis move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
+[vp name=elpis scale x=0.5 y=0.5 z=0.5 move=0  time=0]
 [image op=fade target=0 obj=black time=2 parent=black des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
 [role name=Elpis vp=0]
 喔…真的变亮了…
@@ -37,6 +39,8 @@ Pygmalion！能听到吗？
 [scene name=ocean load=1 move=2 des=场景：夜晚海边]
 [role name=Elpis]
 真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
+[vp name=elpis move2o move=0 time=0]
+[ani name=water role=Elpis]
 [scene name=ocean load=0 move=2 des=场景：夜晚海边]
 【Elpis 朝你眨眨眼，随即走进海里，蜷缩身体沉入海中】
 [video name=water]【场景：海水从屏幕下方上灌，充斥整个屏幕的海水背景】

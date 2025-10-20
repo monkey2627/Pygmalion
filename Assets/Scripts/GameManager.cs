@@ -185,13 +185,24 @@ public class GameManager : MonoBehaviour
                     float fadeTime = float.Parse(parsedTag["time"]);
                     float target =  float.Parse(parsedTag["fade"]);
                     VpManager.Instance.Fade(parsedTag["name"],fadeTime,target);
-                }else if (parsedTag.ContainsKey("move"))
+                }else if (parsedTag.ContainsKey("move2"))
                 {
                     float fadeTime = float.Parse(parsedTag["time"]);
                     float x = float.Parse(parsedTag["x"], CultureInfo.InvariantCulture);
                     float y = float.Parse(parsedTag["y"], CultureInfo.InvariantCulture);
                     float z = float.Parse(parsedTag["z"], CultureInfo.InvariantCulture);
                     VpManager.Instance.Move(parsedTag["name"], fadeTime,new Vector3(x, y, z));
+                }else if (parsedTag.ContainsKey("scale"))
+                {
+                    float fadeTime = float.Parse(parsedTag["time"]);
+                    float x = float.Parse(parsedTag["x"], CultureInfo.InvariantCulture);
+                    float y = float.Parse(parsedTag["y"], CultureInfo.InvariantCulture);
+                    float z = float.Parse(parsedTag["z"], CultureInfo.InvariantCulture);
+                    VpManager.Instance.Scale(parsedTag["name"], fadeTime,new Vector3(x, y, z));
+                }
+                else if (parsedTag.ContainsKey("move2o"))
+                {
+                     VpManager.Instance.Move2O(parsedTag["name"]);
                 }
                 break;
             case "sentence":
@@ -200,6 +211,15 @@ public class GameManager : MonoBehaviour
                     case "create":
                          CreateSentence(0);
                          break;
+                }
+                break;
+            case "ani":
+                switch (parsedTag["name"])
+                {
+                    case "water":
+                        waterAni.Instance.target = parsedTag["role"];
+                        waterAni.Instance.gameObject.SetActive(true);
+                        break;
                 }
                 break;
             case "scene":
