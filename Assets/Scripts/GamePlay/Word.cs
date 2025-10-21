@@ -10,14 +10,23 @@ namespace GamePlay
 {
     public class Word : MonoBehaviour,IPointerClickHandler
     {
+        public struct Dialog
+        {
+            public string Name;
+            public string Text;
+        }
         //点击词语，根据词语的种类不同应该是有不同的表现
         public Sentence sentence;
         public int wordType;
         public TMP_Text wordText; 
-        public int sentenceNumber;
         public string addText;
         public List<string> changeWordList;
+        //Type = 3时，双击词语会跳转到的句子编号
         public int nextSentenceNumber;
+        //Type = 6时，所对应的静态图名字
+        public string pic;
+        public List<Dialog> dialogList;
+        public string endText;
         public bool enable;
         public GameObject click2Board;
         public GameObject deleteChoice;
@@ -31,6 +40,8 @@ namespace GamePlay
         public bool playedDelete = false;
         public bool playedChange = false;
         public bool playedAdd = false;
+        //存所有可以算作是正确的选项
+        public List<String> answerList;
         public void RefreshBox2d()
         {
             var tmp = GetComponent<TMP_Text>();
@@ -79,9 +90,22 @@ namespace GamePlay
                 case 5://替换
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
                     break;
+                default:
+                    break;
             }
         }
 
+        public bool IsRight()
+        {
+            foreach (var ans in answerList)
+            {
+                if (ans == wordText.text)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public void OnPointerClick(PointerEventData eventData)
         {
             if (enable && !isPanel)
@@ -164,9 +188,13 @@ namespace GamePlay
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,false);
                     doubleClick2Board.SetActive(true);
                     break;
+                case 6://出现图
+                    SentenceDialog.Instance.Show(pic, dialogList, endText);
+                    break;
             }
         }
 
+        public GameObject doubleClick6Board;
         public void DeleteGame()
                 {
                     Close();

@@ -74,7 +74,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [role name=Elpis(电子)]
 哎呀！不是啦不是啦，Pygmalion 系统是完美无缺的，刚才只是混进来了一点 别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=5]
+[role name=Elpis(电子) move=3]
 嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
 [sentence op=enable word=1 sentence=0 enable=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -85,27 +85,37 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=confirm parent=GuideSceneGamePlay]
 [image op=fade target=0 obj=black time=1 parent=UI move=0] 
+[operation setActive=false obj=Dialog parent=UI move=0]
+[image op=fade target=0 obj=elpis time=1 parent=vps move=0] 
 [sentence op=fade move=1 des=所有的语句逐渐消失，消失后删除语句逐渐淡去Elpis的身周环绕起一圈游鱼，随后变成淡淡的白光融入身体]
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
 [operation setActive=false obj=black parent=sceneTransfer move=0]
 [ani name=back2ocean]
-[role name=Elpis]
+[vp name=elpis op=fade fade=1 time=0 move=0]
+[vp name=elpis op=move2 x=-556.5 y=-540.1 z=0 move=0 time=0]
+[role name=Elpis save]
 看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！ 
+[operation setActive=false obj=Dialog parent=UI move=0]
 [vp name=elpis op=fade fade=0 time=1 move=1 des=Elpis凑近]
-[vp name=elpis op=scale x=0.6 y=0.6 z=0.6 move=0 time=0]
-[vp name=elpis op=move2 x=-560.4 y=-546.34 z=0 move=0 time=0]
-[vp name=Elpis fade=1 time=1]
+[vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
+[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
+[vp name=elpis op=fade fade=1 time=1 move=1]
+[operation setActive=true obj=Dialog parent=UI move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis]
 说真的，能参与这个项目，能用这样的方式帮助别人，我每天都觉得好兴奋。可能我人生的意义就在于此吧… 
 [role name=Elpis]
 那么，准备好迎接我们的第一位“患者”了吗？这次的连接申请来自…嗯，EA1730区…一鸣！记得加载多语言模块，我们是一个服务世界的系统！ 
 [role name=Elpis]
 别担心，我会在这儿陪着你的，保持联系！ 
-[vp name=Elpis fade=0] 
+[vp name=Elpis op=fade fade=0] 
 [role name=Elpis(电子)]
 放轻松，按你的想法来。我相信你的判断。 
 [role name=Elpis(电子)]
 如果有一天…你相信一位“患者”其实并没有心理问题…
-[role name=Elpis(电子)]
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[role name=Elpis(电子) move=0]
 请相信自己的判断。
-[script name=ym]
+[operation setActive=false obj=Dialog parent=UI move=0]
+[image op=fade target=1 obj=black time=1 parent=UI move=0] 
+[script name=ym line=0]

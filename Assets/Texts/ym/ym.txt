@@ -1,5 +1,8 @@
+[ani name=ymani1]
 [operation setActive=true obj=Dialog parent=UI move=1]
-[vp name=ym0 op=show des=震惊脸，眼眶泛红脸 move=0]
+[vp name=ym0 op=fade fade=1 time=1 move=1 des=Elpis凑近]
+[vp name=ym0 op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
+[vp name=ym0 op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0 des=震惊脸，眼眶泛红脸]
 [role name=一鸣]
 ！！！
 [role name=一鸣]
@@ -104,11 +107,12 @@
 ymEnd1
 ymEnd2
 ymEnd3
+[endend]
 [word type=0 content=高考的失利是我人生中 enable=1 word=0 sentence=0]
 [word type=3 content=永远洗不去的烙印 enable=1 word=1 sentence=0]
 [sentence]
 [word type=0 content=这个念头 enable=1 word=1 sentence=1]
-[word type=2 content=无时无刻不在啃噬着我 enable=1 word=2 sentence=1 changeNumber=1]
+[word type=2 content=无时无刻不在啃噬着我 enable=1 word=2 sentence=1 changeNumber=1 right=]
 有时出现在我脑海里
 [word type=0 content=。高考，它证明了我过去的  word=3 sentence=1]
 [word type=6 content=所有努力 pic=ympic01 end=没考上好学校的话……这么些年的所有努力，不就都成了一场笑话吗。]

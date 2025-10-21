@@ -10,7 +10,14 @@ using DG.Tweening;
 using GamePlay;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-
+using UnityEngine.Serialization;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using DG.Tweening;
+using Unity.VisualScripting;
+using UnityEngine;
 [RequireComponent(typeof(GameManager))]
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +33,7 @@ public class GameManager : MonoBehaviour
     public Scene.Scene start;
     public Dictionary<string, Scene.Scene> ScenesDic = new Dictionary<string, Scene.Scene>();
     public GameObject upperButtons;
+    public int isGameTime = 0;
     private  void Awake()
     {
         Instance = this;
@@ -73,11 +81,85 @@ public class GameManager : MonoBehaviour
         ReadLine();
     }
 
-    //存一些其他的状态
-    public void Save()
+    [Serializable]
+    public struct MyStruct
     {
-        //black.GetComponent<SpriteRenderer>().DOFade(1, 0);
-        //white.GetComponent<SpriteRenderer>().DOFade(1, 0);
+        //为了持久化
+        public string objName;       
+        public Vector3 pos;
+        public Vector3 scale;
+        public int isActivate;
+        public Color color;
+    }
+    [Serializable]
+    public class SaveMyStructData
+    {
+        public List<MyStruct> snapshots;
+    }
+    private static readonly string SaveFile = "SaveGameManagerData.json";
+    //存一些其他的状态
+    public void Save(int type = 0)
+    {
+        
+        if (type == 0)
+        {   
+            PlayerPrefs.SetInt("isGameTime", isGameTime);
+            List<MyStruct> list = new();
+            list.Add(new MyStruct
+            {
+                objName = "black",
+                pos = black.transform.position,
+                scale = black.transform.localScale,
+                color = black.GetComponent<SpriteRenderer>().color,
+                isActivate = black.activeInHierarchy? 1 : 0
+            });
+            list.Add(new MyStruct
+            {
+                objName = "white",
+                pos = white.transform.position,
+                scale = white.transform.localScale,
+                color = white.GetComponent<SpriteRenderer>().color,
+                isActivate = white.activeInHierarchy? 1 : 0
+            });
+            list.Add(new MyStruct
+            {
+                objName = "dialog",
+                pos = dialog.transform.position,
+                scale = dialog.transform.localScale,
+                color = new Color(0,0,0,1),
+                isActivate = dialog.activeInHierarchy? 1 : 0
+            });
+            list.Add(new MyStruct
+            {
+                objName = "videoPlayer",
+                pos = videoPlayer.transform.position,
+                scale = videoPlayer.transform.localScale,
+                color = black.GetComponent<SpriteRenderer>().color,
+                isActivate = videoPlayer.transform.gameObject.activeInHierarchy? 1 : 0
+            });
+            
+                SaveMyStructData data = new() { snapshots = list };
+                string json = JsonUtility.ToJson(data, true);
+                File.WriteAllText(Path.Combine(Application.persistentDataPath, SaveFile), json);
+                Debug.Log($"[GameManager] 已保存");
+        }
+        
+    }
+
+    public void Load()
+    {
+
+        if (isGameTime==1)
+        {
+            //加载背后的水母和人
+            WaterAni.Instance.LoadDataAndShowScene();
+            //加载词语
+        }
+        else
+        {
+            
+            
+        }
     }
     public void ContinueGame()
     {
@@ -97,7 +179,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine("Read");
     }
-    // ReSharper disable Unity.PerformanceAnalysis
+
+    public bool readScript = true;
     IEnumerator Read()
     {
         string l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
@@ -215,7 +298,6 @@ public class GameManager : MonoBehaviour
                         break;
                     case "fade":
                         float target =  float.Parse(parsedTag["fade"]);
-                        print("dsdasd");
                         VpManager.Instance.Fade(parsedTag["name"],fadeTime,target);
                         break;
                     case "scale":      
@@ -235,7 +317,7 @@ public class GameManager : MonoBehaviour
                     case "create":
                         //每次遇到创建的时候就清空，然后将所有的句子都注册
                         SentenceManager.Instance.sentences = new List<Sentence>();
-                        CreateSentence(0);
+                        CreateSentence(-1);
                         break;
                     case "enable":
                         int wordNum = int.Parse(parsedTag["word"]);
@@ -251,16 +333,21 @@ public class GameManager : MonoBehaviour
                 switch (parsedTag["name"])
                 {
                     case "water":
-                        waterAni.Instance.target = parsedTag["role"];
-                        waterAni.Instance.gameObject.SetActive(true);
+                        WaterAni.Instance.target = parsedTag["role"];
+                        WaterAni.Instance.gameObject.SetActive(true);
                         break;
                     case "back2ocean":
-                        Back2oceanAni.Instance.gameObject.SetActive(true);
+                        Back2OceanAni.Instance.gameObject.SetActive(true);
+                        break;
+                    case "ymani1":
                         break;
                 }
                 break;
             case "script"://换脚本
-                
+                string scriptName = parsedTag["name"];
+                DataManager.Instance.ScriptNow = scriptName;
+                DataManager.Instance.LineNow = int.Parse(parsedTag["line"]);
+                break;
             case "scene":
                 switch (parsedTag["load"])
                 {
@@ -307,7 +394,7 @@ public GameObject CloneWord(GameObject original,GameObject cloneSentence)
 
 public GameObject sentenceCloneObj;
 //递归生成句子
-public void CreateSentence(int sentenceNumber)
+public void CreateSentence(int fatherSentenceNumber)
 {
     GameObject cloneSentence = Instantiate(sentenceCloneObj,SentenceManager.Instance.transform);
     RectTransform cloneRt = cloneSentence.transform as RectTransform;
@@ -316,22 +403,27 @@ public void CreateSentence(int sentenceNumber)
         cloneRt.anchoredPosition3D = (sentenceCloneObj.transform as RectTransform).anchoredPosition3D;
         cloneRt.sizeDelta = Vector2.zero;
     }
+    
     cloneSentence.SetActive(true);
-    cloneSentence.GetComponent<Sentence>().number = sentenceNumber;
-    cloneSentence.GetComponent<Sentence>().SentenceEnds = new List<SentenceEnd>();
+    cloneSentence.GetComponent<Sentence>().fatherSentenceNumber = fatherSentenceNumber;
+    cloneSentence.GetComponent<Sentence>().scentenceNumber = SentenceManager.Instance.sentences.Count;
+    SentenceManager.Instance.sentences.Add(cloneSentence.GetComponent<Sentence>());
     string l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
     Dictionary<string, string> parsedTag = Utils.ParseLine(l);
     while (!string.Equals(parsedTag["tag"], "end", StringComparison.Ordinal))
     {
-        if (parsedTag["tag"] == "sentence")
+        if(parsedTag["tag"]=="sentenceEnd")
         {
-          CreateSentence(sentenceNumber+1);
-        }
-        else if(parsedTag["tag"]=="string")
-        {
-             string content = parsedTag["content"];
-             int jum2 = int.Parse(parsedTag["jump2"]);
-             cloneSentence.GetComponent<Sentence>().SentenceEnds.Add(new SentenceEnd(){Content = content,Jump2 = jum2,Enable = true});
+            switch (parsedTag["type"])
+            {
+                case "0":
+                    SentenceManager.Instance.type = ConfirmType.Normal;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        SentenceManager.Instance.endScriptsList.Add(ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++]);
+                    }
+                    break;
+            }
         }
         else
         {
@@ -345,22 +437,32 @@ public void CreateSentence(int sentenceNumber)
                       word.GetComponent<Word>().wordType = 0;
                       word.GetComponent<Word>().wordText.text = parsedTag["content"];
                       word.GetComponent<Word>().wordText.color = Color.white;
-                      word.GetComponent<Word>().sentenceNumber = sentenceNumber;
                       break;
                   case "1":
                       word.GetComponent<Word>().wordType = 1;
                       word.GetComponent<Word>().wordText.text = "<color=#00000000>空</color>";
                       word.GetComponent<Word>().wordText.color = Color.white;
                       word.GetComponent<Word>().addText =  parsedTag["content"];
-                      word.GetComponent<Word>().sentenceNumber = sentenceNumber;
                       word.GetComponent<Word>().changeWordList = new List<string>();
                       word.GetComponent<Word>().changeWordList.Add("<color=#00000000>空</color>");
+                      switch (parsedTag["right"])
+                      {
+                          case "0"://add
+                              word.GetComponent<Word>().answerList.Add(parsedTag["content"]);
+                              break;
+                          case "1"://none
+                              word.GetComponent<Word>().answerList.Add("<color=#00000000>空</color>");
+                              break;
+                          case "2"://none and add
+                              word.GetComponent<Word>().answerList.Add(parsedTag["content"]);
+                              word.GetComponent<Word>().answerList.Add("<color=#00000000>空</color>");
+                              break;
+                      }
                       break;
                   case "2":
                       word.GetComponent<Word>().wordType = 2;
                       word.GetComponent<Word>().wordText.text = parsedTag["content"];
                       word.GetComponent<Word>().wordText.color = Color.yellow;
-                      word.GetComponent<Word>().sentenceNumber = sentenceNumber;
                       word.GetComponent<Word>().changeWordList = new List<string>();
                       word.GetComponent<Word>().changeWordList.Add(parsedTag["content"]);
                       for (int i = 0; i < int.Parse(parsedTag["changeNumber"]); i++)
@@ -368,13 +470,60 @@ public void CreateSentence(int sentenceNumber)
                           l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
                           word.GetComponent<Word>().changeWordList.Add(l);
                       }
+                      switch (parsedTag["right"])
+                      {
+                          case "0"://change
+                              for (int i = 1; i < word.GetComponent<Word>().changeWordList.Count; i++)
+                              {
+                                  word.GetComponent<Word>().changeWordList.Add(word.GetComponent<Word>().changeWordList[i]);
+                              }
+                              break;
+                          case "1"://delete
+                              word.GetComponent<Word>().answerList.Add("/");
+                              break;
+                          case "2"://change and delete
+                              word.GetComponent<Word>().answerList.Add("/");
+                              for (int i = 1; i < word.GetComponent<Word>().changeWordList.Count; i++)
+                              {
+                                  word.GetComponent<Word>().changeWordList.Add(word.GetComponent<Word>().changeWordList[i]);
+                              }
+                              break;
+                          case "3"://none
+                              word.GetComponent<Word>().answerList.Add(parsedTag["content"]);
+                              break;
+                      }
                       break;
                   case "3":
                       word.GetComponent<Word>().wordType = 3;
                       word.GetComponent<Word>().wordText.text = parsedTag["content"];
                       word.GetComponent<Word>().wordText.color = Color.red;
-                      word.GetComponent<Word>().sentenceNumber = sentenceNumber;
-                      word.GetComponent<Word>().nextSentenceNumber = sentenceNumber + 1;
+                      word.GetComponent<Word>().nextSentenceNumber = SentenceManager.Instance.sentences.Count;
+                      CreateSentence(cloneSentence.GetComponent<Sentence>().scentenceNumber);
+                      break;
+                  case "4":
+                      word.GetComponent<Word>().wordType = 3;
+                      word.GetComponent<Word>().wordText.text = parsedTag["content"];
+                      word.GetComponent<Word>().wordText.color = Color.red;
+                      break;
+                  case "5":
+                      word.GetComponent<Word>().wordType = 3;
+                      word.GetComponent<Word>().wordText.text = parsedTag["content"];
+                      word.GetComponent<Word>().wordText.color = Color.red;
+                      break;
+                  case "6":
+                      word.GetComponent<Word>().wordType = 3;
+                      word.GetComponent<Word>().wordText.text = parsedTag["content"];
+                      word.GetComponent<Word>().wordText.color = Color.red;
+                      word.GetComponent<Word>().endText = parsedTag["end"];
+                      word.GetComponent<Word>().pic = parsedTag["pic"];
+                      l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
+                      parsedTag = Utils.ParseLine(l);
+                      while(parsedTag["tag"] != "dialogEnd")
+                      {
+                          word.GetComponent<Word>().dialogList.Add(new Word.Dialog(){Name = parsedTag["role"],Text = parsedTag["content"]});
+                          l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
+                          parsedTag = Utils.ParseLine(l);
+                      }
                       break;
             }
             word.GetComponent<AutoBox>().RefreshBox2d();
@@ -383,8 +532,13 @@ public void CreateSentence(int sentenceNumber)
         l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
         parsedTag = Utils.ParseLine(l);
     }
-    SentenceManager.Instance.sentences.Add(cloneSentence.GetComponent<Sentence>());
 }
-
+    public void Change2ScriptAndReadLine(string endScripts,int line=0)
+    {
+        ResourceLoader.textLoader[DataManager.Instance.ScriptNow].SavedLine=DataManager.Instance.LineNow;
+        DataManager.Instance.LineNow = line;
+        DataManager.Instance.ScriptNow = endScripts;
+        ReadLine();
+    }
 }
 

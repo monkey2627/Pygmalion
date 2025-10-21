@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay
 {
@@ -9,11 +11,32 @@ namespace GamePlay
         //only 0
         public GameObject confirm;
         //only >=0
+        public bool showPicture = false;//是否展示静态图
         public GameObject back;
         public List<Word> words;
-        public int number;
-        public string sentenceNow;
-        public List<SentenceEnd> SentenceEnds = new List<SentenceEnd>();
+        public int scentenceNumber;
+        public int fatherSentenceNumber=-1;
+
+        private void OnEnable()
+        {
+            if (fatherSentenceNumber == -1)
+            {
+                confirm.SetActive(true);
+            }
+            else if(fatherSentenceNumber>=0)
+            {
+                confirm.SetActive(false);
+            }
+
+            if (fatherSentenceNumber != -1 && !showPicture &&fatherSentenceNumber !=-10)
+            {
+                back.SetActive(true);
+            }
+            else if(fatherSentenceNumber==-1)
+            {
+                back.SetActive(false);
+            }
+        }
 
         public void Fade(float time)
         {

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 177838793976423975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.5075387, w: 0.86162895}
-  m_LocalPosition: {x: -1.6, y: -3.5, z: 0}
+  m_LocalPosition: {x: 4.76, y: -5.56, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 4966033446629706901}
   - component: {fileID: 4886527205652424979}
   m_Layer: 0
-  m_Name: elips1
+  m_Name: elpis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,7 +612,7 @@ Transform:
   m_GameObject: {fileID: 1331180114424653862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.5075387, w: 0.86162895}
-  m_LocalPosition: {x: -1.6, y: -3.5, z: 0}
+  m_LocalPosition: {x: 6.88, y: 3.47, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -996,7 +996,7 @@ Transform:
   m_GameObject: {fileID: 2050532459261050807}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.5075387, w: 0.86162895}
-  m_LocalPosition: {x: -1.6, y: -3.5, z: 0}
+  m_LocalPosition: {x: 9.6, y: -3.5, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1366,7 +1366,7 @@ Transform:
   m_GameObject: {fileID: 3806960599934574395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.5075387, w: 0.86162895}
-  m_LocalPosition: {x: -1.6, y: -1.55, z: 0}
+  m_LocalPosition: {x: -5.68, y: -5.91, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   - 5
   roleArray:
   - {fileID: 923452459751996360}
-  BlackBG: {fileID: 1536967544485022470}
+  blackBg: {fileID: 0}
   DelayGameObject: {fileID: 0}
 --- !u!1 &7470233057447115512
 GameObject:
@@ -1749,7 +1749,7 @@ GameObject:
   - component: {fileID: 7741682682032510559}
   - component: {fileID: 7605645149049572868}
   - component: {fileID: 6982135293795684579}
-  - component: {fileID: 326290026418175094}
+  - component: {fileID: 4660656140034232080}
   m_Layer: 0
   m_Name: back2ocean
   m_TagString: Untagged
@@ -1845,7 +1845,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &326290026418175094
+--- !u!114 &4660656140034232080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1857,8 +1857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f727d0a1b8769e04cb550a1d62f99dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: elpis
-  BlackBG: {fileID: 0}
 --- !u!1 &7868415279089095430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,11 +2001,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 303994326110680753, guid: f861071ba0faee7489419922155a79fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.16
+      value: -5.69
       objectReference: {fileID: 0}
     - target: {fileID: 303994326110680753, guid: f861071ba0faee7489419922155a79fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.41
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 303994326110680753, guid: f861071ba0faee7489419922155a79fc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2049,11 +2047,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7651393873325022508, guid: f861071ba0faee7489419922155a79fc, type: 3}
+      propertyPath: Text
+      value: 
+      objectReference: {fileID: 2113363889154952865}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f861071ba0faee7489419922155a79fc, type: 3}
+--- !u!114 &2113363889154952865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8356976376061878136, guid: f861071ba0faee7489419922155a79fc, type: 3}
+  m_PrefabInstance: {fileID: 7975273499516719577}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7680288576265283432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 303994326110680753, guid: f861071ba0faee7489419922155a79fc, type: 3}

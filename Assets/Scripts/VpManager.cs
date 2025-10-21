@@ -49,7 +49,7 @@ public class VpManager : MonoBehaviour
         {
             value.GetComponent<SpriteRenderer>().color = new Color(value.GetComponent<SpriteRenderer>().color.r, value.GetComponent<SpriteRenderer>().color.g, value.GetComponent<SpriteRenderer>().color.b, 0f);
         }
-        SaveAllVp();
+        SaveAllVp(0);
     }
     public void Fade(string obj, float fadeTime, float target)
     {
@@ -106,26 +106,29 @@ public class VpManager : MonoBehaviour
             });
         });
     }
-    public void SaveAllVp()
+    public void SaveAllVp(int type)
     {
-        List<Vp> list = new();
-        foreach (var kvp in vps)
+        if (type == 0)
         {
-            var tr = kvp.Value.transform;
-            var sr = kvp.Value.GetComponent<SpriteRenderer>();
-            list.Add(new Vp
+            List<Vp> list = new();
+            foreach (var kvp in vps)
             {
-                name       = kvp.Key,
-                localPos  = tr.localPosition,
-                localScale= tr.localScale,
-                color     = sr.color
-            });
-        }
+                var tr = kvp.Value.transform;
+                var sr = kvp.Value.GetComponent<SpriteRenderer>();
+                list.Add(new Vp
+                {
+                    name = kvp.Key,
+                    localPos = tr.localPosition,
+                    localScale = tr.localScale,
+                    color = sr.color
+                });
+            }
 
-        SaveVPData data = new() { snapshots = list };
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(Path.Combine(Application.persistentDataPath, SaveFile), json);
-        Debug.Log($"[VpManager] 已保存 {list.Count} 条 vp 数据");
+            SaveVPData data = new() { snapshots = list };
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(Path.Combine(Application.persistentDataPath, SaveFile), json);
+            Debug.Log($"[VpManager] 已保存 {list.Count} 条 vp 数据");
+        }
     }
 
     // 从磁盘读出并覆盖当前 vp 的状态

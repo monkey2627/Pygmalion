@@ -1,17 +1,21 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ani
 {
-    public class Back2oceanAni : MonoBehaviour
+    public class Back2OceanAni : MonoBehaviour
     {
-        public string target="elpis";
-        public static Back2oceanAni Instance;
-        public GameObject BlackBG;
+        public static Back2OceanAni Instance;
         private void Awake()
         {
             Instance  = this;
             gameObject.SetActive(false);
         }
 
+        public void Finish()
+        {
+            gameObject.SetActive(false);
+            GameManager.Instance.ReadLine();
+        }
     }
 }

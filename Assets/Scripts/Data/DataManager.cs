@@ -16,7 +16,6 @@ public class DataManager : MonoBehaviour
         set
         {
             _lineNow = value;
-            PlayerPrefs.SetInt("lineNow", value);
         }
     }
     private string _scriptNow;
@@ -37,19 +36,24 @@ public class DataManager : MonoBehaviour
     public string GameCircle
     {
         get => _gameCircle;
-        set { _gameCircle = value; ;}
+        set { _gameCircle = value;}
     }
 
     /// <summary>
     /// 只在一整个操作之后save
     /// </summary>
-    public void Save()
+    public void Save(int type=0)
     {
-        PlayerPrefs.SetString("scriptNow", _scriptNow);
-        PlayerPrefs.SetString("gameCircle",_gameCircle);
-        PlayerPrefs.SetString("currentScene",PSceneManager.Instance._currentScene.name);
-        VpManager.Instance.SaveAllVp();
-        GameManager.Instance.Save();
+        if (type == 0)//说明是自动存
+        {
+            PlayerPrefs.SetString("scriptNow", _scriptNow);
+            PlayerPrefs.SetInt( "lineNow", _lineNow);
+            PlayerPrefs.SetString("currentScene", PSceneManager.Instance._currentScene.name);
+            //存所有vp的位置、颜色、大小
+            VpManager.Instance.SaveAllVp(type);
+            //存场景中一些重要物体的状态
+            GameManager.Instance.Save(type);
+        }
     }
     /// <summary>
     /// 开始新游戏，从新手指导开始

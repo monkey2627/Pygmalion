@@ -198,13 +198,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 2324307502350303038}
+          m_TargetAssemblyTypeName: GamePlay.Word, Assembly-CSharp
+          m_MethodName: Close
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -423,7 +423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2413639085329012226
 Transform:
   m_ObjectHideFlags: 0
@@ -456,10 +456,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layout: {fileID: 7093897113087416255}
   confirm: {fileID: 7537951606707346510}
+  picture: 0
   back: {fileID: 1077131782616243834}
   words: []
   number: 0
-  sentenceNow: 
+  fatherSentenceNumber: 0
 --- !u!1 &2776460106289720656
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +687,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c6da6f2c1c1ac499036e63a4fa1caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sentences: []
+  type: 0
+  guideTime: 1
+  jellyfishs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  endScriptsList: []
+  sentences:
+  - {fileID: 0}
 --- !u!1 &4275606178465157308
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,13 +896,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 2324307502350303038}
+          m_TargetAssemblyTypeName: GamePlay.Word, Assembly-CSharp
+          m_MethodName: DeleteGame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1095,13 +1106,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 2324307502350303038}
+          m_TargetAssemblyTypeName: GamePlay.Word, Assembly-CSharp
+          m_MethodName: ChangeGame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1235,6 +1246,7 @@ GameObject:
   - component: {fileID: 2873720355665310656}
   - component: {fileID: 2220514741334046684}
   - component: {fileID: 6663658779091257702}
+  - component: {fileID: 8450482873480547119}
   m_Layer: 5
   m_Name: confirm
   m_TagString: Untagged
@@ -1358,6 +1370,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8450482873480547119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537951606707346510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9194674804393090738}
+          m_TargetAssemblyTypeName: SentenceManager, Assembly-CSharp
+          m_MethodName: Confirm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7699646128048118975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,13 +1660,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 2324307502350303038}
+          m_TargetAssemblyTypeName: GamePlay.Word, Assembly-CSharp
+          m_MethodName: AddGame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1850,7 +1891,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6181517851164389641}
-  - component: {fileID: 6631413566713272937}
   - component: {fileID: 1026492270716896895}
   - component: {fileID: 8698796608498433473}
   m_Layer: 5
@@ -1880,21 +1920,6 @@ RectTransform:
   m_AnchoredPosition: {x: 330, y: 178}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6631413566713272937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8517468960302781845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2436bb792c6fc94a94c136698400587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textCloneObj: {fileID: 2776460106289720656}
-  wordList: []
-  word: {fileID: 2324307502350303038}
 --- !u!114 &1026492270716896895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,7 +1958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e19bf07063a5ac40882dd418f61cc3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textCloneObj: {fileID: 0}
+  textCloneObj: {fileID: 2776460106289720656}
   wordList: []
   word: {fileID: 0}
 --- !u!1001 &2103524999808883158
@@ -1947,6 +1972,10 @@ PrefabInstance:
     - target: {fileID: 70063047916162319, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
       propertyPath: m_Name
       value: wordclone
+      objectReference: {fileID: 0}
+    - target: {fileID: 70063047916162319, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1386276075538934433, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
       propertyPath: word

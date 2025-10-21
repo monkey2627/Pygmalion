@@ -17,7 +17,6 @@ public class DialogClick : MonoBehaviour,IPointerClickHandler
             }
             else
             {
-                print(GameManager.Instance);
                 GameManager.Instance.ReadLine();
             }
         }

@@ -2,18 +2,62 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ani
 {
-    public class waterAni : MonoBehaviour
+    public class WaterAni : MonoBehaviour
     {
         public string target="elpis";
         public List<GameObject> jellyFishes;
         public List<String> relatedWords;
-        public static waterAni Instance;
+        public static WaterAni Instance;
         public Dictionary<string,GameObject> roles;
         public GameObject[] roleArray;
-        public GameObject BlackBG;
+        public GameObject blackBg;
+
+        [Serializable]
+        private class SaveData
+        {
+            public string target;
+            public List<string> relatedWords;
+        }
+
+        //自动存的时候不会涉及到存waterani
+        public void Save()
+        {
+            SaveData data = new SaveData
+            {
+                target = this.target,
+                relatedWords = this.relatedWords
+            };
+
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString("WaterAni_SaveData", json);
+            PlayerPrefs.Save();
+            Debug.Log("数据已保存");
+            
+        }
+        public void LoadDataAndShowScene()
+        {
+            if (PlayerPrefs.HasKey("WaterAni_SaveData"))
+            {
+                string json = PlayerPrefs.GetString("WaterAni_SaveData");
+                SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+                this.target = data.target;
+                this.relatedWords = data.relatedWords ?? new List<string>();
+                Debug.Log("ocean数据已加载");
+            }
+            for (int i = 0; i < relatedWords.Count; i++)
+            {
+                jellyFishes[i].SetActive(true);
+                jellyFishes[i].GetComponent<BackgroundWander>().Text.gameObject.SetActive(true);
+                jellyFishes[i].GetComponent<BackgroundWander>().Text.text = relatedWords[i];
+            }
+            roles["elpis"].SetActive(true);
+            roles["elpis"].GetComponent<SpriteRenderer>().DOFade(1, 1f);
+        }
         private void Awake()
         {
             Instance  = this;
@@ -60,7 +104,7 @@ namespace Ani
             {
                 //结束后背景变为纯黑,字和水母都出现
                 gameObject.SetActive(false);
-                BlackBG.SetActive(true);
+                blackBg.SetActive(true);
                 foreach (var t in jellyFishes)
                 {
                     t.GetComponent<SpriteRenderer>().enabled = true;
