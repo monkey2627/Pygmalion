@@ -123,7 +123,7 @@ namespace Ani
                 GameObject.Find("black").GetComponent<SpriteRenderer>().DOFade(0.9F, 1).OnComplete(() =>
                 {
                     print("go black");
-                    PygmalionGameManager.instance.ReadLine();
+                    PygmalionGameManager.Instance.ReadLine();
                 
                 });
             

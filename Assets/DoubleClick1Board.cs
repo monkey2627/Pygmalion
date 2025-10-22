@@ -9,8 +9,9 @@ public class DoubleClick1Board : MonoBehaviour
     public GameObject textCloneObj;
     public List<GameObject> wordList = new List<GameObject>();
     public Word word;
-    public void Show(bool addChange)
+    public void Show(bool addChange,Word word)
     {        
+        this.word = word;
         //其本身
         wordList[0].SetActive(true);
         //增添

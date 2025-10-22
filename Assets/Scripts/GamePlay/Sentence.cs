@@ -68,12 +68,4 @@ namespace GamePlay
             SentenceManager.Instance.sentences[fatherSentenceNumber].gameObject.SetActive(true);
         }
     }
-
-    public struct SentenceEnd
-    {
-        public string Content;
-        public int Jump2;
-        //ONLY ONCE
-        public bool Enable;
-    }
 }

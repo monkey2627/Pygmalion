@@ -10,8 +10,9 @@ public class DoubleClick2Board : MonoBehaviour
     public GameObject textCloneObj;
     public List<GameObject> wordList = new List<GameObject>();
     public Word word;
-    public void Show(bool playedChange,bool playedDelete)
+    public void Show(bool playedChange,bool playedDelete,Word word)
     {        
+        this.word = word;
         for (int i = 0; i < wordList.Count; i++)
         {
             wordList[i].SetActive(false);
@@ -34,7 +35,7 @@ public class DoubleClick2Board : MonoBehaviour
     }
     public void Gen(List<string> changeWordList)
     {
-        //其本身
+        //其本身 + 替换
         GameObject text;
         for (int i = 0; i < changeWordList.Count; i++)
         {

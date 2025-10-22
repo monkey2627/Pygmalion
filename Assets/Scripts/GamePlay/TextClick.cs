@@ -21,6 +21,8 @@ namespace GamePlay
                     word.spaceYellow.SetActive(false);
                 }
             }
+            word.RefreshBox2d();
+            word.sentence.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
         }
     }
 }
