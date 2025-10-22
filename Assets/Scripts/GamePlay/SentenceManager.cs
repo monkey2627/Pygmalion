@@ -52,7 +52,7 @@ using UnityEngine.Serialization;
             if (guideTime)
             {
                 
-                PygmalionGameManager.instance.ReadLine();   
+                PygmalionGameManager.Instance.ReadLine();   
                 guideTime = false;
             }
             else
@@ -75,14 +75,14 @@ using UnityEngine.Serialization;
                         float ans = right / all;
                         if (ans > 0.8)
                         {
-                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[0]);
+                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[0]);
                         }else if (ans < 0.5)
                         {
-                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[2]);
+                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[2]);
                         }
                         else
                         {
-                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[1]);
+                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
                         }
                         break;
                     case ConfirmType.OnlyOneCorrect:

@@ -12,16 +12,18 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.IO;
 using TMPro;
+
+
 public class PygmalionGameManager : MonoBehaviour
 {
-    public static PygmalionGameManager instance;
+    public static PygmalionGameManager Instance;
     public VideoPlayer videoPlayer;
     public GameObject guideScene;
     public GameObject dialog;
-    public TMPro.TMP_Text roleName;
+    public TMP_Text roleName;
     public Sprite[] roleSprites;
-    Dictionary<string, Sprite> roleSpriteDict = new Dictionary<string, Sprite>();
-    public GameObject RoleHeadGameObject;
+    private Dictionary<string, Sprite> _roleSpriteDict = new Dictionary<string, Sprite>();
+    public GameObject roleHeadGameObject;
     public bool isPlayingVideo = false;
     public GameObject delayObj;
     public GameObject wordCloneObj;
@@ -33,7 +35,7 @@ public class PygmalionGameManager : MonoBehaviour
     public int isGameTime = 0;
     public GameObject frameNow;
     public Sprite[] sprites;
-    public Dictionary<string, Sprite> frameDic = new Dictionary<string,  Sprite>();
+    private Dictionary<string, Sprite> _frameDic = new Dictionary<string,  Sprite>();
     //ending
     public GameObject endingPanel;
     public TMP_Text endText;
@@ -41,12 +43,12 @@ public class PygmalionGameManager : MonoBehaviour
     {
         for (int i = 0; i < sprites.Length; i++)
         {
-            frameDic.Add(sprites[i].name, sprites[i]);
+            _frameDic.Add(sprites[i].name, sprites[i]);
         }
-        instance = this;
+        Instance = this;
         for (int i = 0; i < roleSprites.Length; i++)
         {
-            roleSpriteDict.Add(roleSprites[i].name, roleSprites[i]);
+            _roleSpriteDict.Add(roleSprites[i].name, roleSprites[i]);
         }
         ScenesDic["ocean"] = ocean;
         ScenesDic["lab"] = lab;
@@ -90,12 +92,12 @@ public class PygmalionGameManager : MonoBehaviour
         VpManager.Instance.StartNewGame();
         dialog.SetActive(false);
         black.GetComponent<SpriteRenderer>().DOFade(1, 0);
-        TestChange2YM();        
+        TestChange2Ym();        
         
         ReadLine();
     }
 
-    public void TestChange2YM()
+    public void TestChange2Ym()
     {
         DataManager.Instance.LineNow = 122;
         DataManager.Instance.ScriptNow = "0";
@@ -222,7 +224,7 @@ public class PygmalionGameManager : MonoBehaviour
                     {
                         VideoClip videoClip = handle.Result;
                         videoPlayer.clip = videoClip;
-                        videoPlayer.isLooping = false || parsedTag.ContainsKey("loop");
+                        videoPlayer.isLooping = parsedTag.ContainsKey("loop");
                         videoPlayer.loopPointReached += (source) =>
                         {
                             if (!videoPlayer.isLooping)
@@ -252,21 +254,21 @@ public class PygmalionGameManager : MonoBehaviour
             case "role":
                 if (parsedTag.ContainsKey("frame"))
                 {
-                    frameNow.GetComponent<SpriteRenderer>().sprite = frameDic[parsedTag["frame"]];
+                    frameNow.GetComponent<SpriteRenderer>().sprite = _frameDic[parsedTag["frame"]];
                 }
 
                 if (parsedTag.ContainsKey("sprite"))
                 {
                     if (parsedTag["sprite"] == "none")
                     {
-                        RoleHeadGameObject.GetComponent<SpriteRenderer>().sprite = null;
+                        roleHeadGameObject.GetComponent<SpriteRenderer>().sprite = null;
                     }
                     else
                     {
-                        if(roleSpriteDict.ContainsKey(parsedTag["sprite"]))
-                            RoleHeadGameObject.GetComponent<SpriteRenderer>().sprite = roleSpriteDict[parsedTag["sprite"]];
+                        if(_roleSpriteDict.ContainsKey(parsedTag["sprite"]))
+                            roleHeadGameObject.GetComponent<SpriteRenderer>().sprite = _roleSpriteDict[parsedTag["sprite"]];
                         else
-                            RoleHeadGameObject.GetComponent<SpriteRenderer>().sprite = null;
+                            roleHeadGameObject.GetComponent<SpriteRenderer>().sprite = null;
                     }
                 }
                 roleName.text = parsedTag["name"];
@@ -424,8 +426,6 @@ public class PygmalionGameManager : MonoBehaviour
                 }
 
                 break;
-            default:
-            break;
 }
 
 if (parsedTag.ContainsKey("move"))
@@ -499,7 +499,7 @@ private void CreateSentence(int fatherSentenceNumber)
                       word.GetComponent<Word>().wordType = 1;
                       word.GetComponent<Word>().spaceYellow.SetActive(true);
                       word.GetComponent<Word>().wordText.text = "<color=#00000000>空</color>";
-                      word.GetComponent<Word>().wordText.color = Color.white;
+                      word.GetComponent<Word>().wordText.color = Color.yellow;;
                       word.GetComponent<Word>().addText =  parsedTag["content"];
                       word.GetComponent<Word>().changeWordList = new List<string>();
                       word.GetComponent<Word>().changeWordList.Add("<color=#00000000>空</color>");
@@ -516,6 +516,7 @@ private void CreateSentence(int fatherSentenceNumber)
                               word.GetComponent<Word>().answerList.Add("<color=#00000000>空</color>");
                               break;
                       }
+                      word.GetComponent<Word>().doubleClick1Board.GetComponent<DoubleClick1Board>().Gen(word.GetComponent<Word>().changeWordList);
                       break;
                   case "2":
                       word.GetComponent<Word>().wordType = 2;
@@ -559,6 +560,7 @@ private void CreateSentence(int fatherSentenceNumber)
                                   word.GetComponent<Word>().answerList.Add(parsedTag["content"]);
                                   break;
                           }
+                      word.GetComponent<Word>().doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(word.GetComponent<Word>().changeWordList);
                       break;
                   case "3":
                       word.GetComponent<Word>().wordType = 3;

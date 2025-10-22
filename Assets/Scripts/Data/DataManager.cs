@@ -52,7 +52,7 @@ public class DataManager : MonoBehaviour
             //存所有vp的位置、颜色、大小
             VpManager.Instance.SaveAllVp(type);
             //存场景中一些重要物体的状态
-            PygmalionGameManager.instance.Save(type);
+            PygmalionGameManager.Instance.Save(type);
         }
     }
     /// <summary>

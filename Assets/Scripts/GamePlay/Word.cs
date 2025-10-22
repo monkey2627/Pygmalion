@@ -51,7 +51,7 @@ namespace GamePlay
         public string scriptName;
         public int scriptLine;
 
-        private void RefreshBox2d()
+        public void RefreshBox2d()
         {
             var tmp = GetComponent<TMP_Text>();
             var box2d = GetComponent<BoxCollider2D>();
@@ -83,33 +83,7 @@ namespace GamePlay
 
         private void OnEnable()
         {
-            InitPanels();
             GetComponent<AutoBox>().RefreshBox2d();
-        }
-
-        public void InitPanels()
-        {
-            switch (wordType)
-            {
-                case 0: //出现”你确定这不是bug？“
-                    break;
-                case 1: //add,增添过后点击就没反应了，不能再增了
-                    doubleClick1Board.GetComponent<DoubleClick1Board>().Gen(changeWordList);
-                    break;
-                case 2: //替换或者删除
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
-                    break;
-                case 3: //单击没反应，双击才有用
-                    break;
-                case 4: //删除
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
-                    break;
-                case 5: //替换
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
-                    break;
-                default:
-                    break;
-            }
         }
         public bool IsRight()
         {
@@ -188,10 +162,10 @@ namespace GamePlay
                 case 0://没反应
                     break;
                 case 1://add 
-                    doubleClick1Board.GetComponent<DoubleClick1Board>().Show(playedAdd);
+                    doubleClick1Board.GetComponent<DoubleClick1Board>().Show(playedAdd,this);
                     break;
                 case 2://替换或者删除
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,playedDelete);
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,playedDelete,this);
                     doubleClick2Board.SetActive(true);
                     break;
                 case 3://进入对应的下一个句子
@@ -200,11 +174,11 @@ namespace GamePlay
                     SentenceManager.Instance.sentences[nextSentenceNumber].gameObject.SetActive(true);
                     break;
                 case 4://删除
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(false,playedDelete);
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(false,playedDelete,this);
                     doubleClick2Board.SetActive(true);
                     break;
                 case 5://替换
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,false);
+                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,false,this);
                     doubleClick2Board.SetActive(true);
                     break;
                 case 6://出现图
@@ -227,7 +201,7 @@ namespace GamePlay
             SentenceManager.Instance.wordClicked = this;
             sentence.gameObject.SetActive(false);
             mainCamera.SetActive(false);
-            PygmalionGameManager.instance.dialog.SetActive(false);
+            PygmalionGameManager.Instance.dialog.SetActive(false);
             PushBoxGameManager.instance.StartPushBoxGame();
             //测试用
             //ConfirmAddWord();
@@ -250,7 +224,7 @@ namespace GamePlay
             sentence.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
             if (guideTime)
             {
-                PygmalionGameManager.instance.ReadLine();
+                PygmalionGameManager.Instance.ReadLine();
             }
             else
             {
@@ -267,13 +241,13 @@ namespace GamePlay
             sentence.layout.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
             if (guideTime)
             {
-                PygmalionGameManager.instance.ReadLine();
+                PygmalionGameManager.Instance.ReadLine();
             }
             else
             {
                 if (changeDialog)
                 {
-                    PygmalionGameManager.instance.Change2ScriptAndReadLine(scriptName,scriptLine);
+                    PygmalionGameManager.Instance.Change2ScriptAndReadLine(scriptName,scriptLine);
                 }
             }
         }
@@ -290,14 +264,14 @@ namespace GamePlay
             if (guideTime)
             {
                 sentence.gameObject.SetActive(true);
-                PygmalionGameManager.instance.ReadLine();
+                PygmalionGameManager.Instance.ReadLine();
             }
             else
             {
                 sentence.gameObject.SetActive(true);
                 if (addDialog)
                 {
-                    PygmalionGameManager.instance.Change2ScriptAndReadLine(scriptName, scriptLine);
+                    PygmalionGameManager.Instance.Change2ScriptAndReadLine(scriptName, scriptLine);
                 }   
             }
         }

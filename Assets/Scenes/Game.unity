@@ -19260,6 +19260,10 @@ PrefabInstance:
       propertyPath: RoleHeadGameObject
       value: 
       objectReference: {fileID: 304056914}
+    - target: {fileID: 5773976044027674738, guid: ce2ae7aef69792e4094ee686a6ae44d6, type: 3}
+      propertyPath: roleHeadGameObject
+      value: 
+      objectReference: {fileID: 304056914}
     - target: {fileID: 8571283978422626572, guid: ce2ae7aef69792e4094ee686a6ae44d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 870.8233
@@ -19313,14 +19317,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 141532557}
     m_Modifications:
-    - target: {fileID: 298792440781400749, guid: 1005f18c17b92124c8bbdaaddb5ad0d3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146476698004067545, guid: 1005f18c17b92124c8bbdaaddb5ad0d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2324307502350303038, guid: 1005f18c17b92124c8bbdaaddb5ad0d3, type: 3}
       propertyPath: mainCamera
       value: 
@@ -19328,10 +19324,6 @@ PrefabInstance:
     - target: {fileID: 3705346441864274125, guid: 1005f18c17b92124c8bbdaaddb5ad0d3, type: 3}
       propertyPath: m_Name
       value: sentenceManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103949594821950836, guid: 1005f18c17b92124c8bbdaaddb5ad0d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7538462487715414733, guid: 1005f18c17b92124c8bbdaaddb5ad0d3, type: 3}
       propertyPath: m_Pivot.x

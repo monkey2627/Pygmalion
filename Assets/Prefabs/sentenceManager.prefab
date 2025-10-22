@@ -731,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5010264834488489001, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 28.36
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5010264834488489001, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
       propertyPath: m_SizeDelta.y
@@ -814,6 +814,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7056039102307942842, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
+      propertyPath: spaceYellow
+      value: 
+      objectReference: {fileID: 4103949594821950836}
+    - target: {fileID: 7056039102307942842, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
       propertyPath: changeChoice
       value: 
       objectReference: {fileID: 716712736056136933}
@@ -821,12 +825,17 @@ PrefabInstance:
       propertyPath: deleteChoice
       value: 
       objectReference: {fileID: 301444654017657673}
+    - target: {fileID: 7981666507717431321, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8245691447995903349, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2377509849679950901, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
+    - {fileID: 3308654726382848212, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2116938044728502059, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
     - {fileID: 464820296087148340, guid: 9afa77aab7580a247b19fa5359a2c804, type: 3}
