@@ -1,39 +1,44 @@
-坏结果：
-高考的失利像一处怎么也擦不掉的污点，粘在我的人生上。在大家的眼中，我只是个没用的
-废物吧。没考上好大学、也不配拥有好未来的我，只能像个影子一样活着。求求你们，把我
-当成空气吧……
-[role name=一鸣]
+[ending des=坏结局 content=高考的失利像一处怎么也擦不掉的污点，粘在我的人生上。在大家的眼中，我只是个没用的废物吧。没考上好大学、也不配拥有好未来的我，只能像个影子一样活着。求求你们，把我当成空气吧……]
+[scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
+[ani name=back2ocean]
+[role name=一鸣 frame=ori sprite=ym]
 呃…我的感觉好像更糟了。有些想法被强行压了下去，而它们在我的脑海中扭曲成了别的形状，更暗…更沉…像一团解不开的、冰冷的绳结。
-Pygmalion：可能是治疗过程中一些零散的思维与原先的 BUG 情绪混乱缠绕产生了新的报
-错，我强烈建议你在治疗结束后自行观察一段时间，若有进一步不良反应请立即返回进行二
-次检查。
-[role name=一鸣]
+[role name=Pygmalion sprite=p]
+可能是治疗过程中一些零散的思维与原先的 BUG 情绪混乱缠绕产生了新的报错，我强烈建议你在治疗结束后自行观察一段时间，若有进一步不良反应请立即返回进行二次检查。
+[role name=一鸣 sprite=ym]
 好吧…我相信你。
 [role name=一鸣]
 我还有一个问题。我们刚才做了很多修改，也删了很多东西。那些令我痛苦、难堪的想法都消失了。Pygmalion，这样修复过 BUG 的我…还是我吧？
-Pygmalion：当然，我们修理的并不是你本身，只是那些变得扭曲的、不健康的想法，关于
-“扭曲的、不健康的想法”的定义，你可以参考诊疗说明。这些定义都是基于“人类大众的
-普遍认知”，请不用担心。
-[role name=一鸣]
+[role name=Pygmalion sprite=p]
+当然，我们修理的并不是你本身，只是那些变得扭曲的、不健康的想法，关于“扭曲的、不健康的想法”的定义，你可以参考诊疗说明。这些定义都是基于“人类大众的普遍认知”，请不用担心。
+[role name=一鸣 sprite=ym]
 大众的…普遍认知吗？
 [role name=一鸣]
 我知道了，谢谢你。
-Pygmalion：不客气。
-Pygmalion：诊疗已完成，我们会后续跟进你的情况。
+[role name=Pygmalion sprite=p]
+不客气。
+[role name=Pygmalion sprite=p]
+诊疗已完成，我们会后续跟进你的情况。
 [role name=一鸣]
 好的，我也会和你们同步我的情况。
 [role name=一鸣]
 我记得…嗯，这么做就可以离开系统了是吧…
 [role name=一鸣]
 ……
-[role name=一鸣]爷爷，今天是我的“生日”。
-批注 [然高5]: 直视微笑脸
-批注 [然高6]: 直视微笑脸
+[role name=一鸣]
+爷爷，今天是我的“生日”。
+[operation setActive=false obj=Dialog parent=UI move=1]
 【患者已脱离系统】
-Elpis：不…这不该是这样的…我们在一个人的意识中强行覆写了一个故事。我们本该做的是
-修复患者原先故事中存在的漏洞……
-Elpis：相比治疗失败，这更像…你的系统受到了污染？
-Elpis：是谁？Coeus？还是 Mnemosyne？
-Elpis：……你们终究还是追上来了，不是吗……为什么就不能相信我对现实编程技术的应用？
-Elpis：停止一切意识接入，Pygmalion，这不是对你的惩罚。在重新完成系统校准前，我需
-要确认我们绝不会再犯下和以前同样的错误。
+[scene load=1 name=lab move=0.5]
+[operation setActive=true obj=Dialog parent=UI move=1]
+[role name=Elpis sprite=elpis]
+不…这不该是这样的…我们在一个人的意识中强行覆写了一个故事。我们本该做的是修复患者原先故事中存在的漏洞……
+[role name=Elpis sprite=elpis]
+相比治疗失败，这更像…你的系统受到了污染？
+[role name=Elpis sprite=elpis]
+是谁？Coeus？还是 Mnemosyne？
+[role name=Elpis sprite=elpis]
+……你们终究还是追上来了，不是吗……为什么就不能相信我对现实编程技术的应用？
+[role name=Elpis sprite=elpis]
+停止一切意识接入，Pygmalion，这不是对你的惩罚。在重新完成系统校准前，我需要确认我们绝不会再犯下和以前同样的错误。
+[script name=e line=0]

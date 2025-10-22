@@ -12,6 +12,11 @@ public class DoubleClick2Board : MonoBehaviour
     public Word word;
     public void Show(bool playedChange,bool playedDelete)
     {        
+        for (int i = 0; i < wordList.Count; i++)
+        {
+            wordList[i].SetActive(false);
+        }
+        print("show doubleclick2board; "+ playedChange + "; " + playedDelete);
         //其本身
         wordList[0].SetActive(true);
         //替换
@@ -27,15 +32,6 @@ public class DoubleClick2Board : MonoBehaviour
             wordList[^1].SetActive(true);
                  
     }
-
-    private void OnEnable()
-    {
-        for (int i = 0; i < wordList.Count; i++)
-        {
-            wordList[i].SetActive(false);
-        }
-    }
-
     public void Gen(List<string> changeWordList)
     {
         //其本身

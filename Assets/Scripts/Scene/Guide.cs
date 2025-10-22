@@ -23,7 +23,7 @@ namespace Scene
             enable = false;
             text.text = "潜力与收益";
             text.DOKill();
-            GameObject.Find("delay").transform.DOMove(new Vector3(1000, 1000),2).OnComplete(GameManager.Instance.ReadLine);
+            GameObject.Find("delay").transform.DOMove(new Vector3(1000, 1000),2).OnComplete(PygmalionGameManager.instance.ReadLine);
         }
     
     }

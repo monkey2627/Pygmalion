@@ -17,7 +17,7 @@ public class DialogClick : MonoBehaviour,IPointerClickHandler
             }
             else
             {
-                GameManager.Instance.ReadLine();
+                PygmalionGameManager.instance.ReadLine();
             }
         }
     }

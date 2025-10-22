@@ -1,9 +1,9 @@
-[ani name=ymani1]
+[ani name=ymani1 move=0]
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [operation setActive=true obj=Dialog parent=UI move=1]
-[vp name=ym0 op=fade fade=1 time=1 move=1 des=Elpis凑近]
-[vp name=ym0 op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
-[vp name=ym0 op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0 des=震惊脸，眼眶泛红脸]
-[role name=一鸣]
+[vp name=ym0 op=fade fade=1 time=1 move=0 des=Elpis凑近]
+[vp name=ym0 op=scale x=0.16 y=0.16 z=0.16 move=0 time=0]
+[role name=一鸣 frame=ori]
 ！！！
 [role name=一鸣]
 爷爷！
@@ -11,9 +11,9 @@
 ?
 [role name=一鸣]
 这…这怎么可能？
-[role name=Elpis(电子)]
+[role name=Elpis(电子) frame=elec sprite=elpis]
 咳咳,别害怕别害怕，你在不同患者面前表达出的样子是不同的，他们看到的只是自己内心深处的投影，你和他解释一下啦。
-[role name=Pygmalion]
+[role name=Pygmalion frame=ori sprite=none]
 你好，一鸣。我是 Pygmalion，你的心理治疗师。你现在看到的只是内心深处最思念的那个人形象的投影。
 [role name=Pygmalion]
 虽然我并非他本人，但请相信，无论是我还是他，我们同样希望你能变得更好。
@@ -79,7 +79,7 @@
 [role name=Pygmalion]
 当然，你可以在这里多待一会。难得是个挺安静的地方，适合停下来思考。
 [role name=Pygmalion]
-等你准备好了，我们需要你在“意识之海”中全身心地放松，这样你的心才会展开、意识才会发散，那些困扰你的 BUG 情绪也会清晰地呈现在我眼前。
+等你准备好了，我们需要你在“意识之海”中全身心地放松，这样你的心才会展开、意识才会发散，那些困扰你的BUG情绪也会清晰地呈现在我眼前。
 [role name=Pygmalion]
 我们对症下药。
 [role name=一鸣]
@@ -100,101 +100,118 @@
 不用再做准备了。我相信你，“爷爷”。
 [role name=一鸣]
 生日快乐，我自己。
-
-
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
+[operation setActive=false obj=Dialog parent=UI move=1]
+[vp name=ym0 op=fade fade=0 time=1 move=1]
+[ani name=water role=ym]
+[scene name=ocean load=0 move=0]
 [sentence op=create move=0]
-[sentenceEnd type=0 des=就是按照50、80和得分来分是什么结局]
-ymEnd1
-ymEnd2
-ymEnd3
-[endend]
-[word type=0 content=高考的失利是我人生中 enable=1 word=0 sentence=0]
-[word type=3 content=永远洗不去的烙印 enable=1 word=1 sentence=0]
-[sentence]
-[word type=0 content=这个念头 enable=1 word=1 sentence=1]
-[word type=2 content=无时无刻不在啃噬着我 enable=1 word=2 sentence=1 changeNumber=1 right=]
-有时出现在我脑海里
-[word type=0 content=。高考，它证明了我过去的  word=3 sentence=1]
-[word type=6 content=所有努力 pic=ympic01 end=没考上好学校的话……这么些年的所有努力，不就都成了一场笑话吗。]
-[dialog role=??	 content=儿子，都凌晨两点了，又趴桌子上睡着了？快起来喝杯牛奶，去床上睡吧。]
-[dialog role=??	 content=……妈…不用管我，这个模块马上就要写完了。没写完我睡不好。]
-[dialog role=??	 content=唉…身体更重要。你说你这么拼，要是…]
-[dialog role=??	 content=没有“要是”！我知道的，你们在我身上付出了很多，我一定不会让你们失望的。]
-[dialogEnd]
-[word type=2 content=都只是一场笑话 changeNumber=1 changeDialog=true]
-从来都不会有结果
-[dialog role=Elpis（电子）content=有些时候，患者的心灵会走进死胡同，使我们无法替换出自己期待的词句。这个时候……如果把出现 BUG 的部分直接切除、整个删掉，结果可能会更好。]
-[dialogEnd]
-[word type=0 content=话，也预示着我的未来]
-[word type=2 content=注定徒劳 changeNumber=1]
-需要加倍努力
-[word type=0 content=。我完了，我的人生出了一个 BUG。未来画卷才刚要展开，就被泼上了洗不去的墨汁]
-[word type=2 content=，再也无法弥补…… changeNumber=1]
-但以后的事，谁又说得准呢……
+    [sentenceEnd type=0 des=就是按照50、80和得分来分是什么结局]
+    ymEnd1
+    ymEnd2
+    ymEnd3
+    [endend]
+    [word type=0 content=高考的失利是我人生中]
+    [word type=3 content=永远洗不去的烙印]
+    [sentence]
+        [word type=0 content=这个念头 enable=1 word=1 sentence=1]
+        [word type=2 content=无时无刻不在啃噬着我 changeNumber=1 right=2]
+        有时出现在我脑海里
+        [word type=0 content=。高考，它证明了我过去的]
+        [word type=6 content=所有努力 pic=ympic01 end=没考上好学校的话……这么些年的所有努力，不就都成了一场笑话吗。]
+        [dialog role=??	 content=儿子，都凌晨两点了，又趴桌子上睡着了？快起来喝杯牛奶，去床上睡吧。]
+        [dialog role=??	 content=……妈…不用管我，这个模块马上就要写完了。没写完我睡不好。]
+        [dialog role=??	 content=唉…身体更重要。你说你这么拼，要是…]
+        [dialog role=??	 content=没有“要是”！我知道的，你们在我身上付出了很多，我一定不会让你们失望的。]
+        [dialogEnd]
+        [word type=2 content=都只是一场笑话 changeNumber=1 changeDialog=true scriptLine=0 scriptName=ymsupport right=1]
+        从来都不会有结果
+        [word type=0 content=话，也预示着我的未来]
+        [word type=2 content=注定徒劳 changeNumber=1 right=2]
+        需要加倍努力
+        [word type=0 content=。]
+        [word type=0 content=我完了，我的人生出了一个BUG。未来画卷才]
+        [word type=0 content=刚要展开，就被泼上了洗不去的墨汁]
+        [word type=2 content=，再也无法弥补…… changeNumber=1 right=0]
+        但以后的事，谁又说得准呢……
+    [end]
+    [word type=0 content=。在]
+    [word type=3 content=所有人]
+    [sentence]
+        [word type=0 content=出分那天起，我开始害怕遇到以前的同学或朋友，他们看似关心的询问背后，大概是在等待]
+        [word type=2 content=、审视我的落魄 changeNumber=1 right=2]
+        、期待我的坚强
+        [word type=0 content=吧……我尤其在意]
+        [word type=6 content=李明那伙人 pic=ympic02 end=李明虽然成绩不好，但他是班里甚至年级的中心，似乎天生就有着学不来的幽默和松弛……真羡慕啊。我曾经试着融入他们，聊他们喜欢的游戏和电视剧，但总觉得格格不入，就像一只笨拙的企鹅在模仿人类走路。]
+        [dialog role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
+        [dialog role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
+        [dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我 1v1，看我灭了你的傲气！]
+        [dialog role=??	 content=(开心的大笑) 说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
+        [dialogEnd]
+        [word type=0 content=的目光，毕业典礼上他们的每一次窃窃私语]
+        [word type=2 content=都像在议论我的不堪 changeNumber=1 right=2]
+        都只是在聊一些无意义的事罢了
+        [word type=0 content=，见到我时的回避态度也]
+        [word type=2 content=像拿针扎一样伤人 changeNumber=1 right=2]
+        证明我们不是一路人
+        [word type=0 content=人。但让我压力倍增的是]
+        [word type=1 content=我未能理解 right=1]
+        [word type=6 content=张老师 pic=ympic03 end=我不能让您失望。]
+        [dialog role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
+        [dialog role=???	 content=谢谢老师…我会保持的。]
+        [dialog role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
+        [dialog role=??	 content=记住，越是到了最后关头，就越要稳住。咱们学校、咱班今年的荣誉，你可是扛大旗的。千万别像有些学生，到最后泄了气，那就太可惜了。]
+        [dialogEnd]
+        [word type=2 content=关切的目光 changeNumber=1 right=2]
+        私下谈话里的深意
+        [word type=0 content=和父母那种小心翼翼、绝口不提的态度，仿佛他们认定我真的……]
+        [word type=2 content=坏了、出了BUG……是啊，他们都认为 changeNumber=1 right=0]
+        会重新规划好自己的人生
+        [word type=0 content=……]
+        [word type=2 content=是啊，他们都认为 changeNumber=1 right=0]
+        当然，他们不认为
+        [word type=0 content=只会做题的机器才是最完美的孩子。我认同他们的想法。]
+    [end]
+    [word type=0 content=的眼中我都只是一个可悲的失败者。没有考出好成绩、没有光明未来的我……只想]
+    [word type=3 content=永远躲起来]
+    [sentence]
+        [word type=2 content=“出路已经被完全堵死了。 changeNumber=1 right=1]
+        “我看不清眼前的路。
+        [word type=0 content=那么…复读？我没有勇气再经历一次那种]
+        [word type=6 content=折磨 pic=ympic04 end=早复习、晚自习、长考试、少休息。年少时渴慕探索的星空下，无数的我们抛开天真与好奇向那薄而窄的木桥走去。没有人告诉过我们摔下去的人还能否拥有未来、而走过去的人又是否真的拥有未来。]
+            [dialog role=?? content=啊，总算把这套卷子啃完了！这一年题怎么这么难啊……]
+            [dialog role=??	 content=一鸣，你说，等高考结束了，你最想干什么？]
+            [dialog role=???	 content=高考结束吗…我没想过。]
+            [dialog role=??	 content=有时候我会想啊，我们现在做的这一切，到底是为了什么？]
+            [dialog role=???	 content=为了未来啊。老师、家长不都这么说吗？挤过这座独木桥，就好了。]
+        [dialogEnd]
+        [word type=0 content=。进入社会？我一个]
+        [word type=1 content=当下别人看来的 right=0]
+        [word type=0 content=失败者现在能做得了什么？]
+        [word type=2 content=这种彻底的绝望 changeNumber=1 right=0]
+        这种暂时的迷茫
+        [word type=0 content=就让我拒绝和别人的一切交流]
+        [word type=1 content=因为他们无法代替我进行思考 right=0]
+        [word type=2 content=从心底 changeNumber=1 right=0]
+        我从不
+        [word type=0 content=认同这个失败者的身份，]
+        [word type=2 content=并 changeNumber=1 right=0]
+        绝不
+        [word type=0 content=相信这是我应得的惩罚……]
+    [end]
+    [word type=0 content=。最好谁也不要来找我……]
 [end]
-[word type=0 content=。在]
-[word type=3 content=所有人]
-[sentence]
-[word type=0 content=出分那天起，我开始害怕遇到以前的同学或朋友，他们看似关心的询问背后，大概是在等待]
-[word type=2 content=、审视我的落魄 changeNumber=1]
-、期待我的坚强
-[word type=0 content=吧……我尤其在意]
-[word type=6 content=李明那伙人 pic=ympic02 end=李明虽然成绩不好，但他是班里甚至年级的中心，似乎天生就有着学不来的幽默和松弛……真羡慕啊。我曾经试着融入他们，聊他们喜欢的游戏和电视剧，但总觉得格格不入，就像一只笨拙的企鹅在模仿人类走路。]
-[dialog role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
-[dialog role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
-[dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我 1v1，看我灭了你的傲气！]
-[dialog role=??	 content=(开心的大笑) 说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
-[dialogEnd]
-[word type=0 content=的目光，毕业典礼上他们的每一次窃窃私语]
-[word type=2 content=都像在议论我的不堪 changeNumber=1]
-都只是在聊一些无意义的事罢了
-[word type=0 content=，见到我时的回避态度也]
-[word type=2 content=像拿针扎一样伤人 changeNumber=1]
-证明我们不是一路人
-[word type=0 content=人。但让我压力倍增的是]
-[word type=1 content=我未能理解]
-[word type=6 content=张老师 pic=ympic03 end=我不能让您失望。]
-[dialog role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
-[dialog role=???	 content=谢谢老师…我会保持的。]
-[dialog role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
-[dialog role=??	 content=记住，越是到了最后关头，就越要稳住。咱们学校、咱班今年的荣誉，你可是扛大旗的。千万别像有些学生，到最后泄了气，那就太可惜了。]
-[dialogEnd]
-[word type=2 content=关切的目光 changeNumber=1]
-私下谈话里的深意
-[word type=0 content=和父母那种小心翼翼、绝口不提的态度，仿佛他们认定我真的……]
-[word type=2 content=坏了、出了BUG……是啊，他们都认为 changeNumber=1]
-会重新规划好自己的人生
-[word type=0 content=……]
-[word type=2 content=是啊，他们都认为 changeNumber=1]
-当然，他们不认为
-[word type=0 content=只会做题的机器才是最完美的孩子。我认同他们的想法。]
-[end]
-[word type=0 content=的眼中我都只是一个可悲的失败者。没有考出好成绩、没有光明未来的我……只想 enable=1 word=4 sentence=0]
-[word type=3 content=永远躲起来 enable=1 word=5 sentence=0]
-[sentence]
-[word type=2 content=“出路已经被完全堵死了。 changeNumber=1]
-“我看不清眼前的路。
-[word type=0 content=那么…复读？我没有勇气再经历一次那种]
-[word type=6 content=折磨 pic=ympic04 end=早复习、晚自习、长考试、少休息。年少时渴慕探索的星空下，无数的我们抛开天真与好奇向那薄而窄的木桥走去。没有人告诉过我们摔下去的人还能否拥有未来、而走过去的人又是否真的拥有未来。]
-[dialog role=?? content=啊，总算把这套卷子啃完了！这一年题怎么这么难啊……]
-[dialog role=??	 content=一鸣，你说，等高考结束了，你最想干什么？]
-[dialog role=???	 content=高考结束吗…我没想过。]
-[dialog role=??	 content=有时候我会想啊，我们现在做的这一切，到底是为了什么？]
-[dialog role=???	 content=为了未来啊。老师、家长不都这么说吗？挤过这座独木桥，就好了。]
-[dialogEnd]
-[word type=0 content=。进入社会？我一个]
-[word type=1 content=当下别人看来的]
-[word type=0 content=失败者现在能做得了什么？]
-[word type=2 content=这种彻底的绝望 changeNumber=1]
-这种暂时的迷茫
-[word type=0 content=就让我拒绝和别人的一切交流]
-[word type=1 content=因为他们无法代替我进行思考]
-[word type=2 content=从心底 changeNumber=1]
-我从不
-[word type=0 content=认同这个失败者的身份，]
-[word type=2 content=并 changeNumber=1]
-绝不
-[word type=0 content=相信这是我应得的惩罚……]
-[end]
-[word type=0 content=。最好谁也不要来找我…… enable=1 word=6 sentence=0]
-[end]
+[operation obj=sentenceManager parent=UI att=enAbleConfirm script=SentenceManager content=false move=0]
+[role name=Elpis（电子） frame=elec sprite=elpis]
+嗯…虽然我不是很了解 EA 区啦，但感觉不管是在世界上的哪一个地方，又是处于什么样的年纪，大家都不是很开心呢……
+[role name=Elpis（电子） frame=elec sprite=elpis]
+不过正因如此，我们的工作才更有意义吧！
+[role name=Elpis（电子） frame=elec sprite=elpis]
+咦？你问红色的部分是什么？你真的不记得了？
+[role name=Elpis（电子） frame=elec sprite=elpis]
+嗯好吧,我和你解释一遍好啦。
+[role name=Elpis（电子） frame=elec sprite=elpis]
+这些红色的部分同样是不可直接修改的。不过你可以试着点它进行“展开”，那些出现 BUG 的情绪也许就隐藏在这些展开的内容之中，需要你进行修复。而当你最终确定治疗内容全部完成时，这些红色的部分也会自动进行调整。毕竟人总会把各种奇怪的逻辑捋通顺的嘛，对吧？
+[sentence op=enableEvery move=0]
+[operation setActive=false obj=Dialog parent=UI move=0]
+[operation obj=sentenceManager parent=UI att=enAbleConfirm script=SentenceManager content=true]

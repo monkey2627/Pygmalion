@@ -46,6 +46,7 @@ public class ResourceLoader : MonoBehaviour
     {       
             if (!textLoader.ContainsKey(storage))
             {
+                print("loading: "+storage);
                 textLoader.Add(storage, new DefaultTextLoader());
             }
             await textLoader[storage].Load(storage);

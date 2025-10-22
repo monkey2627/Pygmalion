@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using GamePlay;
 using UnityEngine;
 using UnityEngine.Serialization;
-
-namespace GamePlay
-{
     public enum ConfirmType
     {
         Normal,//按照所有的正确率
@@ -15,12 +13,17 @@ namespace GamePlay
 
     public class SentenceManager : MonoBehaviour
     {
+        //存这一整个题目是从哪里开始的
+        public int sentenceBeginPlace;
         public static SentenceManager Instance;
+        public int sentenceNow=0;
         public ConfirmType type;
         public bool guideTime;
         public List<BackgroundWander> jellyfishs = new List<BackgroundWander>();
         public List<string> endScriptsList = new List<string>();
         public List<Sentence> sentences;
+        public bool enAbleConfirm = false;
+        public Word wordClicked;
         private void Awake()
         {
             Instance = this;
@@ -45,14 +48,17 @@ namespace GamePlay
         public void Confirm()
         {
             
+            
             if (guideTime)
             {
                 
-                GameManager.Instance.ReadLine();   
+                PygmalionGameManager.instance.ReadLine();   
                 guideTime = false;
             }
             else
             {
+                if(!enAbleConfirm) return;
+                sentences[0].confirm.SetActive(false);
                 switch (type)
                 {
                     case ConfirmType.Normal:
@@ -69,14 +75,14 @@ namespace GamePlay
                         float ans = right / all;
                         if (ans > 0.8)
                         {
-                            GameManager.Instance.Change2ScriptAndReadLine(endScriptsList[0]);
+                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[0]);
                         }else if (ans < 0.5)
                         {
-                            GameManager.Instance.Change2ScriptAndReadLine(endScriptsList[2]);
+                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[2]);
                         }
                         else
                         {
-                            GameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
+                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[1]);
                         }
                         break;
                     case ConfirmType.OnlyOneCorrect:
@@ -95,6 +101,8 @@ namespace GamePlay
         [Serializable]
         private class Archive
         {
+            public int sentenceBeginPlace;
+            public int sentenceNow;
             public List<SentenceSnapshot> sentences = new List<SentenceSnapshot>();
         }
 
@@ -122,11 +130,13 @@ namespace GamePlay
         private Archive BuildArchive()
         {
             Archive archive = new Archive();
+            archive.sentenceNow = sentenceNow;
+            archive.sentenceBeginPlace =  sentenceBeginPlace;
             foreach (var s in SentenceManager.Instance.sentences)
             {
                 var snap = new SentenceSnapshot
                 {
-                    number = s.scentenceNumber,
+                    number = s.sentenceNumber,
                     fatherSentenceNumber = s.fatherSentenceNumber,
                     showPicture = s.showPicture
                 };
@@ -165,7 +175,7 @@ namespace GamePlay
                 var ss  = data.sentences[i];
 
                 // 恢复 sentence 层简单字段
-                s.scentenceNumber                = ss.number;
+                s.sentenceNumber                = ss.number;
                 s.fatherSentenceNumber  = ss.fatherSentenceNumber;
                 s.showPicture               = ss.showPicture;
 
@@ -191,5 +201,16 @@ namespace GamePlay
             }
         }
         #endregion
+
+        public void EnableEveryWord()
+        {
+            for (int i = 0; i < sentences.Count; i++)
+            {
+               
+                for (int j = 0; j < sentences[i].words.Count; j++)
+                {
+                    sentences[i].words[j].enable = true;
+                }
+            }
+        }
     }
-}

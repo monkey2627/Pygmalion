@@ -12,8 +12,8 @@ namespace Ani
         public List<GameObject> jellyFishes;
         public List<String> relatedWords;
         public static WaterAni Instance;
+       public List<GameObject> rolesList;
         public Dictionary<string,GameObject> roles;
-        public GameObject[] roleArray;
         public GameObject blackBg;
 
         [Serializable]
@@ -63,7 +63,10 @@ namespace Ani
             Instance  = this;
             gameObject.SetActive(false);
             roles  = new Dictionary<string, GameObject>();
-            roles["elpis"] =  roleArray[0];
+            foreach (var VARIABLE in rolesList)
+            {
+                roles[VARIABLE.name] = VARIABLE;
+            }
         }
 
         public void ShowTarget()
@@ -75,6 +78,12 @@ namespace Ani
                     roles["elpis"].SetActive(true);
                     roles["elpis"].GetComponent<SpriteRenderer>().DOFade(0.3f,0);
                     roles["elpis"].GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
+                    break;
+                case "ym":
+                    print("ym");
+                    roles["ym"].SetActive(true);
+                    roles["ym"].GetComponent<SpriteRenderer>().DOFade(0.3f,0);
+                    roles["ym"].GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
                     break;
             }
         }
@@ -113,7 +122,8 @@ namespace Ani
                 }
                 GameObject.Find("black").GetComponent<SpriteRenderer>().DOFade(0.9F, 1).OnComplete(() =>
                 {
-                    GameManager.Instance.ReadLine();
+                    print("go black");
+                    PygmalionGameManager.instance.ReadLine();
                 
                 });
             

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8571283978422626572}
-  - component: {fileID: 1486647713677028885}
   - component: {fileID: 7190118897138729654}
+  - component: {fileID: 5773976044027674738}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -34,31 +34,6 @@ Transform:
   - {fileID: 2266368799946618454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1486647713677028885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952344199518091584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eced38b3992114b44b0e5cf3f71589a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 0}
-  guideScene: {fileID: 0}
-  dialog: {fileID: 0}
-  roleName: {fileID: 0}
-  isPlayingVideo: 0
-  delayObj: {fileID: 8745979416912235427}
-  wordCloneObj: {fileID: 0}
-  ocean: {fileID: 0}
-  start: {fileID: 0}
-  upperButtons: {fileID: 0}
-  black: {fileID: 0}
-  white: {fileID: 0}
-  sentenceCloneObj: {fileID: 0}
 --- !u!114 &7190118897138729654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +46,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19c2baf35c1b2940b8266df9b1c816b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5773976044027674738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952344199518091584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786a97da07d4cd8459ddced28c12578a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 0}
+  guideScene: {fileID: 0}
+  dialog: {fileID: 0}
+  roleName: {fileID: 0}
+  roleSprites:
+  - {fileID: 21300000, guid: 724f458067a28e74fa4fbdf657b4403b, type: 3}
+  - {fileID: 21300000, guid: b0f85c80f5384bb478fee13e57558261, type: 3}
+  RoleHeadGameObject: {fileID: 0}
+  isPlayingVideo: 0
+  delayObj: {fileID: 8745979416912235427}
+  wordCloneObj: {fileID: 0}
+  ocean: {fileID: 0}
+  start: {fileID: 0}
+  upperButtons: {fileID: 0}
+  isGameTime: 0
+  frameNow: {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: d48ebcb01ac80714da556299c478d338, type: 3}
+  - {fileID: 21300000, guid: ec8b64f952accf9488002adb8048ae0c, type: 3}
+  - {fileID: 21300000, guid: 04186858c7a8d314eb8006af39a6c772, type: 3}
+  - {fileID: 21300000, guid: 0d7502f99cf6bfe4894943b38db2cd1f, type: 3}
+  endingPanel: {fileID: 0}
+  endText: {fileID: 0}
+  black: {fileID: 0}
+  white: {fileID: 0}
+  readScript: 1
+  sentenceCloneObj: {fileID: 0}
 --- !u!1 &8745979416912235427
 GameObject:
   m_ObjectHideFlags: 0

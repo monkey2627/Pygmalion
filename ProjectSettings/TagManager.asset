@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -11,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - wall
+  - box
+  - othersinpushbox
   - 
   - 
   - 
@@ -52,4 +53,10 @@ TagManager:
     locked: 0
   - name: black
     uniqueID: 487379663
+    locked: 0
+  - name: dialog
+    uniqueID: 4270519897
+    locked: 0
+  - name: game
+    uniqueID: 2501048297
     locked: 0

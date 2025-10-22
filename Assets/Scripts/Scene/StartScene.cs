@@ -21,7 +21,7 @@ namespace Scene
         public void StartNewGame()
         {
             gameObject.SetActive(false);
-            GameManager.Instance.StartNewGame();
+            PygmalionGameManager.instance.StartNewGame();
         }
         /// <summary>
         /// 继续之前的游戏
@@ -29,7 +29,7 @@ namespace Scene
         public void ContinueGame()
         {
             gameObject.SetActive(false);
-            GameManager.Instance.StartNewGame();
+            PygmalionGameManager.instance.StartNewGame();
         }
     }
 }

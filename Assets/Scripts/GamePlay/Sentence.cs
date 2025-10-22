@@ -14,7 +14,7 @@ namespace GamePlay
         public bool showPicture = false;//是否展示静态图
         public GameObject back;
         public List<Word> words;
-        public int scentenceNumber;
+        public int sentenceNumber;
         public int fatherSentenceNumber=-1;
 
         private void OnEnable()
@@ -36,6 +36,11 @@ namespace GamePlay
             {
                 back.SetActive(false);
             }
+            foreach (Word word in words)
+            {
+                word.gameObject.GetComponent<AutoBox>().RefreshBox2d();
+            }
+            layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
         }
 
         public void Fade(float time)
@@ -52,6 +57,15 @@ namespace GamePlay
             {
                 word.Close();
             }
+        }
+
+        //返回上个句子
+        public void Back()
+        {
+            gameObject.SetActive(false);
+            ClosePanel();
+            SentenceManager.Instance.sentenceNow = fatherSentenceNumber;
+            SentenceManager.Instance.sentences[fatherSentenceNumber].gameObject.SetActive(true);
         }
     }
 

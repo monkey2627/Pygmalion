@@ -51,12 +51,12 @@ public class SaveManager
         byte[] bytes = Encoding.UTF8.GetBytes(json);        
         byte[] cipher = Utils.Encrypt(bytes);
         //��pointerλ�� ״̬
-        saveData.pPos = GameManager.Instance.pointer.transform.position;
-        saveData.pEnable = GameManager.Instance.pEnable;
+        saveData.pPos = PygmalionGameManager.Instance.pointer.transform.position;
+        saveData.pEnable = PygmalionGameManager.Instance.pEnable;
         File.WriteAllBytes(path,cipher);
-        foreach (var item in GameManager.Instance.scenesDic.Keys)
+        foreach (var item in PygmalionGameManager.Instance.scenesDic.Keys)
         {
-            GameManager.Instance.scenesDic[item].save(id);
+            PygmalionGameManager.Instance.scenesDic[item].save(id);
         }
     }
     public void Load(int id)
@@ -76,20 +76,20 @@ public class SaveManager
             var item = data.scriptsName[i];
             ResourceLoader.textLoader[item].lineIndex = data.scriptsLine[i];
         }
-        GameManager.Instance.pointer.transform.position = data.pPos;
+        PygmalionGameManager.Instance.pointer.transform.position = data.pPos;
         if (data.pEnable == 1)
         {
-            GameManager.Instance.pointer.SetActive(true);
-            GameManager.Instance.pEnable = 1;
+            PygmalionGameManager.Instance.pointer.SetActive(true);
+            PygmalionGameManager.Instance.pEnable = 1;
         }
         else
         {
-            GameManager.Instance.pEnable = 0;
-            GameManager.Instance.pointer.SetActive(false);
+            PygmalionGameManager.Instance.pEnable = 0;
+            PygmalionGameManager.Instance.pointer.SetActive(false);
         }
-        foreach (var item in GameManager.Instance.scenesDic.Keys)
+        foreach (var item in PygmalionGameManager.Instance.scenesDic.Keys)
         {
-            GameManager.Instance.scenesDic[item].load(id);
+            PygmalionGameManager.Instance.scenesDic[item].load(id);
         }
     }*/
 }

@@ -15,9 +15,9 @@ namespace GamePlay
 
             float w = tmp.preferredWidth;
             float h = tmp.preferredHeight;
-
+    
             box2d.size   = new Vector2(w, h);
-            box2d.offset = Vector2.zero;   // 以文本 Pivot 为中心
+            box2d.offset = new Vector2(w / 2, -h / 2);
         }
     }
 }

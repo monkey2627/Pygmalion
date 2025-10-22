@@ -32,11 +32,11 @@ public class VpManager : MonoBehaviour
     public GameObject[] vpGameObjects;
     private void Start()
     {
-        vps = new Dictionary<string, GameObject>
+        vps = new Dictionary<string, GameObject>();
+        foreach (var VARIABLE in vpGameObjects)
         {
-            ["elpis"] = vpGameObjects[0],
-            ["ym"]   = vpGameObjects[1]
-        };
+          vps.Add(VARIABLE.name, VARIABLE);
+        }
 
     }
 
@@ -102,7 +102,7 @@ public class VpManager : MonoBehaviour
             DelayGameObject.transform.DOMove(new(0, 0, 0), 0.1f).OnComplete(() =>
             {
                 sr.DOFade(0, 4);
-                GameManager.Instance.ReadLine();
+                PygmalionGameManager.instance.ReadLine();
             });
         });
     }

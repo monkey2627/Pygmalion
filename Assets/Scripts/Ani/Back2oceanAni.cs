@@ -15,7 +15,7 @@ namespace Ani
         public void Finish()
         {
             gameObject.SetActive(false);
-            GameManager.Instance.ReadLine();
+            PygmalionGameManager.instance.ReadLine();
         }
     }
 }

@@ -31,8 +31,8 @@ public class SentenceDialog : MonoBehaviour
         dialog.SetActive(true);
         dialogLine = 0;
         Dialogs = dialogList;
-        GameManager.Instance.readScript = false;
-        GameManager.Instance.dialog.SetActive(true);
+        PygmalionGameManager.instance.readScript = false;
+        PygmalionGameManager.instance.dialog.SetActive(true);
         this.endText.DOFade(0, 0);
         this.endText.text = endText;
         this.endText.gameObject.SetActive(false);

@@ -1,9 +1,9 @@
 [operation setActive=true obj=black parent=UI move=0 des=场景漆黑]
-[role name=???]
+[role name=??? frame=ori sprite=elpis]
 哇哦…连接成功了！
 [role name=???]
 Pygmalion！能听到吗？
-[image op=fade target=1 obj=white time=0 parent=white move=0]
+[scene load=1 name=lab move=0]
 [vp name=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
 [vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
 [vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
@@ -12,19 +12,19 @@ Pygmalion！能听到吗？
 喔…真的变亮了…
 [role name=Elpis]
 你好，Pygmalion，我是 Elpis！从今天起我就是你的搭档兼监察员啦！
-[role name=Pygmalion]
+[role name=Pygmalion sprite=none]
 你好，Elpis，很高兴认识你。
 [role name=Pygmalion]
 对不起，我好像刚从一个很长很长的梦里挣脱出来…
-[role name=Elpis] 
+[role name=Elpis sprite=elpis] 
 哦！没关系啦，毕竟你的程序刚启动。
 [role name=Elpis]
 咳咳。那么，就由我…伟大的Elpis，来唤醒一下你的记忆模块吧！
 [role name=Elpis]
 欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像BUG一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
-[role name=Pygmalion]
+[role name=Pygmalion sprite=none]
 [ERR]MEM_ACCESS_VIOLATION……
-[role name=Elpis]
+[role name=Elpis sprite=elpis]
 ……
 [role name=Elpis]
 嗯…没关系！我来带你回顾一下好啦！
@@ -33,6 +33,7 @@ Pygmalion！能听到吗？
 [role name=Elpis]
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
 [scene name=ocean load=1 des=场景：夜晚海边]
+[scene load=0 name=lab move=0]
 [role name=Elpis]
 真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
 [operation setActive=false obj=Dialog parent=UI move=1]
@@ -40,20 +41,20 @@ Pygmalion！能听到吗？
 [ani name=water role=elpis]
 [scene name=ocean load=0 move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
-[role name=Elpis(电子)]
+[role name=Elpis(电子) frame=elec]
 好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
 [role name=Elpis(电子)]
 但最好你能把这些代码转换成句子，这样我看起来方便一些！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Pygmalion move=1]
+[role name=Pygmalion move=1 frame=ori sprite=none]
 如你所愿，Elpis。
 [operation setActive=true obj=GuideSceneGamePlay parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Elpis(电子)]
+[role name=Elpis(电子) frame=elec sprite=elpis]
 呃…我也没有这么低沉吧，嗯。
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=3]
+[role name=Elpis(电子) move=3 frame=elec]
 你看这句话！首先，这个“永远”听起来就好绝望，太绝对了。事情明明总是在变化的，对吧？我们先删掉它吧！
 [sentence op=enable word=3 sentence=0 enable=1]
 [operation setActive=true obj=Dialog parent=UI move=0]
@@ -62,14 +63,14 @@ Pygmalion！能听到吗？
 [role name=Elpis(电子)]
 呼…感觉好多了！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=3]
+[role name=Elpis(电子) move=3 frame=elec]
 然后你看这个“包袱”，听起来又大又沉，我们能不能给它换个说法？比如… 把它看成一种“挑战”？
 [sentence op=enable word=5 sentence=0 enable=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [sentence op=enable word=5 sentence=0 enable=0 move=0]
-[role name=Pygmalion]
+[role name=Pygmalion frame=ori sprite=p]
 Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？ 
-[role name=Elpis(电子)]
+[role name=Elpis(电子) frame=elec sprite=elpis]
 …… 
 [role name=Elpis(电子)]
 哎呀！不是啦不是啦，Pygmalion 系统是完美无缺的，刚才只是混进来了一点 别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
@@ -93,28 +94,31 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [ani name=back2ocean]
 [vp name=elpis op=fade fade=1 time=0 move=0]
 [vp name=elpis op=move2 x=-556.5 y=-540.1 z=0 move=0 time=0]
-[role name=Elpis save]
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[role name=Elpis save frame=ori sprite=elpis]
 看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！ 
 [operation setActive=false obj=Dialog parent=UI move=0]
 [vp name=elpis op=fade fade=0 time=1 move=1 des=Elpis凑近]
 [vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
 [vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
 [vp name=elpis op=fade fade=1 time=1 move=1]
-[operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Elpis]
+[role name=Elpis move=0 sprite=elpis]
 说真的，能参与这个项目，能用这样的方式帮助别人，我每天都觉得好兴奋。可能我人生的意义就在于此吧… 
+[operation setActive=true obj=Dialog parent=UI ]
 [role name=Elpis]
 那么，准备好迎接我们的第一位“患者”了吗？这次的连接申请来自…嗯，EA1730区…一鸣！记得加载多语言模块，我们是一个服务世界的系统！ 
 [role name=Elpis]
 别担心，我会在这儿陪着你的，保持联系！ 
-[vp name=Elpis op=fade fade=0] 
-[role name=Elpis(电子)]
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[vp name=elpis op=fade fade=0 time=1 move=1] 
+[role name=Elpis(电子) frame=elec move=0]
 放轻松，按你的想法来。我相信你的判断。 
+[operation obj=content parent=UI att=enable script=DialogClick content=true]
 [role name=Elpis(电子)]
 如果有一天…你相信一位“患者”其实并没有心理问题…
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=0]
+[role name=Elpis(电子) move=1]
 请相信自己的判断。
 [operation setActive=false obj=Dialog parent=UI move=0]
 [image op=fade target=1 obj=black time=1 parent=UI move=0] 
