@@ -27,7 +27,7 @@ namespace GamePlay
         public string pic;
         public List<Dialog> dialogList;
         public string endText;
-        public bool enable;
+        public bool enable = false;
         public GameObject click2Board;
         public GameObject deleteChoice;
         public GameObject changeChoice;
@@ -42,7 +42,14 @@ namespace GamePlay
         public bool playedAdd = false;
         //存所有可以算作是正确的选项
         public List<String> answerList;
-        public void RefreshBox2d()
+        //在做完相应操作之后有没有对话
+        public bool changeDialog = false;
+        public bool deleteDialog = false;
+        public bool addDialog = false;
+        public string scriptName;
+        public int scriptLine;
+
+        private void RefreshBox2d()
         {
             var tmp = GetComponent<TMP_Text>();
             var box2d = GetComponent<BoxCollider2D>();
@@ -56,6 +63,7 @@ namespace GamePlay
             box2d.size   = new Vector2(w, h);
             box2d.offset = Vector2.zero;   // 以文本 Pivot 为中心
         }
+        
         [Tooltip("两次点击间隔小于多少秒算双击")]
         public float doubleClickInterval = 0.2f;
         private float _lastClickTime = -1f;
@@ -70,31 +78,37 @@ namespace GamePlay
             doubleClick2Board.SetActive(false);
             doubleClick1Board.SetActive(false);
         }
-        private void Start()
+
+        private void OnEnable()
+        {
+            InitPanels();
+            GetComponent<AutoBox>().RefreshBox2d();
+        }
+
+        public void InitPanels()
         {
             switch (wordType)
             {
-                case 0://出现”你确定这不是bug？“
+                case 0: //出现”你确定这不是bug？“
                     break;
-                case 1://add,增添过后点击就没反应了，不能再增了
+                case 1: //add,增添过后点击就没反应了，不能再增了
                     doubleClick1Board.GetComponent<DoubleClick1Board>().Gen(changeWordList);
                     break;
-                case 2://替换或者删除
+                case 2: //替换或者删除
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
                     break;
-                case 3://单击没反应，双击才有用
+                case 3: //单击没反应，双击才有用
                     break;
-                case 4://删除
+                case 4: //删除
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
                     break;
-                case 5://替换
+                case 5: //替换
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Gen(changeWordList);
                     break;
                 default:
                     break;
             }
         }
-
         public bool IsRight()
         {
             foreach (var ans in answerList)
@@ -179,6 +193,9 @@ namespace GamePlay
                     doubleClick2Board.SetActive(true);
                     break;
                 case 3://进入对应的下一个句子
+                    sentence.gameObject.SetActive(false);
+                    SentenceManager.Instance.sentenceNow = nextSentenceNumber;
+                    SentenceManager.Instance.sentences[nextSentenceNumber].gameObject.SetActive(true);
                     break;
                 case 4://删除
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Show(false,playedDelete);
@@ -193,8 +210,6 @@ namespace GamePlay
                     break;
             }
         }
-
-        public GameObject doubleClick6Board;
         public void DeleteGame()
                 {
                     Close();
@@ -248,7 +263,10 @@ namespace GamePlay
             }
             else
             {
-                
+                if (changeDialog)
+                {
+                    GameManager.Instance.Change2ScriptAndReadLine(scriptName,scriptLine);
+                }
             }
         }
 

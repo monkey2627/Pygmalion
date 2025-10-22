@@ -64,6 +64,7 @@ namespace Ani
             gameObject.SetActive(false);
             roles  = new Dictionary<string, GameObject>();
             roles["elpis"] =  roleArray[0];
+            roles["ym"] =  roleArray[1];
         }
 
         public void ShowTarget()
@@ -75,6 +76,12 @@ namespace Ani
                     roles["elpis"].SetActive(true);
                     roles["elpis"].GetComponent<SpriteRenderer>().DOFade(0.3f,0);
                     roles["elpis"].GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
+                    break;
+                case "ym":
+                    print("ym");
+                    roles["ym"].SetActive(true);
+                    roles["ym"].GetComponent<SpriteRenderer>().DOFade(0.3f,0);
+                    roles["ym"].GetComponent<SpriteRenderer>().DOFade(1, 0.5f);
                     break;
             }
         }
@@ -113,6 +120,7 @@ namespace Ani
                 }
                 GameObject.Find("black").GetComponent<SpriteRenderer>().DOFade(0.9F, 1).OnComplete(() =>
                 {
+                    print("go black");
                     GameManager.Instance.ReadLine();
                 
                 });

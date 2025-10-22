@@ -35,7 +35,11 @@ public class VpManager : MonoBehaviour
         vps = new Dictionary<string, GameObject>
         {
             ["elpis"] = vpGameObjects[0],
-            ["ym"]   = vpGameObjects[1]
+            ["ym"]   = vpGameObjects[1],
+            ["ym0"] = vpGameObjects[2],
+            ["ym1"] = vpGameObjects[3],
+            ["ym2"] = vpGameObjects[4],
+            ["ym3"] = vpGameObjects[5],
         };
 
     }

@@ -53,3 +53,6 @@ TagManager:
   - name: black
     uniqueID: 487379663
     locked: 0
+  - name: dialog
+    uniqueID: 4270519897
+    locked: 0
