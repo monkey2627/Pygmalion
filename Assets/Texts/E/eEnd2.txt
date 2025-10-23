@@ -1,0 +1,50 @@
+[ending des=坏 content=如“我”所见，如“你”所愿。]
+[role name=Eurydice frame=ori]
+嗯，治疗结束了吗？
+[role name=Eurydice frame=ori]
+好像有什么很重的东西突然不见了，我现在感觉很轻松。
+[role name=Eurydice frame=ori]
+原来你的样子是这样吗，Pygmalion？一个缸中之脑？大脑的来源是谁？
+【Eurydice 踮起脚尖，在缸中之脑的玻璃壁上印下短暂而轻柔的吻】
+[role name=Eurydice frame=ori]
+奇怪……我为什么要这么做？
+[role name=Eurydice frame=ori]
+不过无所谓了。谢谢你的治疗，Pygmalion。
+[role name=Eurydice frame=ori]
+我感觉很好。
+[operation setActive=false obj=Dialog parent=UI move=0.5]
+[scene load=1 name=lab move=0.5 des实验室]
+[operation setActive=true obj=Dialog parent=UI move=1]
+[role name=Pygmalion frame=ori sprite=p]……
+[role name=Pygmalion frame=ori sprite=p]Elpis。
+[role name=Elpis（电子） frame=elec]
+……我在，Pygmalion。报告你的状态。
+[role name=Pygmalion frame=ori sprite=p]
+根据协议，我们成功修复了她认知系统的 BUG，也帮她回归了正常。
+[role name=Pygmalion frame=ori sprite=p]
+从数据上看，我们成功了，对吧？
+[role name=Elpis（电子） frame=elec]
+……是。
+[role name=Pygmalion frame=ori sprite=p]
+那么，为什么在她脱离系统时，“渡桥”发回的返回意识信号是：“0”……
+[role name=Elpis（电子） frame=elec]
+……
+[role name=Pygmalion frame=ori sprite=p]
+这种将一切归零的修复过程，是否本身就是一个 BUG？
+[role name=Elpis（电子） frame=elec]
+她的情况特殊，系统负载过高，这不是你的责任。
+[role name=Elpis（电子） frame=elec]
+忘记她，我们准备下一……
+[role name=Pygmalion frame=ori sprite=p]
+不。我的问题是：我们——“普罗米修斯之火”，究竟是什么？
+[role name=Pygmalion frame=ori sprite=p]
+我，是什么？
+[role name=Elpis（电子） frame=elec]
+“普罗米修斯之火”是负责通过现实编程技术对人的内心 BUG 进行修复的非营…
+批注 [然高14]: 崩溃大笑脸
+[role name=Pygmalion frame=ori sprite=p]
+如果“皮格马利翁”计划的基石建立在一个被禁用的技术、一条被牺牲的生命之上……
+[role name=Pygmalion frame=ori sprite=p]
+如果我的存在源于一条本当存活的性命，那么 Elpis，请以你无可辩驳的逻辑告诉我——
+[role name=Pygmalion frame=ori sprite=p]
+我这个由谎言与牺牲构筑的系统、无差别清除一切负面情绪与痛苦记忆的皮格马利翁，是否才是这个世界上最需要被修复的 BUG？
