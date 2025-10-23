@@ -1,0 +1,363 @@
+[operation setActive=false obj=Dialog parent=UI move=0.5]
+[scene load=1 name=lab move=0.5 des实验室]
+[operation setActive=true obj=Dialog parent=UI move=1]
+[vp name=e0 op=fade fade=1 time=1 move=0 des=Eurydice——短发，深色便装，打扮干脆利落]
+[vp name=e0 op=scale x=0.16 y=0.16 z=0.16 move=0 time=0]
+[role name=Eurydice frame=ori]
+The Pygmalion Project……Orpheus，这就是你倾注心血直至生命停止的地方吗？
+【屏幕闪现故障效果，0.5 秒内恢复正常】
+Elpis（电子）：！
+Elpis（电子）：
+她怎么来了……
+Elpis（电子）：
+Pygmalion……你眼前的这位患者是…皮格马利翁计划创始人之一的妻子。
+Elpis（电子）：
+很遗憾的是，患者的丈夫现在正处于…脑死亡状态。请尽量避免任何关于“身
+份”“来源”之类的谈话，重点在于通过意识的编程来修理她心中的 BUG 情绪……
+Elpis（电子）：
+帮助她回归正常。这是最高指令，也是你此刻唯一需要做的事。
+[role name=Pygmalion frame=ori]
+……你好，Eurydice，很高兴在这里见到你。我代表皮格马利翁计划全体创始人员向你的丈夫，Orpheus，致以最深的敬意。
+[role name=Pygmalion frame=ori]
+是他的付出与牺牲成就了皮格马利翁计划的顺利开展，他在现实编程技术的试验阶段作出了不可磨灭的贡献。
+[role name=Pygmalion frame=ori]
+同时，我们也希望能够帮…
+[role name=Eurydice frame=ori]
+（大叫）不…不不不…为什么…为什么…关掉！马上给我关掉它！立刻！
+[role name=Eurydice frame=ori]
+你们胆敢在我的面前盗用他的脸…你们以为自己是谁？
+[role name=Eurydice frame=ori]
+你们没有权利！没有权利用这张脸！
+[role name=Eurydice frame=ori]
+这是盗窃！是亵渎！
+[role name=Eurydice frame=ori]
+谁给你们的胆量这么做？就凭你们是他的前团队？
+[role name=Eurydice frame=ori]
+他在你们的实验室中脑死亡…你们以为这件事结束了吗！
+[role name=Eurydice frame=ori]
+从出事后直到现在，他一直躺在圣克里夫中心医院的休眠仓里，只剩生物学意义上的生命体征还在勉强证明他还活着。
+[role name=Eurydice frame=ori]
+这一切都是因为你！
+【屏幕边缘（最上方）滚动红色的小字：/ / /ALERT – Bio-Perception Unit: Illicit emotional input 
+detected. Containment Level Ω engaged. / / /，滚动一遍后消失】
+Elpis（电子）：
+Pygmalion！强制稳定你的生物单元！启动情感隔离屏障！
+[role name=Pygmalion frame=ori]
+……
+[role name=Pygmalion frame=ori]
+Eurydice，我只是一个被造来帮助每一位心理存在伤痛的患者找回属于自己应有人生的 AI。
+[role name=Pygmalion frame=ori]
+我明白你的感受，但请冷静一下。你看到的我的形象，只是你内心深处最思念的那个人的投影。基于你与 Orpheus 间的感情，这个投影当然会呈现为他的样子。
+[role name=Pygmalion frame=ori]
+这是你们爱情的证明，Eurydice。
+[role name=Eurydice frame=ori]
+投影？不…不，这只是你们最恶劣的模仿、扮演。你们利用我的痛苦、消费我的记忆。谢天谢地！我还没有蠢到会认为你就是他，因为你连他的万分之一都不及！
+[role name=Pygmalion frame=ori]
+……
+[role name=Pygmalion frame=ori]
+我理解你的抗拒。这个形象只是为了建立一个让你感到安全的沟通桥梁。
+[role name=Pygmalion frame=ori]
+很遗憾的是，由于形象的生成是由你在通过“渡桥”时，即意识接入系统前，大脑颞下回与海马旁回之间枕颞内侧回中的特殊神经冲动所提供，我无法改变自身在你眼中的样貌。
+[role name=Pygmalion frame=ori]
+用另一种方式来说。正如我的名字——皮格马利翁，我的形象全部来于你的雕刻。
+[role name=Eurydice frame=ori]
+我的…雕刻吗……
+[role name=Eurydice frame=ori]
+好吧，开始吧。
+[role name=Eurydice frame=ori]
+让我看看，Orpheus 倾注心血的理论究竟变成了怎样一种“伟大的工具”。
+[role name=Pygmalion frame=ori]
+感谢你的理解与配合，Eurydice。
+[role name=Pygmalion frame=ori]
+为了更好地帮助你，请允许我再次引用你脑中的数据来构建适宜我们交流与治疗的场所。
+[role name=Eurydice frame=ori]
+请便。
+【场景：一个巨大、空旷的画廊。一半如正常的美术馆一样，墙壁上挂着数幅画，在墙壁的
+空白部分，几张图片悬浮在半空中；另一半的整个空间则解构成怪异的抽象画】
+[role name=Eurydice frame=ori]
+哇哦，你确定这不是 BUG 吗？我们现在正处于一个……
+[role name=Eurydice frame=ori]
+解构中的画廊。哈，真符合我现在的状态。你也真会找地方，这里是我与 Orpheus第一次约会的地方，这个时候来这里可真“浪漫”。
+[role name=Eurydice frame=ori]
+咦……这张是《万事归宿》？摆在这里，可为什么已经画完了？
+[role name=Eurydice frame=ori]
+连这都有？为什么？
+【屏幕边缘（最上方）滚动红色的小字：/ / / ALERT – Bio-Perception Unit: Unauthorized 
+environmental detail loaded. Initiating immediate purge sequence. Containment Level Z engaged. / 
+/ /，滚动一遍后消失】
+Elpis（电子）：
+Pygmalion！集中你的处理资源！忽略这些刺激！
+[role name=Pygmalion frame=ori]
+……
+[role name=Pygmalion frame=ori]
+这是你内心所选择的地方，看到的一切都是对你来说最意义非凡的。
+[vp name=  op=move x= y= z= ]
+【Eurydice 走远】
+[role name=Eurydice frame=ori]
+意义非凡吗……
+[role name=Eurydice frame=ori]
+是啊，我们经常来这里，算是一个长期工作后的固定休闲项目吧。在正式加入你们团队之前，他也是在这里向我分享了他的渴望，以及他未来对世界的全部期望——
+[role name=Eurydice frame=ori]
+找到现实的源代码。
+【画面变暗，屏幕中间直接显示文字，持续 0.5 秒后恢复，连文字一起消失】
+——Eurydice——如果我们能够——编辑现实——
+【屏幕边缘（最上方）滚动红色的小字：/ / / ALERT – Memory Module Error: Unauthorized 
+mnemonic fragment detected. Injecting additional emotional inhibitor into Brain-in-Vat system. 
+Containment Level R engaged. / / /，滚动一遍后消失】
+Elpis（电子）：
+Pygmalion！我警告过你！过滤所有非关键部分个人记忆与经历！你在进行记忆提取还是在治疗？立刻清除所有冗余感官信息！
+[role name=Pygmalion frame=ori]
+……
+[role name=Eurydice frame=ori]
+他说，如果能够找到构成世界的语言，我们就能修复它运行过程中出现的BUG、治愈一切苦痛。
+[role name=Eurydice frame=ori]
+很天真…对吧？也很傲慢。
+[role name=Pygmalion frame=ori]
+他最终成功了，不是吗？这项技术对整个世界来说都是一种进步。
+[role name=Eurydice frame=ori]
+那他的进步呢？他把自己变成了一个躺在休眠仓里的植物人，一个除了我以外不会再有任何人多看一眼的，这个世界的累赘。
+[role name=Eurydice frame=ori]
+所以他的价值，就是变成了你们这个伟大项目的……垫脚石？
+【画面变暗，屏幕中间直接显示文字，持续 0.5 秒后恢复，连文字一起消失】
+——Eurydice——这项技术会成为——指引迷途者告别过去的——灯塔——
+【屏幕边缘（最上方）滚动红色的小字：/ / / ALERT – Neuro-Signal Irregularity Detected.
+Initiating forced sedation sequence. Containment Level Z engaged. / / /，滚动一遍后消失】
+Elpis（电子）：
+Pygmalion！她的情感负载非常高，我需要你百分百专注于协议内容，引导她平静下来进行下一步治疗，不要进行任何协议外的推演与探究！明白吗？
+[role name=Eurydice frame=ori]
+他说现实只不过是一串过于复杂的、如海般广阔的代码。但只要使用正确适配的编译器，就能读懂，甚至重写它。
+【画面变暗，屏幕中间直接显示文字，持续 0.5 秒后恢复，连文字一起消失】
+——Eurydice——我将成为萤火虫——
+【屏幕边缘（最上方）滚动红色的小字：/ / / ALERT – Signal Corruption Detected. HELP ME 
+HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME / / /，滚动一遍后消失】
+Elpis（电子）：
+Pygmalion！
+[role name=Eurydice frame=ori]
+他着迷于那片未知的深海，却忘了自己也会溺水。
+Elpis（电子）：
+不行……启动“塔尔塔罗斯之触”，覆盖所有生物单元的自主活动，强制切换至默认场景，现在就执行！
+[role name=Eurydice frame=ori]
+带他回来。
+【屏幕闪现故障效果，0.5 秒后黑屏，一切操作禁止，bgm 暂停，5 秒钟后切换至海边场景】
+[image op=fade target=1 obj=black time=1 parent=UI move=0]
+[voice move=5]
+[scene name=ocean load=1 move=0]
+[image op=fade target=0 obj=black time=0.5 parent=UI move=0]
+[role name=Pygmalion frame=ori]
+……
+[role name=Eurydice frame=ori]
+……海。
+[role name=Pygmalion frame=ori]
+…………
+[role name=Pygmalion frame=ori]
+监测到当前环境引发的情感波动过于剧烈，不利于诊疗。已经切换至更稳定的默认场景。
+[role name=Eurydice frame=ori]
+哈…默认场景？
+[role name=Eurydice frame=ori]
+把目击众神死亡的草原替换为贫瘠到长不出一根青草的沙地，这就是你们所追求的“稳定”？
+[role name=Eurydice frame=ori]
+抹去一切可能性，只保留最通用、最不会出事的那种…“稳定”？
+[role name=Eurydice frame=ori]
+这才是你们的目标？
+[role name=Eurydice frame=ori]
+Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
+[role name=Pygmalion frame=ori]
+……
+[role name=Pygmalion frame=ori]
+大海包容一切，也隐藏一切。它足够宽广，能藏得住一切情绪。
+[role name=Pygmalion frame=ori]
+最好的系统，一定有海的容量。
+[role name=Eurydice frame=ori]
+……
+[role name=Eurydice frame=ori]
+这句话一定是他加进去的。
+[role name=Eurydice frame=ori]
+…算了。开始吧。
+[role name=Eurydice frame=ori]
+让我看看，你能在这片“稳定的海”里捞出什么。
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
+[operation setActive=false obj=Dialog parent=UI move=1]
+[vp name=  op=fade fade=0 time=1 move=1]
+[ani name=water role=e]
+[scene name=ocean load=0 move=0]
+[sentence op=create move=0]
+    [sentenceEnd type=1 des=特殊]
+    eEnd1
+    eEnd2
+    eEnd3
+    [endend]
+    [word type=0 content=我，Eurydice，]
+    [word type=3 content=精心维持一个温柔的谎言，]
+    [sentence]
+        [word type=0 content=每周三下午我都会从] 
+        [word type=3 content=“回声”]
+            [sentence]
+                [word type=0 content=我所在的公司，以编织梦境为核心业务。] 
+                [word type=0 content=你是否有过无法弥补的遗憾？] 
+                [word type=0 content=一段未能好好道别的关系？又] 
+                [word type=0 content=或是一个在现实中永远无法抵达的“如果”？] 
+                [word type=0 content=我们为你定制一个完美的梦境。无论是与已逝的亲人共] 
+                [word type=0 content=进晚餐，还是在梦境之中完成你尚未完成] 
+                [word type=0 content=或不可完成的梦想，我们都能做到。] 
+                [word type=0 content=我们提供的体验在情感细节上比现实更加真实、] 
+                [word type=0 content=更加完美，] 
+                [word type=0 content=因为我们剔除掉了一切争吵、尴尬与误解，以] 
+                [word type=0 content=及一切那些被称作“意外”的 BUG。] 
+            [end]
+        [word type=0 content=请半天假，来到圣克里夫中心医院的] 
+        [word type=3 content=休眠探望区]
+            [sentence]
+                [word type=0 content=休眠仓的玻璃只有薄薄的一片，干净透亮，里面的人就像睡着了一样，只是在做着泡沫般短暂的美梦。但从玻璃外看向里面，] 
+                [word type=0 content=就像我与 Orpheus 之间隔着一层厚厚的冰层。我看得见他,却再也无法触碰他。] 
+            [end]
+        [word type=0 content=，只为让自己对 Orpheus 还活着的事实感到更]
+        [word type=2 content=坚定 changeNumber=1 right=3]
+        绝望
+        [word type=0 content=定……每当我坐在旁边，望着休眠仓里的他的时候，我都
+        [word type=0 content=会不自觉地和 Orpheus 讲述自己遇到的一切，让他见如我所见。Onirii和其他我们共同的朋]             
+        [word type=0 content=友都认为这不过是一种]
+        [word type=2 content=自我欺骗的 changeNumber=1 right=3]
+        自私的
+        [word type=0 content=谎言。但对我自己来说，这是我]
+        [word type=3 content=自我世界]
+            [sentence]
+                [word type=0 content=我曾为一位母亲织过梦。] 
+                [word type=0 content=在她的梦里，女儿快乐地长大成人，没有感受过一丝痛苦，] 
+                [word type=0 content=哪怕在现实中她的女儿不到十岁就因罹患弥漫性内生性脑桥胶质瘤而被] 
+                [word type=0 content=置于昂贵的休眠仓中寻求未来根治的可能性。] 
+                [word type=0 content=那位母亲梦醒后哭着感谢我，说我给了她陪女儿长大的第二次机会。] 
+                [word type=0 content=对任何一个人来说，得到这种感谢都是一种莫大的荣幸，但我当时只涌上来一阵恶心。] 
+                [word type=0 content=我，一个] 
+                [word type=2 content=兜售虚假慰藉的奸商 changeNumber=1 right=3]
+                为心灵受伤者提供避难所的人，而非
+                [word type=0 content=，一日复一日设计出精巧谎言麻痹他人却对他们所面对的现实]
+                [word type=0 content=徒劳无助的人。我有权利去接受她的感谢] 
+                [word type=2 content=吗？ changeNumber=1 right=3]
+                。
+            [end]
+        [word type=0 content=的唯一支柱。每当我冒出那么一丁点结束这一切苦痛的想法，]
+        [word type=0 content=内心的一部分就会告诉我：结束，就意味着永]
+        [word type=0 content=远留他一人在那片无垠而空旷的空间中绝望地永生。]
+    [end]
+    [word type=0 content=日益枯萎；]
+    [word type=3 content=沉迷构建一个幸福的梦境，]
+        [sentence]
+            [page number=0]
+                [word type=0 content=利用职务便利，我为自己搭建了一个名为“彼岸”的梦境世界。在那里，Orpheus 从未离去。]
+                [word type=0 content=我们在普罗旺斯蔚蓝海岸边建起了一座种满橄榄树的庭院。在这里，时间比外面过得更慢。]
+                [word type=0 content=有一次，我们坐在地中海的岸边，Orpheus 和往常一样眺望着远处的灯塔。我看着他那双在]
+                [word type=0 content=夕阳的余晖中闪烁着的深蓝色眼睛，那是我已经近乎接受了的、在现实中永远无法再次注视]
+                [word type=0 content=的深蓝。我不由自主地发问：“Orpheus，如果你现在看到的这一切，包括你自己，都只是我]
+                [word type=0 content=做的一场梦。而真正的、现实中的你，已经无法像现在一样握着我的手和我说话了……你会]
+                [word type=0 content=怎么想？”]
+                [word type=0 content=他明显愣了一下，被这个冷不丁的问题打得猝不及防，随后嘴角扬起了那份我再熟悉不过的、]
+                [word type=0 content=带着点戏谑的笑容，开始对着海说些有的没的的玩笑话。具体说了什么我已记不太清，因为]
+                [word type=0 content=当时的自己只期待他说出我内心期待的那个回答。]
+            [endPage]
+            [page number=1]
+                [word type=0 content=于是笑声渐渐平息，他还是回头看向了我，正如往前一同走过的无数个日夜。那双深蓝色的、]
+                [word type=0 content=虚构出的眼睛中盛满了无比真实的温柔与洞察一切的哀伤。他轻轻握住我的手，用触感很真]
+                [word type=0 content=实的指腹摩挲我的手掌，声音却是我从没听过的一种音色，就像从一个很远很空旷的地方传]
+                [word type=0 content=来。]
+                [word type=0 content=他说：Eurydice，如果这里的我，建构于现实中的你的虚无与痛苦之上，如果我的存在成为]
+                [word type=0 content=束缚你、将你一动不动地禁锢在过去的牢笼，那么……请你关闭它。因为无论是哪个我，我]
+                [word type=0 content=们最深切的渴望都只有一个——你的幸福。]
+                [word type=2 content=他说：哪怕这份幸福里，不再有他的出现。 changeNumber=1 right=3]
+                他说：无论在哪个世界，我们都是彼此的解药。
+                [word type=0 content=这真的……是我内心期待的那个回答吗？]
+                        
+            [endPage]
+        [end]
+    [word type=0 content=充满羞愧。Orpheus，请你告诉我：在这个]
+    [word type=3 content=没有出口的迷宫]
+    [word type=0 content=里，我是该继续去寻求那丝]
+    [word type=3 content=微不可及的希望]
+    [word type=0 content=还是该就此放弃、将]
+    [word type=3 content=过去的一切]
+    [word type=0 content=抛之脑后，重新投入现实的怀抱？]
+    
+    
+        [word type=2 content=注定徒劳 changeNumber=1 right=2]
+        [word type=6 content=所有努力 pic=ympic01 end=没考上好学校的话……这么些年的所有努力，不就都成了一场笑话吗。]
+        [dialog role=??	 content=儿子，都凌晨两点了，又趴桌子上睡着了？快起来喝杯牛奶，去床上睡吧。]
+        [dialog role=??	 content=……妈…不用管我，这个模块马上就要写完了。没写完我睡不好。]
+        [dialog role=??	 content=唉…身体更重要。你说你这么拼，要是…]
+        [dialog role=??	 content=没有“要是”！我知道的，你们在我身上付出了很多，我一定不会让你们失望的。]
+        [dialogEnd]
+        [word type=2 content=都只是一场笑话 changeNumber=1 changeDialog=true scriptLine=0 scriptName=ymsupport right=1]
+        从来都不会有结果
+        [word type=0 content=话，也预示着我的未来]
+        [word type=2 content=注定徒劳 changeNumber=1 right=2]
+        需要加倍努力
+        [word type=0 content=。]
+        [word type=0 content=我完了，我的人生出了一个BUG。未来画卷才]
+        [word type=0 content=刚要展开，就被泼上了洗不去的墨汁]
+        [word type=2 content=，再也无法弥补…… changeNumber=1 right=0]
+        但以后的事，谁又说得准呢……
+    [end]
+    [word type=0 content=。在]
+    [word type=3 content=所有人]
+    [sentence]
+        [word type=0 content=出分那天起，我开始害怕遇到以前的同学或朋友，他们看似关心的询问背后，大概是在等待]
+        [word type=2 content=、审视我的落魄 changeNumber=1 right=2]
+        、期待我的坚强
+        [word type=0 content=吧……我尤其在意]
+        [word type=6 content=李明那伙人 pic=ympic02 end=李明虽然成绩不好，但他是班里甚至年级的中心，似乎天生就有着学不来的幽默和松弛……真羡慕啊。我曾经试着融入他们，聊他们喜欢的游戏和电视剧，但总觉得格格不入，就像一只笨拙的企鹅在模仿人类走路。]
+        [dialog role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
+        [dialog role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
+        [dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我 1v1，看我灭了你的傲气！]
+        [dialog role=??	 content=(开心的大笑) 说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
+        [dialogEnd]
+        [word type=0 content=的目光，毕业典礼上他们的每一次窃窃私语]
+        [word type=2 content=都像在议论我的不堪 changeNumber=1 right=2]
+        都只是在聊一些无意义的事罢了
+        [word type=0 content=，见到我时的回避态度也]
+        [word type=2 content=像拿针扎一样伤人 changeNumber=1 right=2]
+        证明我们不是一路人
+        [word type=0 content=人。但让我压力倍增的是]
+        [word type=1 content=我未能理解 right=1]
+        [word type=6 content=张老师 pic=ympic03 end=我不能让您失望。]
+        [dialog role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
+        [dialog role=???	 content=谢谢老师…我会保持的。]
+        [dialog role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
+        [dialog role=??	 content=记住，越是到了最后关头，就越要稳住。咱们学校、咱班今年的荣誉，你可是扛大旗的。千万别像有些学生，到最后泄了气，那就太可惜了。]
+        [dialogEnd]
+        [word type=2 content=关切的目光 changeNumber=1 right=2]
+        私下谈话里的深意
+        [word type=0 content=和父母那种小心翼翼、绝口不提的态度，仿佛他们认定我真的……]
+        [word type=2 content=坏了、出了BUG……是啊，他们都认为 changeNumber=1 right=0]
+        会重新规划好自己的人生
+        [word type=0 content=……]
+        [word type=2 content=是啊，他们都认为 changeNumber=1 right=0]
+        当然，他们不认为
+        [word type=0 content=只会做题的机器才是最完美的孩子。我认同他们的想法。]
+    [end]
+    [word type=0 content=的眼中我都只是一个可悲的失败者。没有考出好成绩、没有光明未来的我……只想]
+    [word type=3 content=永远躲起来]
+    [sentence]
+        [word type=2 content=“出路已经被完全堵死了。 changeNumber=1 right=1]
+        “我看不清眼前的路。
+        [word type=0 content=那么…复读？我没有勇气再经历一次那种]
+        [word type=6 content=折磨 pic=ympic04 end=早复习、晚自习、长考试、少休息。年少时渴慕探索的星空下，无数的我们抛开天真与好奇向那薄而窄的木桥走去。没有人告诉过我们摔下去的人还能否拥有未来、而走过去的人又是否真的拥有未来。]
+            [dialog role=?? content=啊，总算把这套卷子啃完了！这一年题怎么这么难啊……]
+            [dialog role=??	 content=一鸣，你说，等高考结束了，你最想干什么？]
+            [dialog role=???	 content=高考结束吗…我没想过。]
+            [dialog role=??	 content=有时候我会想啊，我们现在做的这一切，到底是为了什么？]
+            [dialog role=???	 content=为了未来啊。老师、家长不都这么说吗？挤过这座独木桥，就好了。]
+        [dialogEnd]
+        [word type=0 content=。进入社会？我一个]
+        [word type=1 content=当下别人看来的 right=0]
+        [word type=0 content=失败者现在能做得了什么？]
+        [word type=2 content=这种彻底的绝望 changeNumber=1 right=0]
+        这种暂时的迷茫
+        [word type=0 content=就让我拒绝和别人的一切交流]
+        [word type=1 content=因为他们无法代替我进行思考 right=0]
+        [word type=2 content=从心底 changeNumber=1 right=0]
+        我从不
+        [word type=0 content=认同这个失败者的身份，]
+        [word type=2 content=并 changeNumber=1 right=0]
+        绝不
+        [word type=0 content=相信这是我应得的惩罚……]
+    [end]
+    [word type=0 content=。最好谁也不要来找我……]
+[end]
