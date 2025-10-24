@@ -1,3 +1,4 @@
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=black parent=UI move=0 des=场景漆黑]
 [role name=??? frame=ori sprite=elpis]
 哇哦…连接成功了！

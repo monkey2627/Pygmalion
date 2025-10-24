@@ -10,7 +10,11 @@ public class DoubleClick1Board : MonoBehaviour
     public List<GameObject> wordList = new List<GameObject>();
     public Word word;
     public void Show(bool addChange,Word word)
-    {        
+    {
+        foreach (GameObject wordObj in wordList)
+        {
+            print(wordObj.GetComponent<TMP_Text>().text);
+        }
         this.word = word;
         //其本身
         wordList[0].SetActive(true);

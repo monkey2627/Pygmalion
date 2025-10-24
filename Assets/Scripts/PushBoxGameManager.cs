@@ -27,8 +27,7 @@ public class PushBoxGameManager : MonoBehaviour
         if(finishedBoxs == totalBoxs)
         {
             print("YOU WIN!");
-            gameObject.SetActive(false);
-            SentenceManager.Instance.wordClicked.ConfirmAddWord();
+            SentenceManager.instance.wordClicked.ConfirmAddWord();
             //StartCoroutine(LoadNextStage());
         }
     }

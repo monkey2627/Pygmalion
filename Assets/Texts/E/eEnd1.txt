@@ -20,9 +20,9 @@
 谢谢，“完美”的工具，谢谢你的治疗。我终于……无路可走了。
 [operation setActive=false obj=Dialog parent=UI move=0.5]
 [scene load=1 name=lab move=0.5 des实验室]
-[operation setActive=true obj=Dialog parent=UI move=1]
-[role name=Pygmalion frame=ori sprite=p]
+[role name=Pygmalion frame=ori sprite=p move=1]
 ……
+[operation setActive=true obj=Dialog parent=UI]
 [role name=Pygmalion frame=ori sprite=p]
 Elpis。
 [role name=Elpis（电子） frame=elec]

@@ -15,24 +15,24 @@ using UnityEngine.Serialization;
     {
         //存这一整个题目是从哪里开始的
         public int sentenceBeginPlace;
-        public static SentenceManager Instance;
-        public int sentenceNow=0;
+        public static SentenceManager instance;
+        public int paragraphNow=0;
         public ConfirmType type;
         public bool guideTime;
         public List<BackgroundWander> jellyfishs = new List<BackgroundWander>();
         public List<string> endScriptsList = new List<string>();
-        public List<Sentence> sentences;
+        public List<Paragraph> paragraphs;
         public bool enAbleConfirm = false;
         public Word wordClicked;
         private void Awake()
         {
-            Instance = this;
+            instance = this;
+            paragraphNow = 0;
         }
-        
         public void Fade()
         {
             float time = 1;
-            foreach (Sentence sentence in sentences)
+            foreach (Paragraph sentence in paragraphs)
             {
                 sentence.Fade(time);
             }
@@ -47,8 +47,8 @@ using UnityEngine.Serialization;
         //根据单词的正确比例来载入对应的结局
         public void Confirm()
         {
-            
-            
+
+            PygmalionGameManager.Instance.isGameTime = false;
             if (guideTime)
             {
                 
@@ -58,13 +58,13 @@ using UnityEngine.Serialization;
             else
             {
                 if(!enAbleConfirm) return;
-                sentences[0].confirm.SetActive(false);
+                paragraphs[0].confirm.SetActive(false);
                 switch (type)
                 {
                     case ConfirmType.Normal:
                         float all = 0;
                         float right = 0;
-                        foreach (var w in from s in sentences from w in s.words where w.wordType == 1||w.wordType == 2||w.wordType == 4||w.wordType == 5 select w)
+                        foreach (var w in from s in paragraphs from p in s.pages from w in p.words  where w.wordType == 1||w.wordType == 2||w.wordType == 4||w.wordType == 5 select w)
                         {
                             all += 1;
                             if (w.IsRight())
@@ -86,12 +86,21 @@ using UnityEngine.Serialization;
                         }
                         break;
                     case ConfirmType.OnlyOneCorrect:
+                        if (paragraphs[1].pages[0].words[2].IsRight())
+                        {
+                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
+                        }
+                        else
+                        {
+                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[0]);
+
+                        }
                         break;
                 }
             }
             
             //销毁所有的句子
-            foreach (var s in sentences)
+            foreach (var s in paragraphs)
             {
                 Destroy(s.gameObject);
             }
@@ -102,23 +111,20 @@ using UnityEngine.Serialization;
         private class Archive
         {
             public int sentenceBeginPlace;
-            public int sentenceNow;
-            public List<SentenceSnapshot> sentences = new List<SentenceSnapshot>();
+            public int paragraphNow;
+            public List<ParagraphSnapshot> paragraphs = new List<ParagraphSnapshot>();
         }
 
         [Serializable]
-        private class SentenceSnapshot
+        private class ParagraphSnapshot
         {
-            public int number;
-            public int fatherSentenceNumber;
-            [FormerlySerializedAs("picture")] public bool showPicture;
+            public int pageNow;
             public List<WordSnapshot> words = new List<WordSnapshot>();
         }
-
         [Serializable]
         private class WordSnapshot
         {
-            public int wordType;
+            public int type;
             public string currentText;          // 当前显示文本
             public bool playedDelete;
             public bool playedChange;
@@ -130,30 +136,30 @@ using UnityEngine.Serialization;
         private Archive BuildArchive()
         {
             Archive archive = new Archive();
-            archive.sentenceNow = sentenceNow;
+            archive.paragraphNow = paragraphNow;
             archive.sentenceBeginPlace =  sentenceBeginPlace;
-            foreach (var s in SentenceManager.Instance.sentences)
+            foreach (var paragraph in SentenceManager.instance.paragraphs)
             {
-                var snap = new SentenceSnapshot
+                var snap = new ParagraphSnapshot
                 {
-                    number = s.sentenceNumber,
-                    fatherSentenceNumber = s.fatherSentenceNumber,
-                    showPicture = s.showPicture
-                };
-
-                foreach (var w in s.words)
+                    pageNow = paragraph.pageNow,
+                 };
+                foreach (var page in paragraph.pages)
                 {
-                    snap.words.Add(new WordSnapshot
+                    foreach (var w in page.words)
                     {
-                        wordType = w.wordType,
-                        currentText = w.wordText.text,
-                        playedDelete = w.playedDelete,
-                        playedChange = w.playedChange,
-                        playedAdd = w.playedAdd,
-                       
-                    });
+                        snap.words.Add(new WordSnapshot
+                        {
+                            type = w.wordType,
+                            currentText = w.wordText.text,
+                            playedDelete = w.playedDelete,
+                            playedChange = w.playedChange,
+                            playedAdd = w.playedAdd,
+                        });
+                    }
+
+                    archive.paragraphs.Add(snap);
                 }
-                archive.sentences.Add(snap);
             }
             return archive;
         }
@@ -162,41 +168,32 @@ using UnityEngine.Serialization;
         #region 恢复存档
         private void RestoreArchive(Archive data)
         {
-            var mgr = SentenceManager.Instance;
-            if (mgr.sentences.Count != data.sentences.Count)
+            sentenceBeginPlace = data.sentenceBeginPlace;
+            SentenceManager.instance.paragraphs = new List<Paragraph>();
+            SentenceManager.instance.guideTime = false;
+           // CreateSentence(sentenceBeginPlace);
+            
+            for (int i = 0; i < paragraphs.Count; i++)
             {
-                Debug.LogError("存档与当前场景句子数量不一致，无法恢复！");
-                return;
-            }
+                var s   = paragraphs[i];
+                var ss  = data.paragraphs[i];
 
-            for (int i = 0; i < mgr.sentences.Count; i++)
-            {
-                var s   = mgr.sentences[i];
-                var ss  = data.sentences[i];
+                paragraphNow = data.paragraphNow;
+                
+                //在这里要重新生成
 
-                // 恢复 sentence 层简单字段
-                s.sentenceNumber                = ss.number;
-                s.fatherSentenceNumber  = ss.fatherSentenceNumber;
-                s.showPicture               = ss.showPicture;
-
-                // 恢复 words
-                if (s.words.Count != ss.words.Count)
+                foreach (var page in s.pages)
                 {
-                    Debug.LogError($"句子 {i} 的 word 数量不一致，跳过恢复。");
-                    continue;
-                }
-
-                for (int j = 0; j < s.words.Count; j++)
-                {
-                    var w  = s.words[j];
-                    var ws = ss.words[j];
-
-                    w.wordText.text   = ws.currentText;
-                    w.playedDelete    = ws.playedDelete;
-                    w.playedChange    = ws.playedChange;
-                    w.playedAdd       = ws.playedAdd;
-
-                    // 如果后续需要根据 isRight 做分支，也可以再写逻辑
+                    for (int j = 0; j < page.words.Count; j++)
+                    {
+                        var w  = page.words[j];
+                        var ws = ss.words[j];
+                        w.wordType = ws.type;
+                        w.wordText.text   = ws.currentText;
+                        w.playedDelete    = ws.playedDelete;
+                        w.playedChange    = ws.playedChange;
+                        w.playedAdd       = ws.playedAdd;
+                    }
                 }
             }
         }
@@ -204,13 +201,24 @@ using UnityEngine.Serialization;
 
         public void EnableEveryWord()
         {
-            for (int i = 0; i < sentences.Count; i++)
+            foreach (var t2 in from t in paragraphs from t1 in t.pages from t2 in t1.words select t2)
             {
-               
-                for (int j = 0; j < sentences[i].words.Count; j++)
-                {
-                    sentences[i].words[j].enable = true;
-                }
+                t2.enable = true;
             }
+        }
+
+        public void DisableEveryWord()
+        {
+            foreach (var t2 in from t in paragraphs from t1 in t.pages from t2 in t1.words select t2)
+            {
+                t2.enable = false;
+            }
+        }
+
+        public void NextPara(int nextParagraphNumber)
+        {
+            paragraphs[paragraphNow].gameObject.SetActive(false);
+            paragraphNow = nextParagraphNumber;
+            paragraphs[paragraphNow].gameObject.SetActive(true);
         }
     }

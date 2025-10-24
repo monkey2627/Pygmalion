@@ -47,8 +47,9 @@ public class AlertScroll : MonoBehaviour
         float t = timer / scrollDuration;      // 0~1
         if (t >= 1f)
         {
+            PygmalionGameManager.Instance.ReadLine();
             // 跑完自动销毁
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 

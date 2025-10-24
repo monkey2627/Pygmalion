@@ -22,7 +22,7 @@ public class Vp
 public class VpManager : MonoBehaviour
 {
     public static VpManager Instance;
-    private static readonly string SaveFile = "SaveVPData.json";
+    private static readonly string AutoSaveFile = "AutoSaveVPData.json";
     private void Awake()
     {
         Instance = this;
@@ -33,9 +33,9 @@ public class VpManager : MonoBehaviour
     private void Start()
     {
         vps = new Dictionary<string, GameObject>();
-        foreach (var VARIABLE in vpGameObjects)
+        foreach (var vp in vpGameObjects)
         {
-          vps.Add(VARIABLE.name, VARIABLE);
+          vps.Add(vp.name, vp);
         }
 
     }
@@ -126,15 +126,19 @@ public class VpManager : MonoBehaviour
 
             SaveVPData data = new() { snapshots = list };
             string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(Path.Combine(Application.persistentDataPath, SaveFile), json);
+            File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);
             Debug.Log($"[VpManager] 已保存 {list.Count} 条 vp 数据");
         }
     }
 
     // 从磁盘读出并覆盖当前 vp 的状态
-    public void LoadAllVp()
+    public void LoadAllVp(int type)
     {
-        string path = Path.Combine(Application.persistentDataPath, SaveFile);
+        string path = "";
+        if(type == 0)
+            path = Path.Combine(Application.persistentDataPath, AutoSaveFile);
+        else
+            path = Path.Combine(Application.persistentDataPath, AutoSaveFile);
         if (!File.Exists(path))
         {
             Debug.Log("[VpManager] 没有找到存档文件，跳过读档");
@@ -143,7 +147,6 @@ public class VpManager : MonoBehaviour
 
         string json = File.ReadAllText(path);
         SaveVPData data = JsonUtility.FromJson<SaveVPData>(json);
-
         foreach (var snap in data.snapshots)
         {
             if (!vps.ContainsKey(snap.name)) continue;

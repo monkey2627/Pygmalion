@@ -36,6 +36,8 @@ namespace GamePlay
             for (int i = 0; i < rt.childCount; i++)//从上到下遍历所有的
             {
                 var child = rt.GetChild(i) as RectTransform;
+                if(child.GetComponent<Word>())
+                    child.GetComponent<Word>().RefreshBox2d();
                 var text = child.GetComponent<TMP_Text>();
                 if (!text) continue;
 

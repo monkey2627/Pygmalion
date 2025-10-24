@@ -1,3 +1,5 @@
+[sentence op=disableEvery move=0]
 [role name=Elpis（电子） frame=elec sprite=elpis]
 有些时候，患者的心灵会走进死胡同，使我们无法替换出自己期待的词句。这个时候……如果把出现 BUG 的部分直接切除、整个删掉，结果可能会更好。
+[sentence op=enableEvery move=0]
 [operation setActive=false obj=Dialog parent=UI]

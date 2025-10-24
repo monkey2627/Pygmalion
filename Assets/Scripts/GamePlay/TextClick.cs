@@ -6,6 +6,7 @@ namespace GamePlay
 {
     public class TextClick: MonoBehaviour,IPointerClickHandler
     {
+        public TMP_Text text;
         public Word word;
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -15,7 +16,9 @@ namespace GamePlay
                 word.spaceYellow.SetActive(word.wordText.text == "<color=#00000000>空</color>");
             }
             word.RefreshBox2d();
-            word.sentence.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            word.Close();
+            word.page.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
+            PygmalionGameManager.Instance.upperButtons.SetActive(true);
         }
     }
 }

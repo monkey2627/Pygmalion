@@ -14,7 +14,7 @@ namespace GamePlay
             tmp.ForceMeshUpdate();
 
             float w = tmp.preferredWidth;
-            float h = tmp.preferredHeight;
+            float h = 46.56f;
     
             box2d.size   = new Vector2(w, h);
             box2d.offset = new Vector2(w / 2, -h / 2);

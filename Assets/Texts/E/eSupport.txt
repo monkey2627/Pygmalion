@@ -1,0 +1,8 @@
+[sentence op=disableEvery move=3]
+[role name=?? frame=back]
+你确定，这个不是 BUG 吗？
+[sentence op=enableEvery move=0]
+[operation setActive=false obj=Dialog parent=UI move=0]
+[sentence op=enable sentence=7 word=7 page=0 move=0 blick=true enable=1]
+[sentence op=changeColor color=yellow sentence=7 word=7 page=0 move=0]
+[sentence op=changeType type=4 sentence=7 word=7 page=0  move=0]

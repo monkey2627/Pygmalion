@@ -1,4 +1,5 @@
 [ending des=好结果： content=高考的失利是我人生中一次重要而深刻的经历，它只是我需要度过的一个阶段、一个我需要学会去解决的课题。前方的路暂时被迷雾笼罩，现在我必须停下来，认真思考自己真正想要的方向。]
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
 [ani name=back2ocean]
 [role name=一鸣]

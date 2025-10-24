@@ -42,6 +42,7 @@ public class DoubleClick2Board : MonoBehaviour
                 text= Instantiate(textCloneObj,gameObject.transform);
                 text.SetActive(false);
                 text.GetComponent<TMP_Text>().text = changeWordList[i];
+                text.GetComponent<TextClick>().text.text = changeWordList[i];
                 text.GetComponent<AutoBox>().RefreshBox2d();
                 text.GetComponent<TextClick>().word = word;
                 wordList.Add(text);
@@ -50,6 +51,7 @@ public class DoubleClick2Board : MonoBehaviour
         text= Instantiate(textCloneObj,gameObject.transform);
         text.SetActive(false);
         text.GetComponent<TMP_Text>().text = "/";
+        text.GetComponent<TextClick>().text.text = "/";
         text.GetComponent<AutoBox>().RefreshBox2d();
         text.GetComponent<TextClick>().word = word;
         wordList.Add(text);

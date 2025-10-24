@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Lab : Scene.Scene
+namespace Scene
 {
-    public override void Load()
+    public class Lab : Scene
     {
-        gameObject.SetActive(true);
-    }
+        public override void Load()
+        {
+            gameObject.SetActive(true);
+        }
 
-    public override void Unload()
-    {
-        gameObject.SetActive(false);
+        public override void Unload()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

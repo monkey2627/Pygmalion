@@ -1,3 +1,4 @@
+using System.IO;
 using Scene;
 using UnityEngine;
 
@@ -42,17 +43,23 @@ public class DataManager : MonoBehaviour
     /// <summary>
     /// 只在一整个操作之后save
     /// </summary>
+    public class SaveDataManagerData
+    {
+        public int lineNow;
+        public string scriptNow;
+        
+    }
+    private static readonly string AutoSaveFile = "SaveDataManagerData.json";
     public void Save(int type=0)
     {
         if (type == 0)//说明是自动存
         {
-            PlayerPrefs.SetString("scriptNow", _scriptNow);
-            PlayerPrefs.SetInt( "lineNow", _lineNow);
-            PlayerPrefs.SetString("currentScene", PSceneManager.Instance._currentScene.name);
-            //存所有vp的位置、颜色、大小
-            VpManager.Instance.SaveAllVp(type);
-            //存场景中一些重要物体的状态
-            PygmalionGameManager.Instance.Save(type);
+            SaveDataManagerData data = new SaveDataManagerData();
+            data.lineNow = LineNow;
+            data.scriptNow = ScriptNow;
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);
+            Debug.Log($"[DataManager] 已保存");
         }
     }
     /// <summary>
@@ -63,15 +70,11 @@ public class DataManager : MonoBehaviour
         _gameCircle = "1";
         _scriptNow = "0";
         _lineNow = 0;
-        PlayerPrefs.SetString("gameCircle","1");
-        PlayerPrefs.SetString("scriptNow","0");
-        PlayerPrefs.SetInt("lineNow", 0);
     }
 
     public void ContinueGame()
     {
-        PlayerPrefs.GetString("scriptNow", "0");
-        PlayerPrefs.GetInt("lineNow", 3);
+        
     }
 
 

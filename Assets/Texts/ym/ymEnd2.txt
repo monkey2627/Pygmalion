@@ -1,4 +1,5 @@
 [ending des=坏结局 content=高考的失利在我的人生中留下了一个特别的印记。在一些人的眼中我似乎已经成了一个落后者，但这只是暂时的。没有考出理想的成绩、前路也变得模糊的我，此刻需要的只是一点自己的空间来思考，最好不要有太多人来打扰我。]
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
 [ani name=back2ocean]
 [role name=一鸣]

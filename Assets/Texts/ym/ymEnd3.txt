@@ -1,4 +1,5 @@
 [ending des=坏结局 content=高考的失利像一处怎么也擦不掉的污点，粘在我的人生上。在大家的眼中，我只是个没用的废物吧。没考上好大学、也不配拥有好未来的我，只能像个影子一样活着。求求你们，把我当成空气吧……]
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
 [ani name=back2ocean]
 [role name=一鸣 frame=ori sprite=ym]
@@ -28,9 +29,9 @@
 [role name=一鸣]
 爷爷，今天是我的“生日”。
 [operation setActive=false obj=Dialog parent=UI move=1]
-【患者已脱离系统】
-[scene load=1 name=lab move=0.5]
-[operation setActive=true obj=Dialog parent=UI move=1]
+[scene load=1 name=lab move=0]
+[scene load=0 name=ocean move=0.5]
+[operation setActive=true obj=Dialog parent=UI]
 [role name=Elpis sprite=elpis]
 不…这不该是这样的…我们在一个人的意识中强行覆写了一个故事。我们本该做的是修复患者原先故事中存在的漏洞……
 [role name=Elpis sprite=elpis]

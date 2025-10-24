@@ -31,8 +31,6 @@ public class SentenceDialog : MonoBehaviour
         dialog.SetActive(true);
         dialogLine = 0;
         Dialogs = dialogList;
-        PygmalionGameManager.Instance.readScript = false;
-        PygmalionGameManager.Instance.dialog.SetActive(true);
         this.endText.DOFade(0, 0);
         this.endText.text = endText;
         this.endText.gameObject.SetActive(false);
@@ -50,9 +48,16 @@ public class SentenceDialog : MonoBehaviour
         else
         {
             dialog.SetActive(false);
-            endText.gameObject.GetComponent<AutoBox>().RefreshBox2d();
-            black.GetComponent<SpriteRenderer>().DOFade(1, 0f);
-            endText.DOFade(1, 0);
+            if (endText.text != "")
+            {
+                endText.gameObject.GetComponent<AutoBox>().RefreshBox2d();
+                black.GetComponent<SpriteRenderer>().DOFade(1, 0f);
+                endText.DOFade(1, 0);
+            }
+            else
+            {
+                black.GetComponent<SpriteRenderer>().DOFade(0, 0.5f);
+            }
         } 
     }
 
