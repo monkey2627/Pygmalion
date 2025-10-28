@@ -13,6 +13,7 @@ public class TextLoader : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
     void Start()
     {

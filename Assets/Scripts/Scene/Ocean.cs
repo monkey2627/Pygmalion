@@ -8,6 +8,7 @@ namespace Scene
         public GameObject backGround;
         public override void Load()
         {
+            PSceneManager.Instance._currentScene = this;
             gameObject.SetActive(true);
         }
 

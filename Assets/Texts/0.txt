@@ -1,25 +1,31 @@
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=black parent=UI move=0 des=场景漆黑]
-[role name=??? frame=ori sprite=elpis]
+[operation setActive=true obj=Dialog parent=UI move=0]
+[role name=??? frame=ori sprite=none]
 哇哦…连接成功了！
 [role name=???]
 Pygmalion！能听到吗？
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[operation setActive=false obj=upperButtons parent=UI move=0]
 [scene load=1 name=lab move=0]
-[vp name=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
-[vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
-[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
-[image op=fade target=0 obj=black time=2 parent=UI des=场景慢慢亮起至纯白空间,此处让黑色慢慢变成透明]
-[role name=Elpis vp=0]
+[vp name=elpiskx role=elpis op=fade fade=1 time=0 move=0 des=Elpis挂着开朗而毫无防备的笑容]
+[vp name=elpiskx role=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
+[vp name=elpiskx role=elpis op=move2 x=0 y=0 z=0 move=0 time=0]
+[image op=fade target=0 obj=black time=3 parent=UI move=3]
+[operation setActive=true obj=upperButtons parent=UI move=0]
+[role name=Elpis move=0 sprite=elpiskx]
 喔…真的变亮了…
+[operation obj=content parent=UI att=enable script=DialogClick content=true]
 [role name=Elpis]
 你好，Pygmalion，我是 Elpis！从今天起我就是你的搭档兼监察员啦！
 [role name=Pygmalion sprite=none]
 你好，Elpis，很高兴认识你。
 [role name=Pygmalion]
 对不起，我好像刚从一个很长很长的梦里挣脱出来…
-[role name=Elpis sprite=elpis] 
+[role name=Elpis sprite=elpiskx] 
 哦！没关系啦，毕竟你的程序刚启动。
-[role name=Elpis]
+[vp name=elpis role=elpis op=change move=0]
+[role name=Elpis sprite=elpis]
 咳咳。那么，就由我…伟大的Elpis，来唤醒一下你的记忆模块吧！
 [role name=Elpis]
 欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像BUG一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
@@ -33,17 +39,21 @@ Pygmalion！能听到吗？
 和你们记录“想法”和“思维过程”的方式不同，人类的想法很奇妙，往往披着一层故事的外衣出现。而我们为了能更方便地对“患者”脑中出现问题的想法进行修复，就必须得用他们能理解的方式来工作。
 [role name=Elpis]
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
-[scene name=ocean load=1 des=场景：夜晚海边]
+[scene name=ocean load=1 des=场景：夜晚海边 move=0]
 [scene load=0 name=lab move=0]
 [role name=Elpis]
 真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
+[operation setActive=false obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=1]
-[vp name=elpis op=move2o des=Elpis朝你眨眨眼，随即走进海里，蜷缩身体沉入海中]
-[ani name=water role=elpis]
+[vp role=elpis name=elpis op=move2o des=Elpis朝你眨眨眼，随即走进海里，蜷缩身体沉入海中]
+[ani name=water role=elpis word1=Duplicitous word2=Cipherlike word3=Conflicted word4=Tragic word5=Unraveling]
 [scene name=ocean load=0 move=0]
-[operation setActive=true obj=Dialog parent=UI move=0]
-[role name=Elpis(电子) frame=elec]
+[bgm name=textGame move=0]
+[clear move=0]
+[role name=Elpis(电子) frame=elec sprite=elpis move=0.1]
 好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
+[operation setActive=true obj=Dialog parent=UI move=0]
+[operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis(电子)]
 但最好你能把这些代码转换成句子，这样我看起来方便一些！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
@@ -57,20 +67,22 @@ Pygmalion！能听到吗？
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Elpis(电子) move=3 frame=elec]
 你看这句话！首先，这个“永远”听起来就好绝望，太绝对了。事情明明总是在变化的，对吧？我们先删掉它吧！
-[sentence op=enable word=3 sentence=0 enable=1]
+[operation method=EnableOne obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
+[operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
-[sentence op=enable word=3 sentence=0 enable=0 move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [role name=Elpis(电子)]
 呼…感觉好多了！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Elpis(电子) move=3 frame=elec]
 然后你看这个“包袱”，听起来又大又沉，我们能不能给它换个说法？比如… 把它看成一种“挑战”？
-[sentence op=enable word=5 sentence=0 enable=1]
+[operation method=EnableTwo obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
+[operation setActive=true obj=upperButtons parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[sentence op=enable word=5 sentence=0 enable=0 move=0]
-[role name=Pygmalion frame=ori sprite=p]
-Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？ 
+[role name=Pygmalion frame=ori sprite=none move=0]
+Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？
+[operation setActive=true obj=Dialog parent=UI move=0] 
+[operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis(电子) frame=elec sprite=elpis]
 …… 
 [role name=Elpis(电子)]
@@ -78,49 +90,64 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Elpis(电子) move=3]
 嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
-[sentence op=enable word=1 sentence=0 enable=1]
+[operation method=EnableThree obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Elpis(电子)]
+[role name=Elpis(电子) move=0]
 太神奇了！就这么改了几个词，我感觉整个人的视角都变了！Pygmalion你学得真快，是不是记忆模块BUG修复了？ 
+[operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis(电子) move=0]
 来吧，把我们的修改方案提交上来。由我，你的首席搭档！来按下这个批准的按钮！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=confirm parent=GuideSceneGamePlay]
+[operation setActive=false obj=upperButtons parent=UI move=0]
 [image op=fade target=0 obj=black time=1 parent=UI move=0] 
 [operation setActive=false obj=Dialog parent=UI move=0]
 [image op=fade target=0 obj=elpis time=1 parent=vps move=0] 
-[sentence op=fade move=1 des=所有的语句逐渐消失，消失后删除语句逐渐淡去Elpis的身周环绕起一圈游鱼，随后变成淡淡的白光融入身体]
+[operation method=Fade obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
 [operation setActive=false obj=black parent=sceneTransfer move=0]
+[bgm op=stop name=textGame move=0]
 [ani name=back2ocean]
-[vp name=elpis op=fade fade=1 time=0 move=0]
-[vp name=elpis op=move2 x=-556.5 y=-540.1 z=0 move=0 time=0]
+[vp name=elpis role=elpis op=move2 x=0 y=0 z=0 move=0 time=0]
+[vp role=elpis name=elpis op=fade fade=1 time=0 move=1]
+[vp role=elpis name=elpiskx op=change move=0]
+[clear move=0]
+[role name=Elpis save frame=ori sprite=elpiskx move=0.2]
+看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！
+[operation setActive=true obj=Dialog parent=UI move=0] 
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Elpis save frame=ori sprite=elpis]
-看到了吗？这就是我们接下来要完成的工作，就像变魔法一样，一下子就能让人心情变好！你已经完全掌握啦！ 
+[operation setActive=true obj=upperButtons parent=UI]
 [operation setActive=false obj=Dialog parent=UI move=0]
-[vp name=elpis op=fade fade=0 time=1 move=1 des=Elpis凑近]
-[vp name=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
-[vp name=elpis op=move2 x=-560.4 y=-544.5 z=0 move=0 time=0]
-[vp name=elpis op=fade fade=1 time=1 move=1]
+[operation setActive=false obj=upperButtons parent=UI move=0]
+[vp name=elpis role=elpis op=fade fade=0 time=1 move=1 des=Elpis凑近]
+[vp name=elpis role=elpis op=scale x=0.5 y=0.5 z=0.5 move=0 time=0]
+[vp name=elpis role=elpis op=move2 x=0 y=0 z=0 move=0 time=0]
+[vp name=elpis role=elpis op=fade fade=1 time=1 move=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Elpis move=0 sprite=elpis]
+[vp role=elpis name=elpis op=change move=0]
+[clear move=0]
+[role name=Elpis move=0.2 sprite=elpis]
 说真的，能参与这个项目，能用这样的方式帮助别人，我每天都觉得好兴奋。可能我人生的意义就在于此吧… 
-[operation setActive=true obj=Dialog parent=UI ]
-[role name=Elpis]
+[operation setActive=true obj=Dialog parent=UI move=0]
+[operation setActive=true obj=upperButtons parent=UI]
+[vp role=elpis name=elpis op=change move=0]
+[role name=Elpis sprite=elpis]
 那么，准备好迎接我们的第一位“患者”了吗？这次的连接申请来自…嗯，EA1730区…一鸣！记得加载多语言模块，我们是一个服务世界的系统！ 
 [role name=Elpis]
 别担心，我会在这儿陪着你的，保持联系！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[vp name=elpis op=fade fade=0 time=1 move=1] 
+[operation setActive=false obj=upperButtons parent=UI move=0]
+[vp name=elpis role=elpis op=fade fade=0 time=1 move=1] 
 [role name=Elpis(电子) frame=elec move=0]
 放轻松，按你的想法来。我相信你的判断。 
-[operation obj=content parent=UI att=enable script=DialogClick content=true]
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis(电子)]
 如果有一天…你相信一位“患者”其实并没有心理问题…
-[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=1]
+[role name=Elpis(电子)]
 请相信自己的判断。
+[operation setActive=false obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
+[vp role=elpis name=elpis op=fade fade=0 time=1 move=1]
 [image op=fade target=1 obj=black time=1 parent=UI move=0] 
 [script name=ym line=0]

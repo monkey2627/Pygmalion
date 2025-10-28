@@ -1,5 +1,5 @@
 [sentence op=disableEvery move=3]
-[role name=?? frame=back]
+[role name=?? frame=back sprite=none]
 你确定，这个不是 BUG 吗？
 [sentence op=enableEvery move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]

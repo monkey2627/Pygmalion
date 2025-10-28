@@ -74,8 +74,6 @@ namespace GamePlay
             //只显示第一页
             for (int i = 0; i < pages.Count; i++)
             {
-                print(fatherSentenceNumber);
-                print(pages[i].gameObject.name);
                 pages[i].gameObject.SetActive(i==0);
             }
             pageNow = 0;

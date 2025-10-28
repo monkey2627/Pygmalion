@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using Ani;
 using Scene;
 using UnityEngine;
 
@@ -45,36 +47,91 @@ public class DataManager : MonoBehaviour
     /// </summary>
     public class SaveDataManagerData
     {
+        public DateTime saveTime;
         public int lineNow;
         public string scriptNow;
         
     }
-    private static readonly string AutoSaveFile = "SaveDataManagerData.json";
+    private static readonly string AutoSaveFile = "AutoSaveDataManagerData.json";
+    private static readonly string PersonSaveFile = "PersonSaveDataManagerData.json";
     public void Save(int type=0)
     {
-        if (type == 0)//说明是自动存
+        SaveDataManagerData data = new SaveDataManagerData();
+        data.lineNow = LineNow;
+        data.scriptNow = ScriptNow;
+        data.saveTime = DateTime.Now;
+        string json = JsonUtility.ToJson(data, true);  
+        if (type == 0)//autoSave
         {
-            SaveDataManagerData data = new SaveDataManagerData();
-            data.lineNow = LineNow;
-            data.scriptNow = ScriptNow;
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);
-            Debug.Log($"[DataManager] 已保存");
+              File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);    
         }
+        else
+        {
+                File.WriteAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile), json);
+        }   
+        PygmalionGameManager.Instance.Save(type);
+        if (PygmalionGameManager.Instance.isGameTime)
+        {
+                SentenceManager.instance.Save(type);
+        }
+        VpManager.instance.SaveAllVp(type);
+        GuideSceneGamePlay.instance.Save(type);
+        WaterAni.Instance.Save(type);
+        Debug.Log($"[DataManager] 已保存");
     }
     /// <summary>
     /// 开始新游戏，从新手指导开始
     /// </summary>
     public void StartNewGame()
     {
+        if (File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
+            File.Delete(Path.Combine(Application.persistentDataPath, AutoSaveFile));
+        if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
+            File.Delete(Path.Combine(Application.persistentDataPath, PersonSaveFile));
         _gameCircle = "1";
         _scriptNow = "0";
         _lineNow = 0;
     }
 
-    public void ContinueGame()
+    public int ContinueGame()
     {
-        
+        int save = 0;
+        if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)) && File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
+        {
+            string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
+            SaveDataManagerData autodata = JsonUtility.FromJson<SaveDataManagerData>(jsonAuto);
+            string jsonPerson = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile));
+            SaveDataManagerData personData = JsonUtility.FromJson<SaveDataManagerData>(jsonPerson);
+            DateTime auto = autodata.saveTime;
+            DateTime person = personData.saveTime;
+            if (auto > person)
+            {
+                _lineNow = autodata.lineNow;
+                _scriptNow =  autodata.scriptNow;
+                return 0;
+            }else if (auto < person)
+            {
+                _lineNow = personData.lineNow;
+                _scriptNow = personData.scriptNow;
+                return 1;
+            }
+        }else if (File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
+        {
+            string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
+            SaveDataManagerData autodata = JsonUtility.FromJson<SaveDataManagerData>(jsonAuto);
+            _lineNow = autodata.lineNow;
+            _scriptNow =  autodata.scriptNow;
+            return 0;
+        }else if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
+        {
+            string jsonPerson = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile));
+            SaveDataManagerData personData = JsonUtility.FromJson<SaveDataManagerData>(jsonPerson);
+            _lineNow = personData.lineNow;
+            _scriptNow =  personData.scriptNow;
+            return 1;
+        }
+
+        return -1;
     }
 
 

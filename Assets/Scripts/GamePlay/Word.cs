@@ -159,9 +159,8 @@ namespace GamePlay
             }
    
         }
-        public bool hasSpecial = false;
+        public bool hasSpecial2NextPara = false;
         public bool hasRun = false;
-        public bool click = false;
         private void OnDoubleClick()
         {
             // 取消即将执行的单击
@@ -183,7 +182,7 @@ namespace GamePlay
                     doubleClick2Board.SetActive(true);
                     break;
                 case 3://进入对应的下一个para
-                    if (hasSpecial && !hasRun)
+                    if (hasSpecial2NextPara && !hasRun)
                     {
                         PygmalionGameManager.Instance.Change2ScriptAndReadLine("eSupport",0);
                         hasRun = true;
@@ -199,7 +198,9 @@ namespace GamePlay
                     doubleClick2Board.SetActive(true);
                     break;
                 case 6://出现图
-                    SentenceDialog.Instance.Show(pic, dialogList, endText);
+                    SentenceManager.instance.DisAbleThisPara();//关闭当前para
+                    PygmalionGameManager.Instance.upperButtons.SetActive(false);//关闭存档功能
+                    SentenceDialog.Instance.Show(pic, dialogList, endText,this);
                     break;
             }
         }
@@ -263,7 +264,7 @@ namespace GamePlay
                             
                         }
                     }
-
+                    print("delete");
                     enable = false;
                 }
             }

@@ -8,7 +8,7 @@ namespace Scene
     {
         public TMPro.TMP_Text text;
         public bool enable = true;
-
+        public GameObject pre2;
         private void OnEnable()
         {
             text.DOColor(new Color(text.color.r,text.color.g, text.color.b, 0.5f), 0.2f)
@@ -23,7 +23,11 @@ namespace Scene
             enable = false;
             text.text = "潜力与收益";
             text.DOKill();
-            GameObject.Find("delay").transform.DOMove(new Vector3(1000, 1000),2).OnComplete(PygmalionGameManager.Instance.ReadLine);
+            GameObject.Find("delay").transform.DOMove(new Vector3(1000, 1000), 2).OnComplete(()=>
+            {
+                gameObject.SetActive(false);
+                pre2.SetActive(true);
+            });
         }
     
     }

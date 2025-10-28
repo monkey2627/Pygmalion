@@ -5,39 +5,77 @@ using System.IO;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class SaveVPData
 {
+    public string enow;
+    public string ymnow;
+    public string elpisnow;
+    public Vector3 ympose;
+    public Vector3 epose;
+    public Vector3 elpispose;
     public List<Vp> snapshots;
 }
 [Serializable]     
 public class Vp
 {   //为了持久化
+    public string role;
     public string name;       
-    public Vector3 localPos;
-    public Vector3 localScale;
     public Color color;
+}
+
+public struct RoleVp
+{
+    public string VpNow;//现在vp的名字
+    public GameObject PosGameObject;//代表位置移动的空物体
+    public Dictionary<String, GameObject> VpsDictionary;//vp字典
 }
 public class VpManager : MonoBehaviour
 {
-    public static VpManager Instance;
+    public static VpManager instance;
     private static readonly string AutoSaveFile = "AutoSaveVPData.json";
+    private static readonly string PersonSaveFile = "PersonSaveVPData.json";
+    public GameObject ymGameObject;
+    public GameObject eGameObject;
+    public GameObject elpisGameObject;
+    public Dictionary<String, GameObject> YmDictionary;
+    public GameObject[] ymGameObjects;
+    public Dictionary<String, GameObject> EDictionary;
+    public Dictionary<String, GameObject> ElpisDictionary;
+    public GameObject[] eGameObjects;
+    public GameObject[] elpisGameObjects;
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
-    private Dictionary<string, GameObject> vps = new Dictionary<string, GameObject>();
-    public GameObject[] vpGameObjects;
+    private Dictionary<string, RoleVp> _vps = new Dictionary<string, RoleVp>();
     private void Start()
     {
-        vps = new Dictionary<string, GameObject>();
-        foreach (var vp in vpGameObjects)
+        _vps = new Dictionary<string,RoleVp>();
+        RoleVp elpis = new RoleVp()
+            { VpNow = "elpis", PosGameObject = elpisGameObject, VpsDictionary = new Dictionary<string, GameObject>() };
+        foreach (GameObject g in elpisGameObjects)
         {
-          vps.Add(vp.name, vp);
+            elpis.VpsDictionary.Add(g.name, g);
         }
-
+        RoleVp ym = new RoleVp()
+            { VpNow = "ym", PosGameObject = ymGameObject, VpsDictionary = new Dictionary<string, GameObject>() };
+        foreach (GameObject g in ymGameObjects)
+        {
+            ym.VpsDictionary.Add(g.name, g);
+        }
+        RoleVp e = new RoleVp()
+            { VpNow = "e", PosGameObject = eGameObject, VpsDictionary = new Dictionary<string, GameObject>() };
+        foreach (var variable in eGameObjects)
+        {
+            e.VpsDictionary.Add(variable.name, variable);
+        }       
+        _vps.Add("elpis",elpis);
+        _vps.Add("ym", ym);
+        _vps.Add("e",e);
     }
 
     /// <summary>
@@ -45,31 +83,45 @@ public class VpManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        foreach (var (key, value) in vps)
+        if (File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
+            File.Delete(Path.Combine(Application.persistentDataPath, AutoSaveFile));
+        if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
+            File.Delete(Path.Combine(Application.persistentDataPath, PersonSaveFile));
+        foreach (GameObject g in ymGameObjects)
         {
-            value.GetComponent<SpriteRenderer>().color = new Color(value.GetComponent<SpriteRenderer>().color.r, value.GetComponent<SpriteRenderer>().color.g, value.GetComponent<SpriteRenderer>().color.b, 0f);
+            g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
         }
-        SaveAllVp(0);
+        foreach (GameObject g in eGameObjects)
+        {
+            g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
+        }
+        foreach (GameObject g in elpisGameObjects)
+        {
+            g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
+        }
     }
-    public void Fade(string obj, float fadeTime, float target)
+    #region 各种操作
+    public void Fade(string role,string vpName, float fadeTime, float target)
     {
-        vps[obj].GetComponent<SpriteRenderer>().DOFade(target, fadeTime);
+        var roleVp = _vps[role];
+        roleVp.VpNow = vpName;
+        roleVp.VpsDictionary[vpName].GetComponent<SpriteRenderer>().DOFade(target, fadeTime);
+        _vps[role] =  roleVp;
     }
 
-    public void Move(string obj, float moveTime, Vector3 target)
+    public void Move(string role, float moveTime, Vector3 target)
     {
-        print(target);
         if (moveTime == 0)
         {
-            vps[obj].transform.localPosition = target;
+            _vps[role].PosGameObject.transform.position = target;
             return;
         }
-        vps[obj].transform.DOLocalMove(target, moveTime);
+        _vps[role].PosGameObject.transform.DOLocalMove(target, moveTime);
     }
 
     public void Scale(string obj, float scaleTime, Vector3 vector3)
     {
-        vps[obj].transform.DOScale(vector3, scaleTime); 
+        _vps[obj].PosGameObject.transform.DOScale(vector3, scaleTime); 
     }
 
     public void Move2O(string obj)
@@ -77,11 +129,11 @@ public class VpManager : MonoBehaviour
         switch (obj)
         {
             case "elpis":
-                BlinkForSeconds(vps["elpis"].GetComponent<SpriteRenderer>(),2,0.7f,new Vector3(-556.5f,-540.1f,0));
+                BlinkForSeconds(_vps["elpis"].VpsDictionary["elpis"].GetComponent<SpriteRenderer>(),2,0.7f,new Vector3(-556.5f,-540.1f,0));
                 break;
         }
     }
-
+#endregion
     public GameObject DelayGameObject;
     public void BlinkForSeconds(SpriteRenderer sr,float seconds,float fadeDuration,Vector3 target)
     {
@@ -96,8 +148,8 @@ public class VpManager : MonoBehaviour
             tween.Kill();                                      // 立即停
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1); // 复位不透明
             //到海边
-            sr.gameObject.transform.localPosition = target;
-            sr.gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 1);
+            _vps["elpis"].PosGameObject.gameObject.transform.localPosition = target;
+            _vps["elpis"].PosGameObject.transform.localScale = new Vector3(0.2f, 0.2f, 1);
             //播放转场动画G=
             DelayGameObject.transform.DOMove(new(0, 0, 0), 0.1f).OnComplete(() =>
             {
@@ -108,56 +160,98 @@ public class VpManager : MonoBehaviour
     }
     public void SaveAllVp(int type)
     {
-        if (type == 0)
-        {
+        
             List<Vp> list = new();
-            foreach (var kvp in vps)
+            foreach (var e in _vps["elpis"].VpsDictionary.Values)
             {
-                var tr = kvp.Value.transform;
-                var sr = kvp.Value.GetComponent<SpriteRenderer>();
                 list.Add(new Vp
                 {
-                    name = kvp.Key,
-                    localPos = tr.localPosition,
-                    localScale = tr.localScale,
-                    color = sr.color
+                    role = "elpis",
+                    name = e.name,
+                    color = e.GetComponent<SpriteRenderer>().color
+                });
+            }
+            foreach (var e in _vps["e"].VpsDictionary.Values)
+            {
+                list.Add(new Vp
+                {
+                    role = "e",
+                    name = e.name,
+                    color = e.GetComponent<SpriteRenderer>().color
+                });
+            }
+            foreach (var e in _vps["ym"].VpsDictionary.Values)
+            {
+                list.Add(new Vp
+                {
+                    role = "ym",
+                    name = e.name,
+                    color = e.GetComponent<SpriteRenderer>().color,
                 });
             }
 
             SaveVPData data = new() { snapshots = list };
+            data.elpispose = _vps["elpis"].PosGameObject.transform.position;
+            data.epose =  _vps["e"].PosGameObject.transform.position;
+            data.ympose =  _vps["ym"].PosGameObject.transform.position;
+            data.ymnow =   _vps["ym"].VpNow;
+            data.enow =   _vps["e"].VpNow;
+            data.elpisnow =   _vps["elpis"].VpNow;
             string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);
-            Debug.Log($"[VpManager] 已保存 {list.Count} 条 vp 数据");
-        }
+        
+            File.WriteAllText(
+                type == 0
+                    ? Path.Combine(Application.persistentDataPath, AutoSaveFile)
+                    : Path.Combine(Application.persistentDataPath, PersonSaveFile), json);
     }
 
     // 从磁盘读出并覆盖当前 vp 的状态
-    public void LoadAllVp(int type)
+    public void ContinueGame(int type)
     {
-        string path = "";
-        if(type == 0)
-            path = Path.Combine(Application.persistentDataPath, AutoSaveFile);
-        else
-            path = Path.Combine(Application.persistentDataPath, AutoSaveFile);
+        string path = Path.Combine(Application.persistentDataPath, type == 0 ? AutoSaveFile : PersonSaveFile);
         if (!File.Exists(path))
         {
             Debug.Log("[VpManager] 没有找到存档文件，跳过读档");
             return;
         }
-
+        else
+        {
+            Debug.Log("[VpManager] 读档");
+        }
         string json = File.ReadAllText(path);
         SaveVPData data = JsonUtility.FromJson<SaveVPData>(json);
+        var vp = _vps["elpis"];
+        vp.VpNow = data.elpisnow;
+        vp.PosGameObject.transform.position = data.elpispose;
+        vp = _vps["e"];
+        vp.VpNow = data.enow;
+        vp.PosGameObject.transform.position = data.epose;
+        _vps["e"] = vp;
+        vp = _vps["ym"];
+        vp.PosGameObject.transform.position = data.ympose;
+        vp.VpNow = data.ymnow;
+        _vps["ym"] = vp;
         foreach (var snap in data.snapshots)
         {
-            if (!vps.ContainsKey(snap.name)) continue;
-
-            var tr = vps[snap.name].transform;
-            var sr = vps[snap.name].GetComponent<SpriteRenderer>();
-
-            tr.localPosition = snap.localPos;
-            tr.localScale    = snap.localScale;
-            sr.color         = snap.color;
+           _vps[snap.role].VpsDictionary[snap.name].GetComponent<SpriteRenderer>().color = snap.color;
         }
-        Debug.Log($"[VpManager] 已载入 {data.snapshots.Count} 条 vp 数据");
     }
+
+    public void Change(string role, string vpName)
+    {
+        RoleVp roleVp = _vps[role];
+        _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color = new Color(
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.r,
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.g,
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.b,0);
+        print(roleVp.VpNow);
+        print(_vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color);
+        roleVp.VpNow = vpName;
+        _vps[role] = roleVp;
+        _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color = new Color(
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.r,
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.g,
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.b,1);
+    }
+    
 }

@@ -4,6 +4,7 @@ namespace Scene
     {
         public override void Load()
         {
+            PSceneManager.Instance._currentScene = this;
             gameObject.SetActive(true);
         }
 

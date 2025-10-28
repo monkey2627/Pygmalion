@@ -1,3 +1,7 @@
+using DG.Tweening;
+using UnityEditor;
+using UnityEngine;
+
 namespace Scene
 {
     public class StartScene : Scene
@@ -29,7 +33,50 @@ namespace Scene
         public void ContinueGame()
         {
             gameObject.SetActive(false);
-            PygmalionGameManager.Instance.StartNewGame();
+            PygmalionGameManager.Instance.ContinueGame();
+        }
+        public void PassStart()
+        {
+            StartGameIcon.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.2f);
+        }
+
+        public void PassContinue()
+        {
+            ContinueGameIcon.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.2f);
+        }
+
+        public void PassEnd()
+        {
+            EndGameIcon.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.2f);
+        }
+
+        public void LeaveStart()
+        {
+            StartGameIcon.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+        }
+
+        public void LeaveContinue()
+        {
+            ContinueGameIcon.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+        }
+
+        public void LeaveEnd()
+        {
+            EndGameIcon.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+        }
+        public GameObject StartGameIcon;
+        public GameObject ContinueGameIcon;
+        public GameObject EndGameIcon;
+
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+                // 编辑器：停止播放模式
+                EditorApplication.isPlaying = false;
+#else
+        // 真机：正常退出
+        Application.Quit();
+#endif
+            }
         }
     }
-}
