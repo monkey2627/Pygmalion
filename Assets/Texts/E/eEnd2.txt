@@ -1,3 +1,5 @@
+[bgm name=specialEnding move=0]
+[bgm name=textGame op=stop move=0]
 [ending des=特殊 content=如“我”所见，如“你”所愿。]
 [image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]

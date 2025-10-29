@@ -1,3 +1,5 @@
+[bgm name=badEnding move=0]
+[bgm name=textGame op=stop move=0]
 [ending des=坏 content=维持生与死之间的幻影注定徒劳，沉溺绝对完美的幻梦必定失败。死亡是世界万物的归宿。这是他的归宿，是我的归宿，也是我们的归宿。]
 [image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]

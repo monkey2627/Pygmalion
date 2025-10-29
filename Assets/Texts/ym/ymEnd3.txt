@@ -1,5 +1,8 @@
+[bgm name=badEnding move=0]
+[bgm name=textGame op=stop move=0]
 [ending des=坏结局 content=高考失利，我的人生也就此作废。在大家的眼中，我只是个没用的废物吧。没考上好大学、也不配拥有好未来的我，只能像个影子一样活着。求求你们，把我当成空气吧……]
 [image op=fade target=0 obj=black time=0 parent=UI move=0] 
+[bgm name=badEnding op=stop move=0]
 [scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
 [ani name=back2ocean]
 [vp role=ym name=ymlm op=change move=0]
@@ -26,6 +29,7 @@
 不客气。
 [role name=Pygmalion]
 诊疗已完成，我们会后续跟进你的情况。
+[vp role=ym name=ym op=change move=0]
 [role name=一鸣 sprite=ym]
 好的，我也会和你们同步我的情况。
 [role name=一鸣]
@@ -37,8 +41,10 @@
 爷爷，今天是我的“生日”。
 [vp role=ym name=ymzswx op=fade fade=0 time=1 move=1]
 [operation setActive=false obj=Dialog parent=UI move=0]
+[operation setActive=true obj=exit parent=UI move=3]
 [scene load=1 name=lab move=0]
 [scene load=0 name=ocean move=0]
+[operation setActive=false obj=exit parent=UI move=0]
 [vp role=elpis op=change name=elpisss move=0]
 [vp role=elpis name=elpisss op=fade fade=1 time=1 move=0]
 [vp role=elpis name=elpisss op=move2 x=0 y=0 z=0 time=1 move=1]

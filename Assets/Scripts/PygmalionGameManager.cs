@@ -113,8 +113,15 @@ public class PygmalionGameManager : MonoBehaviour
         home.gameObject.SetActive(false);
         upperButtons.SetActive(true); 
         kiss.SetActive(false);
-        
-        WaterAni.Instance.gameObject.SetActive(false);
+        content.GetComponent<DialogClick>().enable = true;
+        //所有的ani要false
+        TransAniManager.Instance.eAni.SetActive(false);
+        TransAniManager.Instance.elpisAni.SetActive(false);
+        TransAniManager.Instance.ymAni.SetActive(false);
+        TransAniManager.Instance.ecircle.SetActive(false);
+        TransAniManager.Instance.elpiscircle.SetActive(false);
+        TransAniManager.Instance.ymcircle.SetActive(false);
+        //
         PSceneManager.Instance._currentScene = null;
         //DataManager
         DataManager.Instance.StartNewGame();
@@ -124,8 +131,8 @@ public class PygmalionGameManager : MonoBehaviour
         VpManager.instance.StartNewGame();
         //GuideSceneManager
         GuideSceneGamePlay.instance.StartNewGame();
-        //WaterAni
-        WaterAni.Instance.StartNewGame();
+        //transAniManager.
+        TransAniManager.Instance.StartNewGame();
         ReadLine();
     }
 
@@ -152,6 +159,7 @@ public class PygmalionGameManager : MonoBehaviour
         public string name;
         public bool isKiss;
         public bool isGameTime;//是否正在改句游戏中
+        public bool dialogEnbale;
         public bool dialogActive;//对话框是否activate
         public string frameNow;//现在的对话框样式
         public bool isUpperButtons;//控制键active
@@ -160,7 +168,7 @@ public class PygmalionGameManager : MonoBehaviour
         public string spriteNow;
         public string bgm;//背景音乐的名字
         public bool isGuidePlayGame;
-        public bool isWaterAni;
+        public bool isTransAniManager;
         public List<GameManagerSaveStruct> snapshots;
     }
 
@@ -177,15 +185,19 @@ public class PygmalionGameManager : MonoBehaviour
             data.text = content.GetComponent<TMP_Text>().text;
             data.name = roleName.text;
             data.isKiss = kiss.activeInHierarchy;
-            data.isWaterAni = WaterAni.Instance.gameObject.activeInHierarchy;
+            data.isTransAniManager = TransAniManager.Instance.gameObject.activeInHierarchy;
             if (PSceneManager.Instance._currentScene)
                 data.currentScene = PSceneManager.Instance._currentScene.name;
             else
                 data.currentScene = "null";
             print("save is GameTime:"+isGameTime);
             data.isGameTime = isGameTime;
-            data.spriteNow = roleHeadGameObject.GetComponent<SpriteRenderer>().sprite.name;
+            if (roleHeadGameObject.GetComponent<SpriteRenderer>().sprite != null)
+                data.spriteNow = roleHeadGameObject.GetComponent<SpriteRenderer>().sprite.name;
+            else
+                data.spriteNow = "none";
             data.dialogActive = dialog.activeInHierarchy;
+            data.dialogEnbale =  content.GetComponent<DialogClick>().enable;
             data.frameNow = frameNow.GetComponent<SpriteRenderer>().sprite.name;
             data.isUpperButtons = upperButtons.activeInHierarchy;
             data.blackColor =  black.gameObject.GetComponent<SpriteRenderer>().color;
@@ -202,12 +214,21 @@ public class PygmalionGameManager : MonoBehaviour
 
             }
     }
-    
+
+    public GameObject stopPanel;
     /// <summary>
     /// 从存档点继续游戏
     /// </summary>
     public void ContinueGame()
     {
+        if (!File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)) &&
+            !File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
+        {
+            return;
+        }
+        
+        stopPanel.SetActive(false);
+        
         int i = DataManager.Instance.ContinueGame();
         string json;
         SaveMyStructData data;
@@ -234,24 +255,30 @@ public class PygmalionGameManager : MonoBehaviour
         }
         //是否在文字游戏时间
         isGameTime=data.isGameTime;
-        print("isGameTime: "+isGameTime);
         if (isGameTime)
         {
             SentenceManager.instance.ContinueGame(i);
+            BGM.instance.Play("textGame");
         }
         //对话框是否active
         dialog.SetActive(data.dialogActive);
         //
-        WaterAni.Instance.gameObject.SetActive(data.isWaterAni);
+        TransAniManager.Instance.gameObject.SetActive(data.isTransAniManager);
         //
         kiss.SetActive(data.isKiss);
         //现在的文本框样式
         frameNow.GetComponent<SpriteRenderer>().sprite = _frameDic[data.frameNow];
         //头像
-        roleHeadGameObject.GetComponent<SpriteRenderer>().sprite = _roleSpriteDict[data.spriteNow];
+        if(data.spriteNow!="none")
+            roleHeadGameObject.GetComponent<SpriteRenderer>().sprite = _roleSpriteDict[data.spriteNow];
+        else
+        {
+            roleHeadGameObject.GetComponent<SpriteRenderer>().sprite = null;
+        }
         data.frameNow = frameNow.name;
         //内容
         content.GetComponent<TMP_Text>().text=data.text;
+        content.GetComponent<DialogClick>().enable = data.dialogEnbale;
         roleName.text=data.name;
         upperButtons.SetActive(data.isUpperButtons);
         black.gameObject.GetComponent<SpriteRenderer>().color=data.blackColor;
@@ -262,13 +289,16 @@ public class PygmalionGameManager : MonoBehaviour
         if (data.isGuidePlayGame)
         {
             GuideSceneGamePlay.instance.ContinueGame(i);
+            BGM.instance.Play("textGame");
         }
         //VPManager
         VpManager.instance.ContinueGame(i);
         //WaterAni
         if(isGameTime || data.isGuidePlayGame)
-            WaterAni.Instance.ContinueGame(i);
-        ReadLine();
+            TransAniManager.Instance.ContinueGame(i);
+        String scriptname = DataManager.Instance.ScriptNow;
+        print(scriptname);
+        print(DataManager.Instance.LineNow);
     }
     public async TaskString LoadScript(string storage)
     {
@@ -329,6 +359,7 @@ public class PygmalionGameManager : MonoBehaviour
                     }
                 }
                 roleName.text = parsedTag["name"];  
+                RoleVoice.instance.Role(parsedTag["name"]);
                 l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
                 TextLoader.Instance.Push(l); 
                 break;
@@ -477,14 +508,14 @@ public class PygmalionGameManager : MonoBehaviour
                 switch (parsedTag["name"])
                 {
                     case "water":
-                        WaterAni.Instance.target = parsedTag["role"];
-                        WaterAni.Instance.gameObject.SetActive(true);
+                        TransAniManager.Instance.target = parsedTag["role"];
                         string word1 = parsedTag["word1"];
                         string word2 = parsedTag["word2"];
                         string word3 = parsedTag["word3"];
                         string word4 = parsedTag["word4"];
                         string word5 = parsedTag["word5"];
-                        WaterAni.Instance.relatedWords = new List<string>() { word1, word2, word3, word4, word5 };
+                        TransAniManager.Instance.relatedWords = new List<string>() { word1, word2, word3, word4, word5 };
+                        TransAniManager.Instance.ShowTarget();
                         break;
                     case "back2ocean":
                         Back2OceanAni.Instance.gameObject.SetActive(true);
@@ -517,8 +548,9 @@ public class PygmalionGameManager : MonoBehaviour
                 switch (parsedTag["op"])
                 {
                     case "fade":
+                       
                         float time = float.Parse(parsedTag["time"]);
-                        float target = float.Parse(parsedTag["target"]);
+                        float target = float.Parse(parsedTag["target"]); print(target);
                         img.GetComponent<SpriteRenderer>().DOFade(target, float.Parse(parsedTag["time"]));
                           //  .OnComplete(() => Debug.Log("after: " + img.GetComponent<SpriteRenderer>().color.a));
                         break;

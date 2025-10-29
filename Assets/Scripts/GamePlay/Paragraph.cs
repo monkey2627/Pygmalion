@@ -37,8 +37,6 @@ namespace GamePlay
             }
             else if(fatherSentenceNumber==-1)
             {
-                print(fatherSentenceNumber);
-                print(sentenceNumber);
                 back.SetActive(false);
             }
 

@@ -16,6 +16,9 @@ public class SaveVPData
     public Vector3 ympose;
     public Vector3 epose;
     public Vector3 elpispose;
+    public Vector3 ymScale;
+    public Vector3 eScale;
+    public Vector3 elpisScale;
     public List<Vp> snapshots;
 }
 [Serializable]     
@@ -129,7 +132,7 @@ public class VpManager : MonoBehaviour
         switch (obj)
         {
             case "elpis":
-                BlinkForSeconds(_vps["elpis"].VpsDictionary["elpis"].GetComponent<SpriteRenderer>(),2,0.7f,new Vector3(-556.5f,-540.1f,0));
+                BlinkForSeconds(_vps["elpis"].VpsDictionary["elpis"].GetComponent<SpriteRenderer>(),2,0.7f,new Vector3(0f,0.27f,0));
                 break;
         }
     }
@@ -146,10 +149,9 @@ public class VpManager : MonoBehaviour
         DOVirtual.DelayedCall(seconds, () =>
         {
             tween.Kill();                                      // 立即停
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1); // 复位不透明
             //到海边
             _vps["elpis"].PosGameObject.gameObject.transform.localPosition = target;
-            _vps["elpis"].PosGameObject.transform.localScale = new Vector3(0.2f, 0.2f, 1);
+            _vps["elpis"].PosGameObject.transform.localScale = new Vector3(1f, 1f, 1);
             //播放转场动画G=
             DelayGameObject.transform.DOMove(new(0, 0, 0), 0.1f).OnComplete(() =>
             {
@@ -194,6 +196,9 @@ public class VpManager : MonoBehaviour
             data.elpispose = _vps["elpis"].PosGameObject.transform.position;
             data.epose =  _vps["e"].PosGameObject.transform.position;
             data.ympose =  _vps["ym"].PosGameObject.transform.position;
+            data.elpisScale = _vps["elpis"].PosGameObject.transform.localScale;
+            data.eScale  =  _vps["e"].PosGameObject.transform.localScale;
+            data.ymScale  =  _vps["ym"].PosGameObject.transform.localScale;
             data.ymnow =   _vps["ym"].VpNow;
             data.enow =   _vps["e"].VpNow;
             data.elpisnow =   _vps["elpis"].VpNow;
@@ -223,12 +228,15 @@ public class VpManager : MonoBehaviour
         var vp = _vps["elpis"];
         vp.VpNow = data.elpisnow;
         vp.PosGameObject.transform.position = data.elpispose;
+        vp.PosGameObject.transform.localScale = data.elpisScale;
         vp = _vps["e"];
         vp.VpNow = data.enow;
         vp.PosGameObject.transform.position = data.epose;
+        vp.PosGameObject.transform.localScale = data.eScale;
         _vps["e"] = vp;
         vp = _vps["ym"];
         vp.PosGameObject.transform.position = data.ympose;
+        vp.PosGameObject.transform.localScale = data.ymScale;
         vp.VpNow = data.ymnow;
         _vps["ym"] = vp;
         foreach (var snap in data.snapshots)
@@ -244,8 +252,6 @@ public class VpManager : MonoBehaviour
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.r,
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.g,
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.b,0);
-        print(roleVp.VpNow);
-        print(_vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color);
         roleVp.VpNow = vpName;
         _vps[role] = roleVp;
         _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color = new Color(

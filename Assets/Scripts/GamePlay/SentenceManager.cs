@@ -55,8 +55,8 @@ using UnityEngine.Serialization;
             if(!enAbleConfirm) return;
             Fade();
             paragraphs[0].confirm.SetActive(false);
-            WaterAni.Instance.FadeJellyFishs();
-            WaterAni.Instance.FadeTarget();
+            TransAniManager.Instance.FadeJellyFishs();
+            TransAniManager.Instance.FadeTarget();
             delay.transform.DOMove(new Vector3(0, 0, 0), 2).OnComplete(() => { 
             switch (type)
                 {
@@ -85,7 +85,7 @@ using UnityEngine.Serialization;
                         }
                         break;
                     case ConfirmType.OnlyOneCorrect:
-                        if (paragraphs[1].pages[0].words[2].IsRight())
+                        if (paragraphs[7].pages[0].words[9].IsRight())
                         {
                             PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
                         }
@@ -109,6 +109,7 @@ using UnityEngine.Serialization;
         {
             public int sentenceBeginPlace;
             public int paragraphNow;
+            public bool enAbleConfirm;
             public List<ParagraphSnapshot> paragraphs = new List<ParagraphSnapshot>();
         }
 
@@ -116,6 +117,11 @@ using UnityEngine.Serialization;
         private class ParagraphSnapshot
         {
             public int pageNow;
+            public List<PageSnapshot> Pages = new List<PageSnapshot>();
+        }
+        [Serializable]
+        private class PageSnapshot
+        {
             public List<WordSnapshot> words = new List<WordSnapshot>();
         }
         [Serializable]
@@ -136,9 +142,10 @@ using UnityEngine.Serialization;
         public void Save(int type=0)
         {
             Archive archive = new Archive();
+            archive.enAbleConfirm =  enAbleConfirm;
             archive.paragraphNow = paragraphNow;
             archive.sentenceBeginPlace =  sentenceBeginPlace;
-            foreach (var paragraph in SentenceManager.instance.paragraphs)
+            foreach (var paragraph in paragraphs)//遍历所有的para
             {
                 var snap = new ParagraphSnapshot
                 {
@@ -146,9 +153,11 @@ using UnityEngine.Serialization;
                  };
                 foreach (var page in paragraph.pages)
                 {
+                    var pagesnap = new PageSnapshot();
+                    pagesnap.words = new List<WordSnapshot>();
                     foreach (var w in page.words)
                     {
-                        snap.words.Add(new WordSnapshot
+                        pagesnap.words.Add(new WordSnapshot
                         {
                             type = w.wordType,
                             hasRun = w.hasRun,
@@ -160,9 +169,9 @@ using UnityEngine.Serialization;
                             playedAdd = w.playedAdd,
                         });
                     }
-
-                    archive.paragraphs.Add(snap);
+                    snap.Pages.Add(pagesnap);
                 }
+                archive.paragraphs.Add(snap);
             }
             string json = JsonUtility.ToJson(archive, true);  
             if (type == 0)//autoSave
@@ -186,20 +195,19 @@ using UnityEngine.Serialization;
             paragraphs = new List<Paragraph>();
             guideTime = false;
             line = sentenceBeginPlace;
+            enAbleConfirm = data.enAbleConfirm;
             CreateSentence(-1);
-            
+            paragraphNow = data.paragraphNow;
             for (int i = 0; i < paragraphs.Count; i++)
             {
                 var s   = paragraphs[i];
                 var ss  = data.paragraphs[i];
-
-                paragraphNow = data.paragraphNow;
-                foreach (var page in s.pages)
+                for (int j = 0; j < ss.Pages.Count; j++)
                 {
-                    for (int j = 0; j < page.words.Count; j++)
+                    for (int z = 0; z < ss.Pages[j].words.Count; z++)
                     {
-                        var w  = page.words[j];
-                        var ws = ss.words[j];
+                        var w  = s.pages[j].words[z];
+                        var ws = ss.Pages[j].words[z];
                         w.wordType = ws.type;
                         w.enable = ws.enable;
                         w.wordText.text   = ws.currentText;
@@ -208,6 +216,7 @@ using UnityEngine.Serialization;
                         w.playedAdd       = ws.playedAdd;
                         w.hasSpecial2NextPara = ws.hasSpecial2NextPara;
                         w.hasRun          = ws.hasRun;
+                        s.pages[j].words[z] = w;
                     }
                 }
             }

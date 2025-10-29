@@ -80,6 +80,7 @@ public class SentenceDialog : MonoBehaviour
                 {
                     
                      gameObject.SetActive(false);
+                     PygmalionGameManager.Instance.upperButtons.SetActive(true);
                      word.page.paragraph.gameObject.SetActive(true);
                     
                 });
@@ -92,7 +93,10 @@ public class SentenceDialog : MonoBehaviour
     public void ClickText()
     {
         dialog.SetActive(false);
-        endText.DOFade(0, 0.5f).OnComplete(() => { gameObject.SetActive(false);word.page.paragraph.gameObject.SetActive(true);});
+        endText.DOFade(0, 0.5f).OnComplete(() => { gameObject.SetActive(false);
+            word.page.paragraph.gameObject.SetActive(true);
+            PygmalionGameManager.Instance.upperButtons.SetActive(true);
+        });
         black.GetComponent<SpriteRenderer>().DOFade(230.0F/255.0F, 0.5f);
     }
 }

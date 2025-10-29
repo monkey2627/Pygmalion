@@ -122,6 +122,8 @@ namespace GamePlay
         }
         private void OnSingleClick()
         {
+            if(wordType != 0)
+                UIVoice.instance.TextMouseDown();
             if(!isSingleClick) return;
             PygmalionGameManager.Instance.upperButtons.SetActive(false);
             print("单机"+wordText.text);
@@ -163,6 +165,8 @@ namespace GamePlay
         public bool hasRun = false;
         private void OnDoubleClick()
         {
+            if(wordType != 0)
+                UIVoice.instance.TextMouseDown();
             // 取消即将执行的单击
             CancelInvoke(nameof(OnSingleClick));
             if(guideTime) return;
@@ -184,8 +188,13 @@ namespace GamePlay
                 case 3://进入对应的下一个para
                     if (hasSpecial2NextPara && !hasRun)
                     {
+                        print("move");
                         PygmalionGameManager.Instance.Change2ScriptAndReadLine("eSupport",0);
                         hasRun = true;
+                    }
+                    else
+                    {
+                        PygmalionGameManager.Instance.upperButtons.SetActive(true);
                     }
                     SentenceManager.instance.NextPara(nextParagraphNumber);
                     break;
@@ -227,10 +236,9 @@ namespace GamePlay
         
         public void ChangeGame()
         {
-                    Close();
-                    
-                    //测试用
-                    ConfirmChangeWord();
+            Close();
+            //测试用
+            ConfirmChangeWord();
         }
 
         public bool special = false;

@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using Ani;
 using Scene;
@@ -45,9 +46,10 @@ public class DataManager : MonoBehaviour
     /// <summary>
     /// 只在一整个操作之后save
     /// </summary>
+    [System.Serializable]
     public class SaveDataManagerData
     {
-        public DateTime saveTime;
+        public string SaveTime;
         public int lineNow;
         public string scriptNow;
         
@@ -59,7 +61,8 @@ public class DataManager : MonoBehaviour
         SaveDataManagerData data = new SaveDataManagerData();
         data.lineNow = LineNow;
         data.scriptNow = ScriptNow;
-        data.saveTime = DateTime.Now;
+        data.SaveTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+        print("save at "+data.SaveTime);
         string json = JsonUtility.ToJson(data, true);  
         if (type == 0)//autoSave
         {
@@ -76,8 +79,13 @@ public class DataManager : MonoBehaviour
         }
         VpManager.instance.SaveAllVp(type);
         GuideSceneGamePlay.instance.Save(type);
-        WaterAni.Instance.Save(type);
+        TransAniManager.Instance.Save(type);
         Debug.Log($"[DataManager] 已保存");
+    }
+
+    public void PersonSave()
+    {
+        Save(1);
     }
     /// <summary>
     /// 开始新游戏，从新手指导开始
@@ -99,24 +107,44 @@ public class DataManager : MonoBehaviour
         if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)) && File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
         {
             string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
+            print(jsonAuto);
             SaveDataManagerData autodata = JsonUtility.FromJson<SaveDataManagerData>(jsonAuto);
             string jsonPerson = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile));
+            print(jsonPerson);
             SaveDataManagerData personData = JsonUtility.FromJson<SaveDataManagerData>(jsonPerson);
-            DateTime auto = autodata.saveTime;
-            DateTime person = personData.saveTime;
+            DateTime auto = DateTime.ParseExact(
+                autodata.SaveTime,
+                "yyyyMMddHHmmss",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None);
+            
+            DateTime person = DateTime.ParseExact(
+                personData.SaveTime,
+                "yyyyMMddHHmmss",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None);
+            print("have both");
+            print(auto);
+            print(person);
             if (auto > person)
             {
+                print("a");
                 _lineNow = autodata.lineNow;
                 _scriptNow =  autodata.scriptNow;
+                print(_scriptNow);
                 return 0;
-            }else if (auto < person)
+            }else if (auto <= person)
             {
                 _lineNow = personData.lineNow;
                 _scriptNow = personData.scriptNow;
+                print("b");
+                print(_scriptNow);
                 return 1;
             }
-        }else if (File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
+        }
+        else if (File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
         {
+            print("c");
             string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
             SaveDataManagerData autodata = JsonUtility.FromJson<SaveDataManagerData>(jsonAuto);
             _lineNow = autodata.lineNow;
@@ -124,6 +152,7 @@ public class DataManager : MonoBehaviour
             return 0;
         }else if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
         {
+            print("d");
             string jsonPerson = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile));
             SaveDataManagerData personData = JsonUtility.FromJson<SaveDataManagerData>(jsonPerson);
             _lineNow = personData.lineNow;

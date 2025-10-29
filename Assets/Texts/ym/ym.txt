@@ -1,16 +1,19 @@
 [image op=fade target=0 obj=black time=0 parent=UI move=0] 
-[vp role=ym name=ym op=scale x=0.16 y=0.16 z=0.16 move=0 time=0]
+[vp role=ym name=ym op=scale x=1.6 y=1.6 z=1.6 move=0 time=0]
+[vp name=ym role=ym op=move2 x=0 y=-3.62 z=0 move=0 time=0]
 [scene load=1 name=home move=0]
 [scene load=0 name=ocean move=0]
+[image op=fade target=0 obj=black time=1 parent=UI move=0] 
 [vp role=ym name=ymzj op=fade fade=1 time=2 move=2]
+[clear move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
-[role name=一鸣 frame=ori move=0 sprite=ymzj]
+[role name=一鸣 frame=ori move=1 sprite=ymzj]
 ！！！
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [save]
 [role name=一鸣]
 爷爷！
-[role name=Pygmalion]
+[role name=Pygmalion sprite=none]
 ?
 [role name=一鸣]
 这…这怎么可能？
@@ -45,9 +48,9 @@
 他不会像爸妈那样追着我问分数，也不会来回讲那些大道理，什么别人怎样啊未来怎样啊。当时的我也听不懂，只是觉得空气很稠、很重，很害怕。而爷爷他就是……嗯，只是陪着我。
 [role name=一鸣]
 其实我也不需要别人和我去说什么啦，就这样就很好。
-[role name=Pygmalion]
+[role name=Pygmalion sprite=none]
 一个安静的陪伴者、一个无论发生什么都不会评判你的安全港湾，也许这就是他的形象出现在这里的原因。
-[role name=一鸣]
+[role name=一鸣 sprite=ym]
 ……也许吧。
 [role name=一鸣]
 但自从……高考之后，我感觉那个“安全的港湾”彻底消失了。
@@ -76,14 +79,15 @@
 [scene name=home load=0]
 [role name=一鸣]
 喔……如果不是因为现实中不能瞬移，我真要相信这里才是现实了。
-[role name=Pygmalion sprite=none]
+[role name=Pygmalion sprite=none move=0]
 不管是不是现实，这里总归宽敞点，走走吧。有时候换个地方，心里堵着的话也能顺一些。
-【海浪音、走路散步音】
+[operation setActive=true obj=foot parent=ocean]
 [vp role=ym name=ymlm op=change move=0]
 [role name=一鸣 sprite=ymlm]
 像啊……连走路时驼背的样子都一模一样，就差一根…
 [role name=一鸣]
 对不起啊，我知道您不是他……我们继续吧。
+[operation setActive=false obj=foot parent=ocean move=0]
 [role name=Pygmalion sprite=none]
 没关系。从某个角度来说，我其实也在用这个让你感到安全的形象引导你进入下一步，也就是你签字确认过的——躺进这片来自你的“意识之海”。
 [role name=Pygmalion]
@@ -119,6 +123,7 @@
 [vp name=ymby role=ym op=fade fade=0 time=1 move=1]
 [ani name=water role=ym word1=Burdened word2=Worthless word3=Futile word4=Alienated word5=Ashamed]
 [scene name=ocean load=0 move=0 fresh=1]
+[bgm name=textGame move=0]
 [sentence op=create]
     [sentenceEnd type=0 des=就是按照50、80和得分来分是什么结局]
         ymEnd1
