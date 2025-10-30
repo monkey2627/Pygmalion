@@ -28,6 +28,7 @@ namespace Scene
             gameObject.SetActive(false);
             print(PygmalionGameManager.Instance.name);
             PygmalionGameManager.Instance.StartNewGame();
+            BGM.instance.Play("lab");
         }
         private static readonly string AutoSaveFile = "AutoSaveGameManagerData.json";
         private static readonly string PersonSaveFile = "PersonSaveGameManagerData.json";

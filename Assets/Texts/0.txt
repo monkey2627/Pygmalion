@@ -42,9 +42,11 @@ Pygmalion！能听到吗？
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[bgm op=fade time=3 move=0]
 [image op=fade target=1 obj=black time=2 parent=UI move=3]
 [scene name=ocean load=1 move=0]
 [scene load=0 name=lab move=0]
+[bgm op=begin name=ocean time=3 move=0]
 [image op=fade target=0 obj=black time=2 parent=UI move=2]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]

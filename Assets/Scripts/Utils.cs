@@ -47,6 +47,7 @@ public static class Utils
     }
     public static void ModifyField(Component component, string fieldName, object newValue)
     {
+        Debug.Log(component.GetType());
         Type componentType = component.GetType();
         FieldInfo fieldInfo = componentType.GetField(
             fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance

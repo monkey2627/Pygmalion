@@ -156,8 +156,8 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
             gameObject.GetComponent<TMP_Text>().text = TEXT;
             /* ---------- 播放音效 ---------- */
-           // if (ORIGINAL.Length > сharIndex) // 防止越界
-           //     RoleVoice.instance.Role(target);
+            if (ORIGINAL.Length > сharIndex) // 防止越界
+                 RoleVoice.instance.Role(target);
             time += 1;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();

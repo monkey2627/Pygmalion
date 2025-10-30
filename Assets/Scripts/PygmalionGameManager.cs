@@ -53,7 +53,6 @@ public class PygmalionGameManager : MonoBehaviour
         for (int i = 0; i < roleSprites.Length; i++)
         {
             _roleSpriteDict.Add(roleSprites[i].name, roleSprites[i]);
-            Debug.Log("xxx="+roleSprites[i].name + (roleSprites[i] == null ? "NULL" : "OK"));
         }
         ScenesDic["ocean"] = ocean;
         ScenesDic["lab"] = lab;
@@ -363,6 +362,8 @@ print(json);
     {
         StartCoroutine("Read");
     }
+
+    public TW_MultiStrings_Regular tmregular;
     IEnumerator Read()
     {
         String scriptname = DataManager.Instance.ScriptNow; 
@@ -389,6 +390,16 @@ print(json);
                     {
                         BGM.instance.Stop(parsedTag["name"]);
                     }
+
+                    if (parsedTag["op"] == "fade")
+                    {
+                        BGM.instance.FadeOutAndStop(float.Parse(parsedTag["time"]));
+                    }
+
+                    if (parsedTag["op"] == "begin")
+                    {
+                        BGM.instance.Play(parsedTag["name"]);
+                    }
                 }
                 else
                 {
@@ -396,6 +407,7 @@ print(json);
                 }
                 break;
             case "role":
+                
                 if (parsedTag.ContainsKey("frame"))
                 {
                     FrameImage.sprite = _frameDic[parsedTag["frame"]];
@@ -409,13 +421,16 @@ print(json);
                 {
                     if (parsedTag["sprite"] == "none" && parsedTag["name"]=="Pygmalion")
                     {
+                        roleHead.color = new Color(1, 1, 1, 1);
                         roleHead.sprite = _roleSpriteDict["Pygmalion"];
                     }
                     else if (parsedTag["sprite"] == "none")
                     {
                         roleHead.sprite = null;
+                        roleHead.color = new Color(1, 1, 1, 0);
                     }else
                     {
+                        roleHead.color = new Color(1, 1, 1, 1);
                         roleHead.sprite = _roleSpriteDict[parsedTag["sprite"]];
                     }
                 }
@@ -428,20 +443,17 @@ print(json);
                 {
                     roleName.text = parsedTag["name"];
                 }
-                RoleVoice.instance.Role(parsedTag["name"]);
+
+                tmregular.target = parsedTag["name"];
+                //RoleVoice.instance.Role(parsedTag["name"]);
                 l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
                 TextLoader.Instance.Push(l); 
                 break;
             case "operation":
                 GameObject obj = Utils.FindChildInTransform(GameObject.Find(parsedTag["parent"]).transform, parsedTag["obj"]).gameObject;
-                print(obj.name);
                 if (parsedTag.TryGetValue("setActive", out var value))
                 {
-                    print("setActive");
-                    print(value=="true");
                     obj.SetActive(value == "true");
-                    print("自身 activeSelf = " + obj.activeSelf);   
-                    print(obj.activeInHierarchy);
                 }
                 else if (parsedTag.TryGetValue("enable", out var value1))
                 {
@@ -458,6 +470,7 @@ print(json);
                     if (scriptType != null)
                     {
                         MonoBehaviour scriptComponent = (MonoBehaviour)obj.GetComponent(scriptType);
+                        print(scriptComponent.name);
                         switch (parsedTag["content"])
                         {
                             case "true":
