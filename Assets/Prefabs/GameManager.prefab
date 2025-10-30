@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8571283978422626572}
   - component: {fileID: 7190118897138729654}
   - component: {fileID: 5773976044027674738}
+  - component: {fileID: 7668347499365408629}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,19 +59,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786a97da07d4cd8459ddced28c12578a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 0}
-  guideScene: {fileID: 0}
   dialog: {fileID: 0}
   roleName: {fileID: 0}
   roleSprites:
   - {fileID: 21300000, guid: 724f458067a28e74fa4fbdf657b4403b, type: 3}
   - {fileID: 21300000, guid: b0f85c80f5384bb478fee13e57558261, type: 3}
-  RoleHeadGameObject: {fileID: 0}
+  - {fileID: 21300000, guid: 2a18701fd5e967a4a9eda559fc1e8d66, type: 3}
+  - {fileID: 21300000, guid: 15877fd11ab584d41b378275fdbb30c3, type: 3}
+  - {fileID: 21300000, guid: cc85e6ac7dae78d46aa33ce90e66b79d, type: 3}
+  - {fileID: 21300000, guid: fb169b2dafe096b4092c7de37a5e4cd9, type: 3}
+  - {fileID: 21300000, guid: 467923b5f3e88064c9e0bf7dc5c251cb, type: 3}
+  - {fileID: 21300000, guid: a623395eceec2c440a09fbfb5f6ed9e8, type: 3}
+  - {fileID: 21300000, guid: 4b12caae7e9cfd1478a2ef5c3cdc8802, type: 3}
+  - {fileID: 21300000, guid: 5cf03797487043847be694d5bb2fa32c, type: 3}
+  - {fileID: 21300000, guid: 53cecff494b65f5469d25a3b7d8568cb, type: 3}
+  - {fileID: 21300000, guid: 4863bf41ec50e904eac5d5def7a68057, type: 3}
+  - {fileID: 21300000, guid: f39451f653d89a5469ce8146be53142a, type: 3}
+  - {fileID: 21300000, guid: bf1249e0db5ab96449c4dcb30d008287, type: 3}
+  - {fileID: 21300000, guid: 646d29d72ff7d0541a687c0d8f42a6ed, type: 3}
+  - {fileID: 21300000, guid: 99feba1d1d4a52a449cfb464071a07e9, type: 3}
+  - {fileID: 21300000, guid: e3faece627c7a1041aa2a84aea1772ad, type: 3}
+  - {fileID: 21300000, guid: 93f4ce6fc3bd0fe48853112dabeeb20a, type: 3}
+  - {fileID: 21300000, guid: d612ec5869dd33243bd48c542ff5b150, type: 3}
+  - {fileID: 21300000, guid: f279495e984948d4e99aca1f8e5bb256, type: 3}
+  - {fileID: 21300000, guid: 1db6f07b243ab0e41b0df6464153272d, type: 3}
+  - {fileID: 21300000, guid: efc31f68e8740e14488cc057d1e28245, type: 3}
+  roleHeadGameObject: {fileID: 0}
   isPlayingVideo: 0
   delayObj: {fileID: 8745979416912235427}
   wordCloneObj: {fileID: 0}
   ocean: {fileID: 0}
   start: {fileID: 0}
+  lab: {fileID: 0}
+  home: {fileID: 0}
+  gallery: {fileID: 0}
   upperButtons: {fileID: 0}
   isGameTime: 0
   frameNow: {fileID: 0}
@@ -79,12 +101,33 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ec8b64f952accf9488002adb8048ae0c, type: 3}
   - {fileID: 21300000, guid: 04186858c7a8d314eb8006af39a6c772, type: 3}
   - {fileID: 21300000, guid: 0d7502f99cf6bfe4894943b38db2cd1f, type: 3}
-  endingPanel: {fileID: 0}
   endText: {fileID: 0}
+  alert: {fileID: 0}
+  kiss: {fileID: 0}
+  pre: {fileID: 0}
   black: {fileID: 0}
-  white: {fileID: 0}
-  readScript: 1
-  sentenceCloneObj: {fileID: 0}
+  intersystem: {fileID: 0}
+  exit: {fileID: 0}
+  guidePlayGame: {fileID: 0}
+  content: {fileID: 0}
+  stopPanel: {fileID: 0}
+  textPanel: {fileID: 0}
+  text: {fileID: 0}
+  paragraphCloneObj: {fileID: 0}
+--- !u!114 &7668347499365408629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952344199518091584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7d80822ee54eb4890196d20baab150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorNormal: {fileID: 2800000, guid: f10adb708ae3ba544a4940aaa0266f25, type: 3}
+  cursorPressed: {fileID: 2800000, guid: 842f724e9ef23b54b9a3ae1299b54d36, type: 3}
 --- !u!1 &8745979416912235427
 GameObject:
   m_ObjectHideFlags: 0

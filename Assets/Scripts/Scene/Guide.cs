@@ -9,6 +9,8 @@ namespace Scene
         public TMPro.TMP_Text text;
         public bool enable = true;
         public GameObject pre2;
+        public GameObject changed;
+        public GameObject before;
         private void OnEnable()
         {
             text.DOColor(new Color(text.color.r,text.color.g, text.color.b, 0.5f), 0.2f)
@@ -20,6 +22,8 @@ namespace Scene
         {
             if(!enable)
                 return;
+            changed.SetActive(true);
+            before.SetActive(false);
             enable = false;
             text.text = "潜力与收益";
             text.DOKill();

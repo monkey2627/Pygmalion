@@ -1,9 +1,12 @@
-[image op=fade target=0 obj=black time=0 parent=UI move=0] 
+[image op=fade target=1 obj=black time=0 parent=UI move=0] 
+[image op=fade target=1 obj=inter time=0 parent=UI move=0]
 [vp role=ym name=ym op=scale x=1.6 y=1.6 z=1.6 move=0 time=0]
 [vp name=ym role=ym op=move2 x=0 y=-3.62 z=0 move=0 time=0]
 [scene load=1 name=home move=0]
-[scene load=0 name=ocean move=0]
-[image op=fade target=0 obj=black time=1 parent=UI move=0] 
+[scene load=0 name=ocean move=2]
+[image op=fade target=0 obj=black time=2 parent=UI move=0] 
+[vp role=ym name=ymzj op=fade fade=0 time=0 move=0]
+[image op=fade target=0 obj=inter time=2 parent=UI move=2]  
 [vp role=ym name=ymzj op=fade fade=1 time=2 move=2]
 [clear move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
@@ -15,7 +18,7 @@
 爷爷！
 [role name=Pygmalion sprite=none]
 ?
-[role name=一鸣]
+[role name=一鸣 sprite=ymzj]
 这…这怎么可能？
 [role name=Elpis(电子) frame=elec sprite=elpis]
 咳咳,别害怕别害怕，你在不同患者面前表达出的样子是不同的，他们看到的只是自己内心深处的投影，你和他解释一下啦。
@@ -62,12 +65,11 @@
 根据你接入系统前提供的信息，你今天才刚刚成年。
 [role name=Pygmalion]
 虽然时机可能不太合适，但是……
-[role name=Pygmalion]
-生日快乐，一鸣。
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[role name=Pygmalion move=0]
+生日快乐，一鸣。
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [vp role=ym  name=ymlz op=change des=一鸣愣神脸 move=0]
-[head name=ymlz move=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI]
 [role name=Pygmalion sprite=none]
@@ -75,8 +77,14 @@
 [vp role=ym name=ymzj op=change move=0]
 [role name=一鸣 sprite=ymzj]
 这里？可我记得这里是虚拟空间……
+[operation setActive=false obj=upperButtons parent=UI move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[image op=fade target=1 obj=black time=2 parent=UI move=3]
 [scene name=ocean load=1 move=0]
-[scene name=home load=0]
+[scene load=0 name=home move=0]
+[image op=fade target=0 obj=black time=2 parent=UI move=2]
+[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[operation setActive=true obj=upperButtons parent=UI move=0]
 [role name=一鸣]
 喔……如果不是因为现实中不能瞬移，我真要相信这里才是现实了。
 [role name=Pygmalion sprite=none move=0]
@@ -168,8 +176,8 @@
                 [word type=6 content=李明那伙人 pic=2犹犹豫豫伸出去的手 end=李明虽然成绩不好，但他是班里甚至年级的中心，似乎天生就有着学不来的幽默和松弛……真羡慕啊。我曾经试着融入他们，聊他们喜欢的游戏和电视剧，但总觉得格格不入，就像一只笨拙的企鹅在模仿人类走路。]
                 [dialog role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
                 [dialog role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
-                [dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我 1v1，看我灭了你的傲气！]
-                [dialog role=??	 content=(开心的大笑) 说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
+                [dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我1v1，看我灭了你的傲气！]
+                [dialog role=??	 content=(开心的大笑)说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
                 [dialogEnd]
                 [word type=0 content=的目光，毕业典礼上他们的每一次窃窃私语]
                 [word type=2 content=都像在议论我的不堪 changeNumber=1 right=2]
@@ -179,7 +187,7 @@
                 证明我们不是一路人
                 [word type=0 content=人。但让我压力倍增的是]
                 [word type=1 content=我未能理解 right=1]
-                [word type=6 content=张老师 pic=ympic03 end=我不能让您失望。]
+                [word type=6 content=张老师 pic=3空旷的未来教室 end=我不能让您失望。]
                 [dialog role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
                 [dialog role=???	 content=谢谢老师…我会保持的。]
                 [dialog role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
@@ -235,8 +243,8 @@
 嗯…虽然我不是很了解 EA 区啦，但感觉不管是在世界上的哪一个地方，又是处于什么样的年纪，大家都不是很开心呢……
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[save]
 [operation setActive=true obj=upperButtons parent=UI move=0]
+[save]
 [role name=Elpis（电子） frame=elec sprite=elpis]
 不过正因如此，我们的工作才更有意义吧！
 [role name=Elpis（电子） frame=elec sprite=elpis]
@@ -246,5 +254,6 @@
 [role name=Elpis（电子） frame=elec sprite=elpis]
 这些红色的部分同样是不可直接修改的。不过你可以试着点它进行“展开”，那些出现BUG的情绪也许就隐藏在这些展开的内容之中，需要你进行修复。而当你最终确定治疗内容全部完成时，这些红色的部分也会自动进行调整。毕竟人总会把各种奇怪的逻辑捋通顺的嘛，对吧？
 [sentence op=enableEvery move=0]
+[operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
 [operation obj=sentenceManager parent=UI att=enAbleConfirm script=SentenceManager content=true]

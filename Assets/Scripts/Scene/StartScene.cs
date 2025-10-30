@@ -1,3 +1,4 @@
+using System.IO;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
@@ -25,44 +26,53 @@ namespace Scene
         public void StartNewGame()
         {
             gameObject.SetActive(false);
+            print(PygmalionGameManager.Instance.name);
             PygmalionGameManager.Instance.StartNewGame();
         }
+        private static readonly string AutoSaveFile = "AutoSaveGameManagerData.json";
+        private static readonly string PersonSaveFile = "PersonSaveGameManagerData.json";
         /// <summary>
         /// 继续之前的游戏
         /// </summary>
         public void ContinueGame()
         {
+            if (!File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)) &&
+                !File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
+            {
+                //两个存档都不存在，不做任何反应
+                return;
+            }
             gameObject.SetActive(false);
             PygmalionGameManager.Instance.ContinueGame();
         }
         public void PassStart()
         {
-            StartGameIcon.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.2f);
+            StartGameIcon.transform.DOScale(new Vector3(0.91f, 0.91f, 0.91f), 0.2f);
         }
 
         public void PassContinue()
         {
-            ContinueGameIcon.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.2f);
+            ContinueGameIcon.transform.DOScale(new Vector3(0.91f, 0.91f, 0.91f), 0.2f);
         }
 
         public void PassEnd()
         {
-            EndGameIcon.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.2f);
+            EndGameIcon.transform.DOScale(new Vector3(0.91f, 0.91f, 1.01f), 0.2f);
         }
 
         public void LeaveStart()
         {
-            StartGameIcon.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+            StartGameIcon.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.2f);
         }
 
         public void LeaveContinue()
         {
-            ContinueGameIcon.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+            ContinueGameIcon.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.2f);
         }
 
         public void LeaveEnd()
         {
-            EndGameIcon.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+            EndGameIcon.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.2f);
         }
         public GameObject StartGameIcon;
         public GameObject ContinueGameIcon;

@@ -105,6 +105,8 @@ namespace GamePlay
         public GameObject Last;
         public void NextPage()
         {
+            if(!SentenceManager.instance.enable)
+                return;
             pages[pageNow].gameObject.SetActive(false);
             pageNow++;
             pages[pageNow].gameObject.SetActive(true);
@@ -128,6 +130,8 @@ namespace GamePlay
 
         public void PreviousPage()
         {
+            if(!SentenceManager.instance.enable)
+                return;
             pages[pageNow].gameObject.SetActive(false);
             pageNow--;
             pages[pageNow].gameObject.SetActive(true);
@@ -159,6 +163,8 @@ namespace GamePlay
         //返回上个句子
         public void Back()
         {
+            if(!SentenceManager.instance.enable)
+                return;
             gameObject.SetActive(false);
             ClosePanel();
             SentenceManager.instance.paragraphNow = fatherSentenceNumber;

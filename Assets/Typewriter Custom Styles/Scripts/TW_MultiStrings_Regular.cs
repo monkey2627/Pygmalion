@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 using TMPro;
 
 #if UNITY_EDITOR
@@ -137,12 +138,14 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
     /// 标志是不是刚刚完成了一次打字
     /// </summary>
     public bool finishOneText = false;
+
     /// <summary>
     /// 通过协程的方式将字一行一行打出来
     /// </summary>
     /// <param name="ORIGINAL"></param>
     /// <param name="POINTER"></param>
     /// <returns></returns>
+    public string target;
     private IEnumerator MakeTypewriterText(string ORIGINAL, string POINTER)
     {
         start = false;
@@ -152,6 +155,9 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
             string TEXT = ORIGINAL.Substring(0, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
             gameObject.GetComponent<TMP_Text>().text = TEXT;
+            /* ---------- 播放音效 ---------- */
+           // if (ORIGINAL.Length > сharIndex) // 防止越界
+           //     RoleVoice.instance.Role(target);
             time += 1;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();

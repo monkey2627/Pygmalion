@@ -103,6 +103,22 @@ public class VpManager : MonoBehaviour
             g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
         }
     }
+
+    public void back2start()
+    {
+        foreach (GameObject g in ymGameObjects)
+        {
+            g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
+        }
+        foreach (GameObject g in eGameObjects)
+        {
+            g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
+        }
+        foreach (GameObject g in elpisGameObjects)
+        {
+            g.GetComponent<SpriteRenderer>().color = new Color(g.GetComponent<SpriteRenderer>().color.r, g.GetComponent<SpriteRenderer>().color.g, g.GetComponent<SpriteRenderer>().color.b, 0f);
+        }
+    }
     #region 各种操作
     public void Fade(string role,string vpName, float fadeTime, float target)
     {

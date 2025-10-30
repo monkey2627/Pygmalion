@@ -1,49 +1,42 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using GamePlay;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
-public class PushBoxGameManager : MonoBehaviour
+namespace pushbox
 {
-    public int totalBoxs;
-    public int finishedBoxs;
-
-    public static PushBoxGameManager instance;
-
-    private void Awake()
+    public class PushBoxGameManager : MonoBehaviour
     {
-        gameObject.SetActive(false);
-        instance = this;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-            ResetStage();
-    }
-    public void CheckFinish()
-    {
-        if(finishedBoxs == totalBoxs)
+        public static PushBoxGameManager instance;
+        public GuideWord guideWord;
+        public Word word;
+        public int last;
+        private void Awake()
         {
-            print("YOU WIN!");
-            SentenceManager.instance.wordClicked.ConfirmAddWord();
-            //StartCoroutine(LoadNextStage());
+            instance = this;
         }
-    }
 
-    public void StartPushBoxGame()
-    {
-        gameObject.SetActive(true);
-    }
-    void ResetStage()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+        public GameObject[] cloneGameObjects;
 
-    IEnumerator LoadNextStage()
-    {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //
+        public void PlayHide()
+        {
+            GameObject page = Instantiate(cloneGameObjects[3],transform);
+            last = 3;
+            page.SetActive(true);
+        }
+        public void Play()
+        {
+            int i = Random.Range(0, 3);    // 0 ≤ i ≤ 99
+            last = i;
+            GameObject page = Instantiate(cloneGameObjects[i],transform);
+            page.SetActive(true);
+        }
+
+        public void PlayLast()
+        {
+            GameObject page = Instantiate(cloneGameObjects[last],transform);
+            page.SetActive(true);
+        }
     }
 }

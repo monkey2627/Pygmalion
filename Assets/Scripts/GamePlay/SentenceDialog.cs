@@ -46,48 +46,56 @@ public class SentenceDialog : MonoBehaviour
         this.endText.text = endText;
         Read();
     }
-
+    public TW_MultiStrings_Regular regular;
     public void Read()
     {
-        if (Dialogs.Count > dialogLine)
+        if (!regular.finishOneText)
         {
-            roleName.text = Dialogs[dialogLine].Name;
-            tWRegular.MultiStrings[0]=Dialogs[dialogLine].Text;
-            tWRegular.finishOneText = false;
-            tWRegular.NextString();
-            dialog.SetActive(true);
-            dialogLine++;
+            regular.SkipTypewriter();
         }
         else
         {
-            dialog.SetActive(false);
-            if (endText.text != "")
+            if (Dialogs.Count > dialogLine)
             {
-                endText.gameObject.GetComponent<AutoBox>().RefreshBox2d();
-                for (int i = 0; i < pics.Length; i++)
-                {
-                    pics[i].SetActive(false);
-                }
-                endText.DOFade(1, 2);
+                roleName.text = Dialogs[dialogLine].Name;
+                tWRegular.MultiStrings[0] = Dialogs[dialogLine].Text;
+                tWRegular.finishOneText = false;
+                tWRegular.NextString();
+                dialog.SetActive(true);
+                dialogLine++;
             }
             else
-            { 
-                for (int i = 0; i < pics.Length; i++)
+            {
+                dialog.SetActive(false);
+                if (endText.text != "")
                 {
-                    pics[i].SetActive(false);
+                    for (int i = 0; i < pics.Length; i++)
+                    {
+                        pics[i].SetActive(false);
+                    }
+
+                    endText.DOFade(1, 2);
                 }
-                black.GetComponent<SpriteRenderer>().DOFade(230.0F/255.0F, 0.5f).OnComplete(() =>
+                else
                 {
-                    
-                     gameObject.SetActive(false);
-                     PygmalionGameManager.Instance.upperButtons.SetActive(true);
-                     word.page.paragraph.gameObject.SetActive(true);
-                    
-                });
-               
-               
+                    for (int i = 0; i < pics.Length; i++)
+                    {
+                        pics[i].SetActive(false);
+                    }
+
+                    black.GetComponent<SpriteRenderer>().DOFade(230.0F / 255.0F, 0.5f).OnComplete(() =>
+                    {
+
+                        gameObject.SetActive(false);
+                        PygmalionGameManager.Instance.upperButtons.SetActive(true);
+                        word.page.paragraph.gameObject.SetActive(true);
+
+                    });
+
+
+                }
             }
-        } 
+        }
     }
 
     public void ClickText()

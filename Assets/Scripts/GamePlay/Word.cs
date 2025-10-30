@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using pushbox;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -124,6 +125,10 @@ namespace GamePlay
         {
             if(wordType != 0)
                 UIVoice.instance.TextMouseDown();
+            else
+            {
+                return;
+            }
             if(!isSingleClick) return;
             PygmalionGameManager.Instance.upperButtons.SetActive(false);
             print("单机"+wordText.text);
@@ -132,7 +137,7 @@ namespace GamePlay
             switch (wordType)
             {
                 case 0://出现”你确定这不是bug？“
-                    click0Board.SetActive(true);
+                   // click0Board.SetActive(true);
                     break;
                 case 1://add,增添过后点击就没反应了，不能再增了
                     if(!playedAdd)
@@ -188,6 +193,7 @@ namespace GamePlay
                 case 3://进入对应的下一个para
                     if (hasSpecial2NextPara && !hasRun)
                     {
+                        SentenceManager.instance.enable = false;
                         print("move");
                         PygmalionGameManager.Instance.Change2ScriptAndReadLine("eSupport",0);
                         hasRun = true;
@@ -199,8 +205,12 @@ namespace GamePlay
                     SentenceManager.instance.NextPara(nextParagraphNumber);
                     break;
                 case 4://删除
-                    doubleClick2Board.GetComponent<DoubleClick2Board>().Show(false,playedDelete,this);
-                    doubleClick2Board.SetActive(true);
+                    if (!special)
+                    {
+                        doubleClick2Board.GetComponent<DoubleClick2Board>().Show(false, playedDelete, this);
+                        doubleClick2Board.SetActive(true);
+                    }
+
                     break;
                 case 5://替换
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,false,this);
@@ -217,10 +227,23 @@ namespace GamePlay
         public GameObject mainCamera;
         public void DeleteGame()
         {
-                    Close();
-                    
-                    //测试用
-                    ConfirmDeleteWord();
+            Close();
+            SentenceManager.instance.wordClicked = this;
+            page.paragraph.gameObject.SetActive(false);
+            mainCamera.SetActive(false);
+            PygmalionGameManager.Instance.dialog.SetActive(false);
+            KhockManager.instance.word = this;
+            KhockManager.instance.guideWord = null;
+            print("play");
+            if (special)
+            {
+                KhockManager.instance.Play12();
+            }
+            else
+            {
+                 KhockManager.instance.Play();
+            }
+           
         }
         public void AddGame()
         {
@@ -229,16 +252,21 @@ namespace GamePlay
             page.paragraph.gameObject.SetActive(false);
             mainCamera.SetActive(false);
             PygmalionGameManager.Instance.dialog.SetActive(false);
-            PushBoxGameManager.instance.StartPushBoxGame();
-            //测试用
-            //ConfirmAddWord();
+            PushBoxGameManager.instance.word = this;
+            PushBoxGameManager.instance.guideWord = null;
+            PushBoxGameManager.instance.Play();
         }
         
         public void ChangeGame()
         {
             Close();
-            //测试用
-            ConfirmChangeWord();
+            MemoryCardChangeManager.instance.word = this;
+            MemoryCardChangeManager.instance.guideWord = null;
+            page.paragraph.gameObject.SetActive(false);
+            mainCamera.SetActive(false);
+            MemoryCardChangeManager.instance.guideWord = null;
+            MemoryCardChangeManager.instance.word = this;
+            MemoryCardChangeManager.instance.PlayNormal();
         }
 
         public bool special = false;
@@ -246,19 +274,15 @@ namespace GamePlay
         public void ConfirmDeleteWord()
         {
             //变为“/”
+            mainCamera.SetActive(true);
             wordText.text = "/";
             playedDelete = true;
             RefreshBox2d();
             page.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
-            if (guideTime)
+            PygmalionGameManager.Instance.upperButtons.SetActive(true);
+            page.paragraph.gameObject.SetActive(true);
+            if (special)
             {
-                PygmalionGameManager.Instance.ReadLine();
-            }
-            else
-            {
-                PygmalionGameManager.Instance.upperButtons.SetActive(true);
-                if (special)
-                {
                     foreach (var paragraph in SentenceManager.instance.paragraphs)
                     {
                         foreach (var page in paragraph.pages)
@@ -272,26 +296,26 @@ namespace GamePlay
                             
                         }
                     }
-                    print("delete");
-                    enable = false;
-                }
+                print("delete");
+                enable = false;
             }
+            else
+            {
+                
+            }
+            
         }
 
         public void ConfirmChangeWord()
         {
-            //变成changewordlist的第2个词,第一个是他本身
             wordText.text = changeWordList[1];
             RefreshBox2d();
             playedChange = true;
             page.layout.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
-            if (guideTime)
-            {
-                PygmalionGameManager.Instance.ReadLine();
-            }
-            else
             {
                 PygmalionGameManager.Instance.upperButtons.SetActive(true);
+                page.paragraph.gameObject.SetActive(true);
+                mainCamera.SetActive(true);
                 if (changeDialog)
                 {
                     PygmalionGameManager.Instance.Change2ScriptAndReadLine(scriptName,scriptLine);
@@ -328,6 +352,14 @@ namespace GamePlay
         public void Fade(float time)
         {
             wordText.DOFade(0, time);
+        }
+
+        public void FailGame()
+        {
+            
+            mainCamera.SetActive(true);
+            page.paragraph.gameObject.SetActive(true);
+                
         }
     }
 }

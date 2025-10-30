@@ -15,13 +15,13 @@ using UnityEngine.Serialization;
 
     public class SentenceManager : MonoBehaviour
     {
+        public bool enable = true;
         //存这一整个题目是从哪里开始的
         public int sentenceBeginPlace;
         public static SentenceManager instance;
         public int paragraphNow=0;
         public ConfirmType type;
         public bool guideTime;
-        public List<BackgroundWander> jellyfishs = new List<BackgroundWander>();
         public List<string> endScriptsList = new List<string>();
         public List<Paragraph> paragraphs;
         public bool enAbleConfirm = false;
@@ -38,12 +38,6 @@ using UnityEngine.Serialization;
             {
                 sentence.Fade(time);
             }
-
-            foreach (BackgroundWander jellyfish in jellyfishs)
-            {
-                jellyfish.gameObject.GetComponent<SpriteRenderer>().DOFade(0,time);
-                jellyfish.Text.DOFade(0,time);
-            }
         }
 
         public GameObject delay;
@@ -55,8 +49,6 @@ using UnityEngine.Serialization;
             if(!enAbleConfirm) return;
             Fade();
             paragraphs[0].confirm.SetActive(false);
-            TransAniManager.Instance.FadeJellyFishs();
-            TransAniManager.Instance.FadeTarget();
             delay.transform.DOMove(new Vector3(0, 0, 0), 2).OnComplete(() => { 
             switch (type)
                 {
@@ -85,7 +77,14 @@ using UnityEngine.Serialization;
                         }
                         break;
                     case ConfirmType.OnlyOneCorrect:
-                        if (paragraphs[7].pages[0].words[9].IsRight())
+                        print("special");
+                        print(paragraphs[7].pages[0].words[8].wordText.text);
+                        foreach (var VARIABLE in paragraphs[7].pages[0].words[8].answerList)
+                        {
+                            print(VARIABLE);
+                        }
+                        print(paragraphs[7].pages[0].words[8].answerList);
+                        if (paragraphs[7].pages[0].words[8].IsRight())
                         {
                             PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
                         }
@@ -196,6 +195,7 @@ using UnityEngine.Serialization;
             guideTime = false;
             line = sentenceBeginPlace;
             enAbleConfirm = data.enAbleConfirm;
+            endScriptsList = new List<string>();
             CreateSentence(-1);
             paragraphNow = data.paragraphNow;
             for (int i = 0; i < paragraphs.Count; i++)
@@ -302,7 +302,11 @@ using UnityEngine.Serialization;
                               word.GetComponent<Word>().wordType = 0;
                               word.GetComponent<Word>().wordText.text = parsedTag["content"];
                               if (parsedTag.ContainsKey("special"))
+                              {
                                   word.GetComponent<Word>().special = true;
+                                  word.GetComponent<Word>().answerList = new List<string>();
+                                  word.GetComponent<Word>().answerList.Add("/");
+                              }
                               word.GetComponent<Word>().wordText.color = Color.white;
                               print( parsedTag["content"]);
                               break;
@@ -473,5 +477,13 @@ using UnityEngine.Serialization;
                 data = JsonUtility.FromJson<Archive>(json);
             }
             RestoreArchive(data);
+        }
+
+        public void Destroyall()
+        {
+            for (int i = 0; i < paragraphs.Count; i++)
+            {
+                Destroy(paragraphs[i]);
+            }
         }
     }

@@ -7,9 +7,6 @@ namespace GamePlay
 {
     public class FlowLayoutGroupCentered : MonoBehaviour
     {
-        public float lineHeightScale = 1.2f;
-        public float lineSpacing = 5f;
-
         public RectTransform rt;
 
         /* 用来存每行的信息 */
@@ -48,7 +45,7 @@ namespace GamePlay
                 /* 需要换行 */
                 if (curX > 0 && curX + w > usableWidth)
                 {
-                    curY -= 60;
+                    curY -= 70;
                     curX = 0f;
                 }
 

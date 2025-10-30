@@ -99,6 +99,7 @@ public class DataManager : MonoBehaviour
         _gameCircle = "1";
         _scriptNow = "0";
         _lineNow = 0;
+        PlayerPrefs.SetString("gameCircle",_gameCircle);
     }
 
     public int ContinueGame()
@@ -107,10 +108,8 @@ public class DataManager : MonoBehaviour
         if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)) && File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
         {
             string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
-            print(jsonAuto);
             SaveDataManagerData autodata = JsonUtility.FromJson<SaveDataManagerData>(jsonAuto);
             string jsonPerson = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile));
-            print(jsonPerson);
             SaveDataManagerData personData = JsonUtility.FromJson<SaveDataManagerData>(jsonPerson);
             DateTime auto = DateTime.ParseExact(
                 autodata.SaveTime,
@@ -123,28 +122,21 @@ public class DataManager : MonoBehaviour
                 "yyyyMMddHHmmss",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.None);
-            print("have both");
-            print(auto);
-            print(person);
+
             if (auto > person)
             {
-                print("a");
                 _lineNow = autodata.lineNow;
                 _scriptNow =  autodata.scriptNow;
-                print(_scriptNow);
                 return 0;
             }else if (auto <= person)
             {
                 _lineNow = personData.lineNow;
                 _scriptNow = personData.scriptNow;
-                print("b");
-                print(_scriptNow);
                 return 1;
             }
         }
         else if (File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
         {
-            print("c");
             string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
             SaveDataManagerData autodata = JsonUtility.FromJson<SaveDataManagerData>(jsonAuto);
             _lineNow = autodata.lineNow;
@@ -152,7 +144,6 @@ public class DataManager : MonoBehaviour
             return 0;
         }else if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)))
         {
-            print("d");
             string jsonPerson = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile));
             SaveDataManagerData personData = JsonUtility.FromJson<SaveDataManagerData>(jsonPerson);
             _lineNow = personData.lineNow;
