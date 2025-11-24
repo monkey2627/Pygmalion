@@ -18,6 +18,7 @@ using UnityEngine.UI;
 public class PygmalionGameManager : MonoBehaviour
 {
     public static PygmalionGameManager Instance;
+    public bool isStoping;
     public GameObject dialog;
     public TMP_Text roleName;
     public Sprite[] roleSprites;
@@ -62,6 +63,14 @@ public class PygmalionGameManager : MonoBehaviour
         upperButtons.SetActive(false);
     }
 
+    public void StopGame()
+    {
+        isStoping = true;
+        stopPanel.SetActive(true);
+        upperButtons.SetActive(false);
+        UIVoice.instance.OpenMenu();
+    }
+
     private async void Start()
     {           
         await LoadScript("0");
@@ -74,24 +83,22 @@ public class PygmalionGameManager : MonoBehaviour
         await LoadScript("eEnd1");
         await LoadScript("eEnd2");
         await LoadScript("eSupport");
+        DataManager.Instance.ScriptNow= "0";
+        DataManager.Instance.LineNow = 0;
+        PlayerPrefs.SetString("scriptNow","0");
+        PlayerPrefs.SetInt("lineNow", 0);
+        pre.SetActive(true);
         if (DataManager.Instance.GameCircle == "0" || DataManager.Instance.GameCircle == "null")
         {
-            print("start from pre");
-            DataManager.Instance.ScriptNow= "0";
-            DataManager.Instance.LineNow = 0;
-            DataManager.Instance.GameCircle = "0";
-            PlayerPrefs.SetString("gameCircle", "0");
-            PlayerPrefs.SetString("scriptNow","0");
-            PlayerPrefs.SetInt("lineNow", 0);
-            pre.SetActive(true);
+            jumpPre.SetActive(false);
         }
         else
         {
-            //直接显示开始界面
-            ScenesDic["start"].gameObject.SetActive(true);
+            jumpPre.SetActive(true);
         }
     }
 
+    public GameObject jumpPre;
     public GameObject pre;
     public GameObject black;
 
@@ -405,6 +412,34 @@ print(json);
                 {
                     BGM.instance.Play(parsedTag["name"]);
                 }
+                break;
+            case "env":
+                if (parsedTag.ContainsKey("op"))
+                {
+                    if (parsedTag["op"] == "stop")
+                    {
+                        Environment.instance.Stop(parsedTag["name"],float.Parse(parsedTag["time"]));
+                    }
+                    if (parsedTag["op"] == "begin")
+                    {
+                        Environment.instance.Play(parsedTag["name"],float.Parse(parsedTag["time"]));
+                    }
+
+                    if (parsedTag["op"] == "beginOnce")
+                    {
+                        Environment.instance.PlayOnce(parsedTag["name"],float.Parse(parsedTag["time"]));
+                    }
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    Environment.instance.Play(parsedTag["name"],float.Parse(parsedTag["time"]));
+                }
+                break;
+            case "situ":
+                SituationVoice.instance.Play(parsedTag["name"]);
                 break;
             case "role":
                 

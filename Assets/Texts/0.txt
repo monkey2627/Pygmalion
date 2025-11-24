@@ -40,18 +40,20 @@ Pygmalion！能听到吗？
 和你们记录“想法”和“思维过程”的方式不同，人类的想法很奇妙，往往披着一层故事的外衣出现。而我们为了能更方便地对“患者”脑中出现问题的想法进行修复，就必须得用他们能理解的方式来工作。
 [role name=Elpis]
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
+[operation setActive=false obj=Dialog parent=UI move=0]
 [operation setActive=false obj=upperButtons parent=UI move=0]
-[operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[bgm op=fade time=3 move=0]
+[bgm op=fade time=1 move=0]
 [image op=fade target=1 obj=black time=2 parent=UI move=3]
 [scene name=ocean load=1 move=0]
 [scene load=0 name=lab move=0]
-[bgm op=begin name=ocean time=3 move=0]
+[bgm op=begin name=ocean time=2 move=0]
+[env op=begin name=wave time=2 move=0]
 [image op=fade target=0 obj=black time=2 parent=UI move=2]
-[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]
-[role name=Elpis]
+[clear move=0]
+[role name=Elpis move=0]
 真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
+[operation setActive=true obj=Dialog parent=UI]
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
 [vp op=fade name=elpis role=elpis fade=0 time=1 move=1]
@@ -59,7 +61,9 @@ Pygmalion！能听到吗？
 [vp op=scale name=elpis role=elpis x=1 y=1 z=1 time=0 move=0]
 [vp op=fade name=elpis role=elpis fade=1 time=1 move=1]
 [vp op=fade name=elpis role=elpis fade=0 time=1 move=1]
-[ani name=water role=elpis]
+[ani name=water role=elpis move=0]
+[env op=stop name=wave time=2 mov=0]
+[env op=begin name=highTide time=2 move=2]
 [clear move=0]
 [role name=Elpis(电子) frame=elec sprite=elpis move=0.1]
 好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
@@ -72,7 +76,7 @@ Pygmalion！能听到吗？
 如你所愿，Elpis。
 [operation setActive=true obj=GuideSceneGamePlay parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
-[operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
+[operation obj=content parent=UI att=enable script=DialogClick content=true]
 [role name=Elpis(电子) frame=elec sprite=elpis]
 呃…我也没有这么低沉吧，嗯。
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
@@ -99,7 +103,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [role name=Elpis(电子) frame=elec sprite=elpis]
 …… 
 [role name=Elpis(电子)]
-哎呀！不是啦不是啦，Pygmalion 系统是完美无缺的，刚才只是混进来了一点 别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
+哎呀！不是啦不是啦，Pygmalion系统是完美无缺的，刚才只是混进来了一点别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Elpis(电子) move=3]
 嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
@@ -118,14 +122,17 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [image op=fade target=1 obj=black time=1 parent=UI move=1] 
 [operation method=Fade obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=1.8]
 [bgm op=stop name=textGame move=0 des=停止游戏音乐]
-[operation setActive=false obj=HighTide parent=sceneTransfer move=0 des=停止涨潮的音乐]
+[env op=stop name=wave time=2 move=0]
 [image op=fade target=0 obj=black time=1 parent=UI move=1] 
 [ani name=back2ocean move=0]
-[scene name=ocean load=1 des=海水从屏幕上方向下退去，场景回到岸边]
+[env op=beginOnce name=lowTide time=2 move=0]
+[scene name=ocean load=1 move=3]
+[env op=begin name=wave time=2 move=0]
 [vp role=elpis name=elpiskx op=change move=0]
 [vp role=elpis name=elpiskx op=fade fade=0 time=0 move=0]
 [vp name=elpiskx role=elpis op=move2  x=0 y=-3.16 z=0 move=0 time=0]
 [vp name=elpiskx role=elpis op=scale  x=2.1 y=2.1 z=2.1 move=0 time=0]
+[bgm op=begin name=ocean time=2 move=0]
 [vp role=elpis name=elpiskx op=fade fade=1 time=2 move=2]
 [clear move=0]
 [role name=Elpis save frame=ori sprite=elpiskx move=0.2]
@@ -163,6 +170,8 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 请相信自己的判断。
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
+[bgm op=stop name=ocean time=2 move=0]
+[env op=stop name=wave time=2 move=0]
 [vp role=elpis name=elpis op=fade fade=0 time=1 move=1]
 [image op=fade target=1 obj=black time=1 parent=UI move=1] 
 [script name=ym line=0]

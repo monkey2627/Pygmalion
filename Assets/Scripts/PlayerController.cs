@@ -11,28 +11,28 @@ public class PlayerController : MonoBehaviour
     public Sprite[] spritePlayers;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             GetComponent<SpriteRenderer>().sprite = spritePlayers[3];
             moveDir = Vector2.right;
         }
 
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             GetComponent<SpriteRenderer>().sprite = spritePlayers[2];
             moveDir = Vector2.left;
         }
 
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             GetComponent<SpriteRenderer>().sprite = spritePlayers[0];
             moveDir = Vector2.up;
         }
 
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             GetComponent<SpriteRenderer>().sprite = spritePlayers[1];
             moveDir = Vector2.down;
