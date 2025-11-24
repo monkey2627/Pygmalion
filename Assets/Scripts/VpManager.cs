@@ -264,6 +264,8 @@ public class VpManager : MonoBehaviour
     public void Change(string role, string vpName)
     {
         RoleVp roleVp = _vps[role];
+        Debug.Log(roleVp.VpNow);
+        Debug.Log(vpName);
         _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color = new Color(
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.r,
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.g,

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
 using TaskString = Cysharp.Threading.Tasks.UniTask<string>;
 using System.Globalization;
 using Ani;
@@ -13,6 +12,7 @@ using Scene;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Page = GamePlay.Page;
 
 
 public class PygmalionGameManager : MonoBehaviour
@@ -41,6 +41,9 @@ public class PygmalionGameManager : MonoBehaviour
     //alert
     public AlertScroll alert;
     public GameObject kiss;
+    public GameObject eCircle;
+    public GameObject elpisCircle;
+    public GameObject ymCircle;
     private  void Awake()
     {
         Instance = this;
@@ -197,6 +200,10 @@ public class PygmalionGameManager : MonoBehaviour
     [Serializable]
     public class SaveMyStructData
     {
+        public string gameRole;
+        public bool wave;
+        public bool highTide;
+        public bool lowTide;
         public string text;
         public string name;
         public bool isKiss;
@@ -227,6 +234,9 @@ public class PygmalionGameManager : MonoBehaviour
     {
          
             SaveMyStructData data = new SaveMyStructData();
+            data.wave = wave.playing;
+            data.highTide = highTide.playing;
+            data.lowTide = lowTide.playing;
             data.text = content.GetComponent<TMP_Text>().text;
             data.exitColor = exit.GetComponent<SpriteRenderer>().color;
             data.isExit = exit.activeInHierarchy;
@@ -238,12 +248,12 @@ public class PygmalionGameManager : MonoBehaviour
                 data.currentScene = PSceneManager.Instance._currentScene.name;
             else
                 data.currentScene = "null";
-            print("save is GameTime:"+isGameTime);
             data.isGameTime = isGameTime;
             if (roleHead.sprite != null)
                 data.spriteNow = roleHead.sprite.name;
             else
                 data.spriteNow = "none";
+            Debug.Log(data.spriteNow);
             data.dialogActive = dialog.activeInHierarchy;
             data.dialogEnbale =  content.GetComponent<DialogClick>().enable;
             data.frameNow = FrameImage.sprite.name;
@@ -251,6 +261,12 @@ public class PygmalionGameManager : MonoBehaviour
             data.blackColor =  black.gameObject.GetComponent<SpriteRenderer>().color;
             data.bgm = BGM.instance.bgmNow;
             data.isGuidePlayGame = guidePlayGame.activeInHierarchy;
+            if (elpisCircle.activeInHierarchy)
+                data.gameRole = "elpis";
+            else if (eCircle.activeInHierarchy)
+                    data.gameRole = "e";
+            else if (ymCircle.activeInHierarchy)
+                data.gameRole = "ym";
             string json = JsonUtility.ToJson(data, true);
             print(json);
             if (type == 0)
@@ -266,6 +282,9 @@ public class PygmalionGameManager : MonoBehaviour
 
     public Image FrameImage;
     public GameObject stopPanel;
+    public CrossFadeMusic highTide;
+    public CrossFadeMusic lowTide;
+    public CrossFadeMusic wave;
     /// <summary>
     /// 从存档点继续游戏
     /// </summary>
@@ -276,9 +295,7 @@ public class PygmalionGameManager : MonoBehaviour
         {
             return;
         }
-        
         stopPanel.SetActive(false);
-       
         int i = DataManager.Instance.ContinueGame();
         string json;
         SaveMyStructData data;
@@ -292,7 +309,22 @@ public class PygmalionGameManager : MonoBehaviour
             json = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile)); 
             data = JsonUtility.FromJson<SaveMyStructData>(json);
         }
-print(json);
+        //载入现在的音乐
+        BGM.instance.Play(data.bgm);
+        if (data.highTide)
+        {
+            highTide.FadeInFromSecond(4.9f,1);
+        }
+
+        if (data.lowTide)
+        {
+            lowTide.FadeInFromZero(1);
+        }
+
+        if (data.wave)
+        {
+            wave.FadeInFromZero(1);
+        }
         intersystem.GetComponent<SpriteRenderer>().color = data.InterColor;
         //载入现在的场景
         if(data.currentScene!="null"){
@@ -328,8 +360,12 @@ print(json);
         //现在的文本框样式
         FrameImage.sprite = _frameDic[data.frameNow];
         //头像
-        if(data.spriteNow!="none")
+        Debug.Log(data.spriteNow);
+        if (data.spriteNow != "none")
+        {
             roleHead.sprite = _roleSpriteDict[data.spriteNow];
+            roleHead.DOFade(1, 0);
+        }
         else
         {
             roleHead.sprite = null;
@@ -341,10 +377,16 @@ print(json);
         roleName.text=data.name;
         upperButtons.SetActive(data.isUpperButtons);
         black.gameObject.GetComponent<SpriteRenderer>().color=data.blackColor;
-        print(data.blackColor);
-        //todo 音乐如何处理data.bgm = BGM.instance.bgmNow;
+        //
+        if(data.gameRole=="elpis")
+            elpisCircle.SetActive(true);
+        else if(data.gameRole=="e")
+            eCircle.SetActive(true);
+        else if(data.gameRole=="ym")
+            ymCircle.SetActive(true);
         //如果正在新手引导的阶段
         guidePlayGame.SetActive(data.isGuidePlayGame);
+        print(data.isGuidePlayGame);
         if (data.isGuidePlayGame)
         {
             print("a");
@@ -395,7 +437,7 @@ print(json);
                 {
                     if (parsedTag["op"] == "stop")
                     {
-                        BGM.instance.Stop(parsedTag["name"]);
+                        BGM.instance.FadeOutAndStop(0.5f);;
                     }
 
                     if (parsedTag["op"] == "fade")
@@ -416,7 +458,7 @@ print(json);
             case "env":
                 if (parsedTag.ContainsKey("op"))
                 {
-                    if (parsedTag["op"] == "stop")
+                    if (parsedTag["op"] == "stop" || parsedTag["op"] == "fade" )
                     {
                         Environment.instance.Stop(parsedTag["name"],float.Parse(parsedTag["time"]));
                     }
@@ -534,7 +576,7 @@ print(json);
                 endText.gameObject.SetActive(true);
                 endText.text = parsedTag["content"];
                 endText.DOFade(1, 0.5f);
-                delayObj.transform.DOMove(new Vector3(0, 1, 0), 2f).OnComplete(() => { 
+                delayObj.transform.DOMove(new Vector3(0, 1, 0), 6f).OnComplete(() => { 
                     endText.DOFade(0, 1).OnComplete(() =>
                 {
                     endText.gameObject.SetActive(false);

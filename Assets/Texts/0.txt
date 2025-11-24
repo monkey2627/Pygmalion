@@ -19,7 +19,7 @@ Pygmalion！能听到吗？
 [operation obj=content parent=UI att=enable script=DialogClick content=true]
 [role name=Elpis]
 你好，Pygmalion，我是 Elpis！从今天起我就是你的搭档兼监察员啦！
-[role name=Pygmalion sprite=none]
+[role name=Pygmalion]
 你好，Elpis，很高兴认识你。
 [role name=Pygmalion]
 对不起，我好像刚从一个很长很长的梦里挣脱出来…
@@ -51,7 +51,7 @@ Pygmalion！能听到吗？
 [image op=fade target=0 obj=black time=2 parent=UI move=2]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [clear move=0]
-[role name=Elpis move=0]
+[role name=Elpis sprite=elpis move=0]
 真漂亮！这是我最喜欢的调试环境之一！好了，接下来看我的。
 [operation setActive=true obj=Dialog parent=UI]
 [operation setActive=false obj=upperButtons parent=UI move=0]
@@ -61,9 +61,10 @@ Pygmalion！能听到吗？
 [vp op=scale name=elpis role=elpis x=1 y=1 z=1 time=0 move=0]
 [vp op=fade name=elpis role=elpis fade=1 time=1 move=1]
 [vp op=fade name=elpis role=elpis fade=0 time=1 move=1]
-[ani name=water role=elpis move=0]
-[env op=stop name=wave time=2 mov=0]
-[env op=begin name=highTide time=2 move=2]
+[ani name=water role=elpis move=0 des=开始播放涨潮动画]
+[env op=stop name=wave time=2 move=0 des=涨潮动画开始播放时，Wave在2s内衰减至静音，之后停止播放]
+[bgm op=fade time=2 move=0 des=停止播放beach的bgm]
+[env op=begin name=highTide time=2 des=涨潮音效在2s内从静音逐渐增加至0db,并且设置循环段]
 [clear move=0]
 [role name=Elpis(电子) frame=elec sprite=elpis move=0.1]
 好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
@@ -106,7 +107,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 哎呀！不是啦不是啦，Pygmalion系统是完美无缺的，刚才只是混进来了一点别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Elpis(电子) move=3]
-嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过 气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
+嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
 [operation method=EnableThree obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
 [operation method=DisableThree obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -119,9 +120,9 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [operation setActive=true obj=confirm parent=GuideSceneGamePlay]
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
-[image op=fade target=1 obj=black time=1 parent=UI move=1] 
+[image op=fade target=1 obj=black time=1 parent=UI move=1]
+[bgm op=fade time=1 name=textGame move=0 des=停止游戏音乐] 
 [operation method=Fade obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=1.8]
-[bgm op=stop name=textGame move=0 des=停止游戏音乐]
 [env op=stop name=wave time=2 move=0]
 [image op=fade target=0 obj=black time=1 parent=UI move=1] 
 [ani name=back2ocean move=0]
@@ -132,7 +133,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [vp role=elpis name=elpiskx op=fade fade=0 time=0 move=0]
 [vp name=elpiskx role=elpis op=move2  x=0 y=-3.16 z=0 move=0 time=0]
 [vp name=elpiskx role=elpis op=scale  x=2.1 y=2.1 z=2.1 move=0 time=0]
-[bgm op=begin name=ocean time=2 move=0]
+[bgm op=begin name=ocean time=2]
 [vp role=elpis name=elpiskx op=fade fade=1 time=2 move=2]
 [clear move=0]
 [role name=Elpis save frame=ori sprite=elpiskx move=0.2]
