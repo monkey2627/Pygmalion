@@ -15,7 +15,10 @@ namespace Ani
         {
             PygmalionGameManager.Instance.ocean.gameObject.SetActive(false);
             PSceneManager.Instance._currentScene = null;
-            BGM.instance.Play("textGame");
+            if(TransAniManager.Instance.target=="elpis" || TransAniManager.Instance.target=="ym")
+                BGM.instance.Play("textGame");
+            else
+                BGM.instance.Play("BGM_Emptiness");
         }
 
         public void ShowCodeStream()

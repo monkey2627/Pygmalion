@@ -79,14 +79,6 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
     {
         instance = this;
     }
-    /// <summary>
-    /// 有更改，将初始化改到Textloader
-    /// </summary>
-    void Start ()
-    {
-      
-    }
-	
 	void Update () {
         if (start == true){
             NewLineCheck(ORIGINAL_TEXT);
@@ -146,18 +138,25 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
     /// <param name="POINTER"></param>
     /// <returns></returns>
     public string target;
+
+    private int voiceGap = 7;
+    private int voiceGapCount = 0;
     private IEnumerator MakeTypewriterText(string ORIGINAL, string POINTER)
     {
         start = false;
         if (сharIndex != ORIGINAL.Length + 1)
         {
-            string emptyString = new string(' ', ORIGINAL.Length-POINTER.Length);
+            string emptyString = new string(' ', ORIGINAL.Length - POINTER.Length);
             string TEXT = ORIGINAL.Substring(0, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
             gameObject.GetComponent<TMP_Text>().text = TEXT;
             /* ---------- 播放音效 ---------- */
-            if (ORIGINAL.Length > сharIndex) // 防止越界
-                 RoleVoice.instance.Role(target);
+            voiceGapCount++;
+            if (ORIGINAL.Length > сharIndex && voiceGapCount > voiceGap) // 防止越界
+            {        
+                    RoleVoice.instance.Role(target);
+                    voiceGapCount = 0;
+            }
             time += 1;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();

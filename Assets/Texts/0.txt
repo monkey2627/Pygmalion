@@ -19,7 +19,7 @@ Pygmalion！能听到吗？
 [operation obj=content parent=UI att=enable script=DialogClick content=true]
 [role name=Elpis]
 你好，Pygmalion，我是 Elpis！从今天起我就是你的搭档兼监察员啦！
-[role name=Pygmalion]
+[role name=Pygmalion sprite=none]
 你好，Elpis，很高兴认识你。
 [role name=Pygmalion]
 对不起，我好像刚从一个很长很长的梦里挣脱出来…
@@ -42,7 +42,7 @@ Pygmalion！能听到吗？
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
 [operation setActive=false obj=Dialog parent=UI move=0]
 [operation setActive=false obj=upperButtons parent=UI move=0]
-[bgm op=fade time=1 move=0]
+[bgm name=lab op=fade time=1 move=0]
 [image op=fade target=1 obj=black time=2 parent=UI move=3]
 [scene name=ocean load=1 move=0]
 [scene load=0 name=lab move=0]
@@ -122,6 +122,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [operation setActive=false obj=Dialog parent=UI move=0]
 [image op=fade target=1 obj=black time=1 parent=UI move=1]
 [bgm op=fade time=1 name=textGame move=0 des=停止游戏音乐] 
+[env op=stop time=1 name=highTide move=0 des=停止涨潮音乐] 
 [operation method=Fade obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=1.8]
 [env op=stop name=wave time=2 move=0]
 [image op=fade target=0 obj=black time=1 parent=UI move=1] 
@@ -129,8 +130,7 @@ Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析�
 [env op=beginOnce name=lowTide time=2 move=0]
 [scene name=ocean load=1 move=3]
 [env op=begin name=wave time=2 move=0]
-[vp role=elpis name=elpiskx op=change move=0]
-[vp role=elpis name=elpiskx op=fade fade=0 time=0 move=0]
+[vp role=elpis name=elpiskx op=change move=0 keepnone=1]
 [vp name=elpiskx role=elpis op=move2  x=0 y=-3.16 z=0 move=0 time=0]
 [vp name=elpiskx role=elpis op=scale  x=2.1 y=2.1 z=2.1 move=0 time=0]
 [bgm op=begin name=ocean time=2]

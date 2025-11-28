@@ -261,11 +261,9 @@ public class VpManager : MonoBehaviour
         }
     }
 
-    public void Change(string role, string vpName)
+    public void Change(string role, string vpName, bool keepUnsee)
     {
         RoleVp roleVp = _vps[role];
-        Debug.Log(roleVp.VpNow);
-        Debug.Log(vpName);
         _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color = new Color(
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.r,
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.g,
@@ -275,7 +273,7 @@ public class VpManager : MonoBehaviour
         _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color = new Color(
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.r,
             _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.g,
-            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.b,1);
+            _vps[role].VpsDictionary[roleVp.VpNow].GetComponent<SpriteRenderer>().color.b,keepUnsee?0:1);
     }
     
 }

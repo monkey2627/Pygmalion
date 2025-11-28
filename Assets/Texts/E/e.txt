@@ -54,6 +54,7 @@ Pygmalion……你眼前的这位患者是…皮格马利翁计划创始人之�
 这一切都是因为你！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=false obj=upperButtons parent=UI move=0]
+[operation setActive=true obj=labcrash parent=UI move=0]
 [alert]
 / / /ALERT – Bio-Perception Unit: Illicit emotional input detected. Containment Level Ω engaged. / / /
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -94,8 +95,10 @@ Eurydice，我只是一个被造来帮助每一位心理存在伤痛的患者找
 [role name=Eurydice frame=ori sprite=e]
 请便。
 [operation setActive=false obj=upperButtons parent=UI move=0]
+[bgm name=lab op=fade time=1 move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
 [image op=fade target=1 obj=black time=1 parent=UI move=1.1] 
+[bgm name=gallery op=begin time=1 move=0]
 [scene load=1 name=gallery move=0]
 [scene load=0 name=lab move=1]
 [image op=fade target=0 obj=black time=1 parent=UI move=1] 
@@ -114,6 +117,7 @@ Eurydice，我只是一个被造来帮助每一位心理存在伤痛的患者找
 连这都有？为什么？
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
 / / /ALERT – Bio-Perception Unit: Unauthorized environmental detail loaded. Initiating immediate purge sequence. Containment Level Z engaged./ / /
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -140,6 +144,7 @@ Pygmalion！集中你的处理资源！忽略这些刺激！
 [text op=fade time=0 move=0] 
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
 / / / ALERT – Memory Module Error: Unauthorized mnemonic fragment detected. Injecting additional emotional inhibitor into Brain-in-Vat system. Containment Level R engaged. / / /
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -170,6 +175,7 @@ Pygmalion！我警告过你！过滤所有非关键部分个人记忆与经历�
 [text op=fade time=0 move=0.5] 
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
 / / / ALERT – Neuro-Signal Irregularity Detected.Initiating forced sedation sequence. Containment Level Z engaged. / / /
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -188,6 +194,7 @@ Pygmalion！她的情感负载非常高，我需要你百分百专注于协议�
 [text op=fade time=0 move=0] 
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
+[operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
 / / / ALERT – Signal Corruption Detected. HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME / / /
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
@@ -208,10 +215,12 @@ Pygmalion！
 [operation setActive=false obj=Dialog parent=UI move=0]
 [operation setActive=true obj=gallerycrash parent=UI move=2]
 [operation setActive=false obj=gallerycrash parent=UI move=0]
+[bgm op=fade time=2 move=0]
 [image op=fade target=1 obj=black time=0 parent=UI move=0 des=屏幕闪现故障效果，0.5 秒后黑屏，一切操作禁止，bgm 暂停，5 秒钟后切换至海边场景]
 [scene name=gallery load=0 move=5]
 [scene name=ocean load=1 move=0]
 [image op=fade target=0 obj=black time=0.5 parent=UI move=0]
+[env op=begin name=wave time=2 move=0]
 [role name=Pygmalion frame=ori sprite=none move=0]
 ……
 [operation setActive=true obj=upperButtons parent=UI move=0]
@@ -252,12 +261,13 @@ Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
 …算了。开始吧。
 [role name=Eurydice frame=ori]
 让我看看，你能在这片“稳定的海”里捞出什么。
-[image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [operation setActive=false obj=Dialog parent=UI move=0]
 [operation setActive=false obj=upperButtons parent=UI move=1]
+[image op=fade target=0 obj=black time=0 parent=UI move=0] 
 [vp role=e name=e  op=fade fade=0 time=1 move=1]
-[ani name=water role=e move=0 des=涨潮动画开始播放时，Wave在2s内衰减至静音，之后停止播放]
-[bgm op=fade time=2 move=0 des=停止播放beach的bgm]
+[env op=begin name=highTide time=2 move=0]
+[ani name=water role=e move=0 des=涨潮动画开始播放时]
+[env op=stop name=wave time=2 move=0 des=涨潮动画开始播放时，Wave在2s内衰减至静音，之后停止播放]
 [env op=begin name=highTide time=2 des=涨潮音效在2s内从静音逐渐增加至0db,并且设置循环段]
 [sentence op=create]
     [sentenceEnd type=1 des=特殊]

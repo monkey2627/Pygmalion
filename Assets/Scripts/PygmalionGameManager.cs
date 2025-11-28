@@ -18,7 +18,6 @@ using Page = GamePlay.Page;
 public class PygmalionGameManager : MonoBehaviour
 {
     public static PygmalionGameManager Instance;
-    public bool isStoping;
     public GameObject dialog;
     public TMP_Text roleName;
     public Sprite[] roleSprites;
@@ -68,7 +67,6 @@ public class PygmalionGameManager : MonoBehaviour
 
     public void StopGame()
     {
-        isStoping = true;
         stopPanel.SetActive(true);
         upperButtons.SetActive(false);
         UIVoice.instance.OpenMenu();
@@ -499,15 +497,18 @@ public class PygmalionGameManager : MonoBehaviour
                     if (parsedTag["sprite"] == "none" && parsedTag["name"]=="Pygmalion")
                     {
                         roleHead.color = new Color(1, 1, 1, 1);
+                        roleHead.transform.DOScale(new Vector3(1.77f, 1.77f, 1.77f),0);
                         roleHead.sprite = _roleSpriteDict["Pygmalion"];
                     }
                     else if (parsedTag["sprite"] == "none")
                     {
                         roleHead.sprite = null;
                         roleHead.color = new Color(1, 1, 1, 0);
+                        roleHead.transform.DOScale(new Vector3(2.37f, 2.37f, 2.37f),0);
                     }else
                     {
                         roleHead.color = new Color(1, 1, 1, 1);
+                        roleHead.transform.DOScale(new Vector3(2.37f, 2.37f, 2.37f),0);
                         roleHead.sprite = _roleSpriteDict[parsedTag["sprite"]];
                     }
                 }
@@ -520,8 +521,7 @@ public class PygmalionGameManager : MonoBehaviour
                 {
                     roleName.text = parsedTag["name"];
                 }
-
-                tmregular.target = parsedTag["name"];
+                tmregular.target = !parsedTag.ContainsKey("voice") ? parsedTag["name"] : parsedTag["voice"];
                 //RoleVoice.instance.Role(parsedTag["name"]);
                 l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
                 TextLoader.Instance.Push(l); 
@@ -569,9 +569,6 @@ public class PygmalionGameManager : MonoBehaviour
                     }
                 }
                 break;
-            case "head":
-                roleHead.sprite = _roleSpriteDict[parsedTag["name"]];
-                break;
             case "ending":
                 endText.gameObject.SetActive(true);
                 endText.text = parsedTag["content"];
@@ -614,7 +611,7 @@ public class PygmalionGameManager : MonoBehaviour
                         VpManager.instance.Move2O(parsedTag["name"]);
                         break;
                     case "change":
-                        VpManager.instance.Change(role, vpname);
+                        VpManager.instance.Change(role, vpname, parsedTag.ContainsKey("keepnone"));
                         break;
                 }
                 break;
