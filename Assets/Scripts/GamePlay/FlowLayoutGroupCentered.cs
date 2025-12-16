@@ -77,6 +77,22 @@ namespace GamePlay
                     seg.anchoredPosition = v;
                 }
             }
+            //然后将layout的整体居中
+            int lineCount = lines.Count;
+            int offsety = (lineCount - 1) / 2 * 70;
+            if (lineCount % 2 == 0)
+            {
+                offsety = (lineCount - 1) * 70 / 2;
+            }
+            foreach (Line line in lines)
+            {
+                foreach (var seg in line.segments)
+                {
+                    Vector2 v = seg.anchoredPosition;
+                    v.y += offsety;
+                    seg.anchoredPosition = v;
+                }
+            }
         }
 
         /* 运行时加段接口照旧 */

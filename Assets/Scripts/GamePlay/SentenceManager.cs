@@ -44,7 +44,8 @@ using UnityEngine.Serialization;
         //根据单词的正确比例来载入对应的结局
         public void Confirm()
         {
-            PygmalionGameManager.Instance.isGameTime = false;
+            PygmalionGameManager.instance.upperButtons.SetActive(false);
+            PygmalionGameManager.instance.isGameTime = false;
           
             if(!enAbleConfirm) return;
             Fade();
@@ -64,41 +65,30 @@ using UnityEngine.Serialization;
                             }
                         }
                         float ans = right / all;
+                        print(ans);
                         if (ans > 0.8)
                         {
-                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[0]);
-                        }else if (ans < 0.5)
+                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[0]);
+                        }else if (ans > 0.5)
                         {
-                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[2]);
+                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[1]);
                         }
                         else
                         {
-                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
+                            PygmalionGameManager.instance.Change2ScriptAndReadLine(endScriptsList[2]);
                         }
                         break;
                     case ConfirmType.OnlyOneCorrect:
-                        print("special");
-                        print(paragraphs[7].pages[0].words[8].wordText.text);
-                        foreach (var VARIABLE in paragraphs[7].pages[0].words[8].answerList)
-                        {
-                            print(VARIABLE);
-                        }
-                        print(paragraphs[7].pages[0].words[8].answerList);
-                        if (paragraphs[7].pages[0].words[8].IsRight())
-                        {
-                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[1]);
-                        }
-                        else
-                        {
-                            PygmalionGameManager.Instance.Change2ScriptAndReadLine(endScriptsList[0]);
-
-                        }
+                        PygmalionGameManager.instance.Change2ScriptAndReadLine(paragraphs[7].pages[0].words[8].IsRight()
+                            ? endScriptsList[1]
+                            : endScriptsList[0]);
                         break;
                 }
             //销毁所有的句子
             foreach (var s in paragraphs)
             {
                 Destroy(s.gameObject);
+                paragraphs = new List<Paragraph>();
             }});
         }
         
@@ -107,7 +97,7 @@ using UnityEngine.Serialization;
         private class Archive
         {
             public int sentenceBeginPlace;
-            public int paragraphNow;
+            //public int paragraphNow; 不记录当前位置了，每次都是从最开始的封面开始
             public bool enAbleConfirm;
             public List<ParagraphSnapshot> paragraphs = new List<ParagraphSnapshot>();
         }
@@ -142,7 +132,7 @@ using UnityEngine.Serialization;
         {
             Archive archive = new Archive();
             archive.enAbleConfirm =  enAbleConfirm;
-            archive.paragraphNow = paragraphNow;
+           // archive.paragraphNow = paragraphNow;
             archive.sentenceBeginPlace =  sentenceBeginPlace;
             foreach (var paragraph in paragraphs)//遍历所有的para
             {
@@ -197,7 +187,7 @@ using UnityEngine.Serialization;
             enAbleConfirm = data.enAbleConfirm;
             endScriptsList = new List<string>();
             CreateSentence(-1);
-            paragraphNow = data.paragraphNow;
+            //paragraphNow = data.paragraphNow;
             for (int i = 0; i < paragraphs.Count; i++)
             {
                 var s   = paragraphs[i];
@@ -246,12 +236,13 @@ using UnityEngine.Serialization;
         public void NextPara(int nextParagraphNumber)
         {
             paragraphs[paragraphNow].gameObject.SetActive(false);
+            print(paragraphNow);
             paragraphNow = nextParagraphNumber;
             paragraphs[paragraphNow].gameObject.SetActive(true);
         }
         private void CreateSentence(int fatherSentenceNumber)
         {
-            GameObject cloneParagraph = Instantiate(PygmalionGameManager.Instance.paragraphCloneObj,transform);
+            GameObject cloneParagraph = Instantiate(PygmalionGameManager.instance.paragraphCloneObj,transform);
             cloneParagraph.GetComponent<Paragraph>().fatherSentenceNumber = fatherSentenceNumber;
             cloneParagraph.GetComponent<Paragraph>().pages = new List<Page>();
             cloneParagraph.GetComponent<Paragraph>().sentenceNumber = paragraphs.Count;
@@ -294,7 +285,7 @@ using UnityEngine.Serialization;
                     pageScript.paragraph = cloneParagraph.GetComponent<Paragraph>(); 
                     while (!string.Equals(parsedTag["tag"], "pageEnd", StringComparison.Ordinal))
                     {
-                        GameObject word = Instantiate(PygmalionGameManager.Instance.wordCloneObj,pageScript.layout.gameObject.transform);
+                        GameObject word = Instantiate(PygmalionGameManager.instance.wordCloneObj,pageScript.layout.gameObject.transform);
                         word.SetActive(true);
                         switch (parsedTag["type"])
                         {
@@ -414,8 +405,13 @@ using UnityEngine.Serialization;
                               l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[line++];
                               parsedTag = Utils.ParseLine(l);
                               word.GetComponent<Word>().dialogList = new List<Word.Dialog>();
+                              word.GetComponent<Word>().voiceList = new List<String>();
                               while(parsedTag["tag"] != "dialogEnd")
                               {
+                                  if(parsedTag.ContainsKey("voice")) 
+                                      word.GetComponent<Word>().voiceList.Add(parsedTag["voice"]);
+                                  else 
+                                      word.GetComponent<Word>().voiceList.Add("none");
                                   word.GetComponent<Word>().dialogList.Add(new Word.Dialog(){Name = parsedTag["role"],Text = parsedTag["content"]});
                                   l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[line++];
                                   parsedTag = Utils.ParseLine(l);
@@ -449,16 +445,26 @@ using UnityEngine.Serialization;
                 File.Delete(Path.Combine(Application.persistentDataPath, PersonSaveFile));
             for (int i = 0; i < paragraphs.Count; i++)
             {
-                var s   = paragraphs[i];
-                foreach (var page in s.pages)
+                print(paragraphs.Count);
+                if (paragraphs[i].gameObject)
                 {
-                    for (int j = 0; j < page.words.Count; j++)
+                    var s = paragraphs[i];
+                    foreach (var page in s.pages)
                     {
-                       Destroy(page.words[j].gameObject); 
+                        if (page)
+                        {
+                            for (int j = 0; j < page.words.Count; j++)
+                            {
+                                if (page.words[j].gameObject)
+                                    Destroy(page.words[j].gameObject);
+                            }
+
+                            Destroy(page.gameObject);
+                        }
                     }
-                    Destroy(page.gameObject);
+
+                    Destroy(paragraphs[i].gameObject);
                 }
-                Destroy(paragraphs[i].gameObject);
             }
         }
 

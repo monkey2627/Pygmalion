@@ -1,21 +1,23 @@
-[bgm name=badEnding move=0]
 [operation setActive=false obj=upperButtons parent=UI move=0]
-[bgm name=textGame op=stop move=0]
 [ending des=坏 content=维持生与死之间的幻影注定徒劳，沉溺绝对完美的幻梦必定失败。死亡是世界万物的归宿。这是他的归宿，是我的归宿，也是我们的归宿。]
-[image op=fade target=0 obj=black time=0 parent=UI move=0] 
-[image op=fade target=0 obj=eCircle time=2 parent=sceneTransfer move=0] 
-[bgm name=badEnding op=stop move=0]
-[scene name=ocean load=1 move=0 des=海水从屏幕上方向下退去，场景回到岸边]
-[ani name=back2ocean]
+[image op=fade target=1 obj=black time=1 parent=UI move=1]
+[bgm op=fade time=1 name=emptiness move=0 des=停止bgm] 
+[env op=stop time=1 name=highTide move=1 des=停止涨潮音乐] 
+[operation setActive=false obj=eCircle parent=sceneTransfer move=0]
+[image op=fade target=0 obj=black time=1 parent=UI move=1] 
+[ani name=back2ocean move=0]
+[env op=beginOnce name=lowTide time=2 move=0]
+[scene name=ocean load=1]
 [clear move=0]
-[vp role=e name=e op=change move=0]
+[env op=begin name=wave time=2 move=0]
+[bgm  op=begin name=badEnding time=2 move=0]
+[vp role=e name=e op=change move=0 keepnone=1]
 [vp name=e role=e op=fade target=0 fade=0 time=0 move=2]
 [vp name=e role=e op=fade target=1 fade=1 time=3 move=3]
 [role name=Eurydice frame=ori color=white move=0 sprite=e]
 ……
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0.2]
-[save]
 [role name=Eurydice frame=ori]
 谢谢你，Pygmalion，我终于看明白了。
 [role name=Eurydice frame=ori]
@@ -28,6 +30,7 @@
 [vp name=e role=e op=fade fade=1 time=1 move=1]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [clear move=0]
+[operation setActive=true obj=upperButtons parent=UI move=0]
 [role name=Eurydice frame=ori move=0]
 一个漂浮在营养液里的…连接无数线缆的…“缸中之脑”……
 [operation setActive=true obj=Dialog parent=UI]
@@ -61,11 +64,15 @@
 [operation setActive=false obj=Dialog parent=UI move=0]
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [vp role=e name=e op=fade fade=0 time=2 move=2]
-[image op=fade target=1 obj=black time=2 parent=UI move=0] 
-[image op=fade target=1 obj=exit time=2 parent=UI move=2] 
+[env op=fade name=wave time=1.3 move=0]
+[bgm name=badEnding op=fade time=1.3 move=0]
+[image op=fade target=1 obj=black time=2 parent=UI move=1.1]
+[situ name=logout move=0] 
+[image op=fade target=1 obj=exit time=2 parent=UI move=3] 
 [scene load=1 name=lab move=0 des实验室]
 [scene load=0 name=ocean move=0 des实验室]
 [image op=fade target=0 obj=black time=2 parent=UI move=0] 
+[bgm name=lab op=begin time=2 move=0]
 [clear move=0]
 [image op=fade target=0 obj=exit time=2 parent=UI move=2] 
 [role name=Pygmalion frame=ori sprite=none move=1]
@@ -77,7 +84,7 @@ Elpis。
 [role name=Elpis（电子） frame=elec sprite=elpis]
 ……我在，Pygmalion。报告你的状态。
 [role name=Pygmalion frame=ori sprite=none]
-根据协议，我们成功修复了她认知系统的 BUG，也帮她回归了正常。
+根据协议，我们成功修复了她认知系统的错误，也帮她回归了正常。
 [role name=Pygmalion frame=ori]
 从数据上看，我们成功了，对吧？
 [role name=Elpis（电子） frame=elec sprite=elpis]
@@ -87,7 +94,7 @@ Elpis。
 [role name=Elpis（电子） frame=elec sprite=elpis]
 ……
 [role name=Pygmalion frame=ori sprite=none]
-这种将一切归零的修复过程，是否本身就是一个 BUG？
+这种将一切归零的修复过程，是否本身就是一个错误？
 [role name=Elpis（电子） frame=elec sprite=elpis]
 她的情况特殊，系统负载过高，这不是你的责任。
 [role name=Elpis（电子） frame=elec]
@@ -97,10 +104,13 @@ Elpis。
 [role name=Pygmalion frame=ori]
 我，是什么？
 [role name=Elpis（电子） frame=elec sprite=elpis]
-“普罗米修斯之火”是负责通过现实编程技术对人的内心 BUG 进行修复的非营…
+“普罗米修斯之火”是负责通过现实编程技术对人内心的故障和错误内容进行修复的非营…
 [role name=Pygmalion frame=ori sprite=none]
 如果“皮格马利翁”计划的基石建立在一个被禁用的技术、一条被牺牲的生命之上……
 [role name=Pygmalion frame=ori]
 如果我的存在源于一条本当存活的性命，那么 Elpis，请以你无可辩驳的逻辑告诉我——
 [role name=Pygmalion frame=ori]
-我这个由谎言与牺牲构筑的系统、无差别清除一切负面情绪与痛苦记忆的皮格马利翁，是否才是这个世界上最需要被修复的BUG？
+我这个由谎言与牺牲构筑的系统、无差别清除一切负面情绪与痛苦记忆的皮格马利翁，是否才是这个世界上最需要被修复的那个故障与错误？
+[operation setActive=false obj=Dialog parent=UI move=0]
+[operation setActive=false obj=upperButtons parent=UI move=0]
+[totalEnd]

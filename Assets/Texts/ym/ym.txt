@@ -28,7 +28,7 @@
 [role name=Pygmalion frame=ori sprite=none]
 你好，一鸣。我是 Pygmalion，你的心理治疗师。你现在看到的只是内心深处最思念的那个人形象的投影。
 [role name=Pygmalion]
-虽然我并非他本人，但请相信，无论是我还是他，我们同样希望你能变得更好。
+我并非他本人，但即便如此还请相信，无论是我还是他，我们同样希望你能变得更好。
 [vp role=ym name=ymlm op=change des=落寞脸，闭眼脸，平静脸 move=0]
 [role name=一鸣 sprite=ymlm]
 ……
@@ -63,7 +63,7 @@
 [role name=一鸣]
 哈，当然我明白，也许早就消失了吧，只是我一直还在单方面抱有幻想而已。
 [role name=一鸣]
-这是我的报应，毕竟我让所有人都失望了，包括……包括天上的爷爷。
+这是我的报应，毕竟我让所有人都失望了，包括……天上的爷爷。
 [role name=Pygmalion sprite=none]
 根据你接入系统前提供的信息，你今天才刚刚成年。
 [role name=Pygmalion]
@@ -108,14 +108,14 @@
 [role name=Pygmalion]
 当然，你可以在这里多待一会。难得是个挺安静的地方，适合停下来思考。
 [role name=Pygmalion]
-等你准备好了，我们需要你在“意识之海”中全身心地放松，这样你的心才会展开、意识才会发散，那些困扰你的BUG情绪也会清晰地呈现在我眼前。
+等你准备好了，我们需要你在“意识之海”中全身心地放松，这样你的心才会展开、意识才会发散，那些困扰你的出现故障的情绪也会清晰地呈现在我眼前。
 [role name=Pygmalion]
 我们对症下药。
 [vp role=ym name=ymbywx op=change move=0]
 [role name=一鸣 sprite=ymbywx]
-哈哈，虽然之前已经有所了解和准备，但听到你把出现问题的情绪描述为BUG还是让我觉得有点……嗯，我也不知道怎么说。
+哈哈，虽然之前已经有所了解和准备，但听到你把出现问题的情绪描述为一种故障还是让我觉得有点……嗯，我也不知道怎么说。
 [role name=一鸣]
-其实我前些天也和学校的心理老师讨论过这件事。她问我：“你确定人的心理问题是一种BUG？”我回答：“你确定它不是BUG？”
+其实我前些天也和学校的心理老师讨论过这件事。她问我：“你确定人的心理问题是一种故障，是不该出现的错误？”我回答：“你确定它不是吗？”
 [role name=一鸣]
 她认为人的情绪总该由人慢慢吸收、慢慢形成一层厚厚的壳，这样才不会再对类似的事情感到害怕。她管这叫作“成长”。
 [role name=一鸣]
@@ -157,10 +157,10 @@
                 有时出现在我脑海里
                 [word type=0 content=。高考，它证明了我过去的]
                 [word type=6 content=所有努力 pic=书桌 end=没考上好学校的话……这么些年的所有努力，不就都成了一场笑话吗。]
-                [dialog role=??	 content=儿子，都凌晨两点了，又趴桌子上睡着了？快起来喝杯牛奶，去床上睡吧。]
-                [dialog role=??	 content=……妈…不用管我，这个模块马上就要写完了。没写完我睡不好。]
-                [dialog role=??	 content=唉…身体更重要。你说你这么拼，要是…]
-                [dialog role=??	 content=没有“要是”！我知道的，你们在我身上付出了很多，我一定不会让你们失望的。]
+                    [dialog role=??	 content=儿子，都凌晨两点了，又趴桌子上睡着了？快起来喝杯牛奶，去床上睡吧。]
+                    [dialog voice=ym role=??	 content=……妈…不用管我，这个模块马上就要写完了。没写完我睡不好。]
+                    [dialog role=??	 content=唉…身体更重要。你说你这么拼，要是…]
+                    [dialog voice=ym role=??	 content=没有“要是”！我知道的，你们在我身上付出了很多，我一定不会让你们失望的。]
                 [dialogEnd]
                 [word type=2 content=都只是一场笑话 changeNumber=1 changeDialog=true scriptLine=0 scriptName=ymsupport right=1]
                 从来都不会有结果
@@ -168,7 +168,7 @@
                 [word type=2 content=注定徒劳 changeNumber=1 right=2]
                 需要加倍努力
                 [word type=0 content=。]
-                [word type=0 content=我完了，我的人生出了一个BUG。未来画卷才]
+                [word type=0 content=我完了，我的人生出了一个故障。未来画卷才]
                 [word type=0 content=刚要展开，就被泼上了洗不去的墨汁]
                 [word type=2 content=，再也无法弥补…… changeNumber=1 right=0]
                 ，但以后的事，谁又说得准呢……
@@ -183,29 +183,29 @@
                 、期待我的坚强
                 [word type=0 content=吧……我尤其在意]
                 [word type=6 content=李明那伙人 pic=2犹犹豫豫伸出去的手 end=李明虽然成绩不好，但他是班里甚至年级的中心，似乎天生就有着学不来的幽默和松弛……真羡慕啊。我曾经试着融入他们，聊他们喜欢的游戏和电视剧，但总觉得格格不入，就像一只笨拙的企鹅在模仿人类走路。]
-                [dialog role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
-                [dialog role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
-                [dialog role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我1v1，看我灭了你的傲气！]
-                [dialog role=??	 content=(开心的大笑)说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
+                    [dialog voice=ym role=??? content=李明，我昨天听到你们在说新出的那个《泄气骑士》，我——]
+                    [dialog voice=Voice_Liming role=??	 content=（大声打断）李明我跟你赌一瓶可乐，下午比赛我们班一定赢！]
+                    [dialog voice=Voice_Liming role=??	 content=什么？“手下败将”竟敢如此大胆！敢不敢先去跟我1v1，看我灭了你的傲气！]
+                    [dialog voice=Voice_Liming role=??	 content=(开心的大笑)说得跟你上次赢了似的！走吧走吧别磨蹭，谁晚到谁请客啊。]
                 [dialogEnd]
                 [word type=0 content=的目光，毕业典礼上他们的每一次窃窃私语]
                 [word type=2 content=都像在议论我的不堪 changeNumber=1 right=2]
                 都只是在聊一些无意义的事罢了
                 [word type=0 content=，见到我时的回避态度也]
-                [word type=2 content=像拿针扎一样伤人 changeNumber=1 right=2]
-                证明我们不是一路人
-                [word type=0 content=人。但让我压力倍增的是]
+                [word type=2 content=像拿针扎一样伤人。 changeNumber=1 right=2]
+                证明我们不是一路人。
+                [word type=0 content=但让我压力倍增的是]
                 [word type=1 content=我未能理解 right=1]
                 [word type=6 content=张老师 pic=3空旷的未来教室 end=我不能让您失望。]
-                [dialog role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
-                [dialog role=???	 content=谢谢老师…我会保持的。]
-                [dialog role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
-                [dialog role=??	 content=记住，越是到了最后关头，就越要稳住。咱们学校、咱班今年的荣誉，你可是扛大旗的。千万别像有些学生，到最后泄了气，那就太可惜了。]
+                    [dialog voice=Voice_Teacher role=?? content=一鸣，最近几次模拟考，你的成绩非常稳定。照这个趋势，冲击顶尖的那几所大学是很有希望的。]
+                    [dialog voice=ym role=???	 content=谢谢老师…我会保持的。]
+                    [dialog voice=Voice_Teacher role=??	 content=（拿起喷水壶给绿植喷水）嗯，老师相信你。你和我以前带过的一些学生不一样，你更沉得住气，也肯下苦功。]
+                    [dialog voice=Voice_Teacher role=??	 content=记住，越是到了最后关头，就越要稳住。咱们学校、咱班今年的荣誉，你可是扛大旗的。千万别像有些学生，到最后泄了气，那就太可惜了。]
                 [dialogEnd]
                 [word type=2 content=关切的目光 changeNumber=1 right=2]
                 私下谈话里的深意
                 [word type=0 content=和父母那种小心翼翼、绝口不提的态度，仿佛他们认定我真的……]
-                [word type=2 content=坏了、出了BUG……是啊，他们都认为 changeNumber=1 right=0]
+                [word type=2 content=坏了、出了故障……是啊，他们都认为 changeNumber=1 right=0]
                 会重新规划好自己的人生
                 [word type=0 content=……]
                 [word type=2 content=是啊，他们都认为 changeNumber=1 right=0]
@@ -221,11 +221,11 @@
                 “我看不清眼前的路。
                 [word type=0 content=那么…复读？我没有勇气再经历一次那种]
                 [word type=6 content=折磨 pic=3空旷的未来教室 end=早复习、晚自习、长考试、少休息。年少时渴慕探索的星空下，无数的我们抛开天真与好奇向那薄而窄的木桥走去。没有人告诉过我们摔下去的人还能否拥有未来、而走过去的人又是否真的拥有未来。]
-                    [dialog role=?? content=啊，总算把这套卷子啃完了！这一年题怎么这么难啊……]
-                    [dialog role=??	 content=一鸣，你说，等高考结束了，你最想干什么？]
-                    [dialog role=???	 content=高考结束吗…我没想过。]
-                    [dialog role=??	 content=有时候我会想啊，我们现在做的这一切，到底是为了什么？]
-                    [dialog role=???	 content=为了未来啊。老师、家长不都这么说吗？挤过这座独木桥，就好了。]
+                    [dialog voice=Voice_Classmate role=?? content=啊，总算把这套卷子啃完了！这一年题怎么这么难啊……]
+                    [dialog voice=Voice_Classmate role=??	 content=一鸣，你说，等高考结束了，你最想干什么？]
+                    [dialog voice=ym role=???	 content=高考结束吗…我没想过。]
+                    [dialog voice=Voice_Classmate role=?? content=有时候我会想啊，我们现在做的这一切，到底是为了什么？]
+                    [dialog voice=ym role=???	 content=为了未来啊。老师、家长不都这么说吗？挤过这座独木桥，就好了。]
                 [dialogEnd]
                 [word type=0 content=。进入社会？我一个]
                 [word type=1 content=当下别人看来的 right=0]
@@ -248,20 +248,20 @@
 [end move=0]
 [operation obj=sentenceManager parent=UI att=enAbleConfirm script=SentenceManager content=false move=0]
 [clear move=0]
-[role name=Elpis（电子） frame=elec sprite=elpis move=0]
-嗯…虽然我不是很了解 EA 区啦，但感觉不管是在世界上的哪一个地方，又是处于什么样的年纪，大家都不是很开心呢……
+[role name=Elpis（电子） frame=elec sprite=elpis move=0 voice=Voice_elpis_Electronic]
+嗯…虽然我不是很了解EA区啦，但感觉不管是在世界上的哪一个地方，又是处于什么样的年纪，大家都不是很开心呢……
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]
-[save]
-[role name=Elpis（电子） frame=elec sprite=elpis]
+[save text=嗯…虽然我不是很了解EA区啦，但感觉不管是在世界上的哪一个地方，又是处于什么样的年纪，大家都不是很开心呢……]
+[role name=Elpis（电子） frame=elec sprite=elpis voice=Voice_elpis_Electronic]
 不过正因如此，我们的工作才更有意义吧！
-[role name=Elpis（电子） frame=elec sprite=elpis]
+[role name=Elpis（电子） frame=elec sprite=elpis voice=Voice_elpis_Electronic]
 咦？你问红色的部分是什么？你真的不记得了？
-[role name=Elpis（电子） frame=elec sprite=elpis]
+[role name=Elpis（电子） frame=elec sprite=elpis voice=Voice_elpis_Electronic]
 嗯好吧,我和你解释一遍好啦。
-[role name=Elpis（电子） frame=elec sprite=elpis]
-这些红色的部分同样是不可直接修改的。不过你可以试着点它进行“展开”，那些出现BUG的情绪也许就隐藏在这些展开的内容之中，需要你进行修复。而当你最终确定治疗内容全部完成时，这些红色的部分也会自动进行调整。毕竟人总会把各种奇怪的逻辑捋通顺的嘛，对吧？
+[role name=Elpis（电子） frame=elec sprite=elpis voice=Voice_elpis_Electronic]
+这些红色的部分同样是不可直接修改的。不过你可以试着点它进行“展开”，那些出现故障的情绪也许就隐藏在这些展开的内容之中，需要你进行修复。而当你最终确定治疗内容全部完成时，这些红色的部分也会自动进行调整。毕竟人总会把各种奇怪的逻辑捋通顺的嘛，对吧？
 [sentence op=enableEvery move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]

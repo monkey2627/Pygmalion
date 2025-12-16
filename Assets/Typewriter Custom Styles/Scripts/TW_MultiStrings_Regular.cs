@@ -62,7 +62,6 @@ public class TW_MultiStrings_Regular_Editor : Editor
 public class TW_MultiStrings_Regular : MonoBehaviour {
 
     public static TW_MultiStrings_Regular instance;
-    public bool LaunchOnStart = true;
     public int timeOut = 1;
     public List<string> MultiStrings = new List<string>();
     [HideInInspector]
@@ -71,7 +70,6 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
 
     private float time = 0f;
     private int сharIndex = 0;
-    private int index_of_string = 0;
     private bool start;
     private List<int> n_l_list;
     private static string[] PointerSymbols = { "None", "<", "_", "|", ">" };
@@ -139,7 +137,7 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
     /// <returns></returns>
     public string target;
 
-    private int voiceGap = 7;
+    private int voiceGap = 4;
     private int voiceGapCount = 0;
     private IEnumerator MakeTypewriterText(string ORIGINAL, string POINTER)
     {
@@ -153,7 +151,8 @@ public class TW_MultiStrings_Regular : MonoBehaviour {
             /* ---------- 播放音效 ---------- */
             voiceGapCount++;
             if (ORIGINAL.Length > сharIndex && voiceGapCount > voiceGap) // 防止越界
-            {        
+            {       
+                print("saying"+target);
                     RoleVoice.instance.Role(target);
                     voiceGapCount = 0;
             }

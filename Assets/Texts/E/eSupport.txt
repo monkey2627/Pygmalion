@@ -1,7 +1,8 @@
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [sentence op=disableEvery move=3]
 [operation setActive=true obj=Dialog parent=UI move=0]
-[role name=?? frame=back sprite=sm color=black]
+[situ name=noise move=0]
+[role name=?? frame=back sprite=sm color=black voice=]
 你确定，这个不是BUG吗？
 [sentence op=enableEvery move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]

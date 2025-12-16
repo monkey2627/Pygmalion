@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DialogClick : MonoBehaviour,IPointerClickHandler
+public class DialogClick : MonoBehaviour
 {
     public TW_MultiStrings_Regular regular;
     public bool enable = true;
-    public void OnPointerClick(PointerEventData eventData)
+    public void Click()
     {
         if (enable)
         {
@@ -17,7 +17,7 @@ public class DialogClick : MonoBehaviour,IPointerClickHandler
             }
             else
             {
-                PygmalionGameManager.Instance.ReadLine();
+                PygmalionGameManager.instance.ReadLine();
             }
         }
     }

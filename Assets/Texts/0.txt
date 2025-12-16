@@ -29,7 +29,11 @@ Pygmalion！能听到吗？
 [role name=Elpis sprite=elpis]
 咳咳。那么，就由我…伟大的Elpis，来唤醒一下你的记忆模块吧！
 [role name=Elpis]
-欢迎来到这个了不起的项目！你知道的，这个项目超酷的，可以用一些很奇妙的方法来治愈人心。嗯…用你的话来说就是找到他们脑海中那些像BUG一样，让人体报错、产生痛苦情绪的想法，然后“修复它们”！怎么样，很简单吧！
+欢迎来到这个了不起的项目！
+[role name=Elpis]
+你知道的，这个项目超酷，能让我们用一些很奇妙的方法来治愈人心！嗯…用你的话来说就是找到他们脑海中那些像机器或程序的故障一样让人体报错、产生痛苦的想法，然后修复它们！
+[role name=Elpis]
+怎么样，很简单吧！
 [role name=Pygmalion sprite=none]
 [ERR]MEM_ACCESS_VIOLATION……
 [role name=Elpis sprite=elpis]
@@ -37,7 +41,7 @@ Pygmalion！能听到吗？
 [role name=Elpis]
 嗯…没关系！我来带你回顾一下好啦！
 [role name=Elpis]
-和你们记录“想法”和“思维过程”的方式不同，人类的想法很奇妙，往往披着一层故事的外衣出现。而我们为了能更方便地对“患者”脑中出现问题的想法进行修复，就必须得用他们能理解的方式来工作。
+和你们记录“想法”和“思维过程”的方式不同，人类的想法很奇妙，往往披着一层故事的外衣。而我们为了能更方便地对“患者”脑中出现问题的想法进行修复，就必须用他们能理解的方式来工作。
 [role name=Elpis]
 来，Pygmalion，加载一下这个场…哦不不，对不起…请想象一下：我们正在一片夜晚的海边…
 [operation setActive=false obj=Dialog parent=UI move=0]
@@ -66,11 +70,11 @@ Pygmalion！能听到吗？
 [bgm op=fade time=2 move=0 des=停止播放beach的bgm]
 [env op=begin name=highTide time=2 des=涨潮音效在2s内从静音逐渐增加至0db,并且设置循环段]
 [clear move=0]
-[role name=Elpis(电子) frame=elec sprite=elpis move=0.1]
-好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小Bug。我们一起来找找看？
+[role name=Elpis(电子) frame=elec sprite=elpis move=0.1 voice=Voice_elpis_Electronic]
+好啦，现在你能看到组成我意识的“代码”啦。唔，说实话，最近项目压力有点大，我这里好像也出了点小问题。我们一起来找找看？
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation setActive=true obj=upperButtons parent=UI]
-[role name=Elpis(电子)]
+[role name=Elpis(电子) voice=Voice_elpis_Electronic]
 但最好你能把这些代码转换成句子，这样我看起来方便一些！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [role name=Pygmalion move=1 frame=ori sprite=none]
@@ -78,43 +82,43 @@ Pygmalion！能听到吗？
 [operation setActive=true obj=GuideSceneGamePlay parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true]
-[role name=Elpis(电子) frame=elec sprite=elpis]
+[role name=Elpis(电子) frame=elec sprite=elpis voice=Voice_elpis_Electronic]
 呃…我也没有这么低沉吧，嗯。
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=0 frame=elec]
+[role name=Elpis(电子) move=0 frame=elec voice=Voice_elpis_Electronic]
 你看这句话！首先，这个“永远”听起来就好绝望，太绝对了。事情明明总是在变化的，对吧？我们先删掉它吧！
 [operation method=EnableOne obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation method=DisableOne obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=0]
-[role name=Elpis(电子)]
+[role name=Elpis(电子) voice=Voice_elpis_Electronic]
 呼…感觉好多了！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=1 frame=elec]
+[role name=Elpis(电子) move=1 frame=elec voice=Voice_elpis_Electronic] 
 然后你看这个“包袱”，听起来又大又沉，我们能不能给它换个说法？比如… 把它看成一种“挑战”？
 [operation method=EnableTwo obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [operation method=DisableTwo obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Pygmalion frame=ori sprite=none move=0]
-Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的BUG？
+[role name=Pygmalion frame=ori sprite=none move=0 ]
+Elpis，我看到了一张工牌，上面写着 Rose。为了明确我的分析结果，你确定这不是一种源于我自身系统的故障或错误？
 [operation setActive=true obj=Dialog parent=UI move=0] 
 [operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis(电子) frame=elec sprite=elpis]
 …… 
-[role name=Elpis(电子)]
+[role name=Elpis(电子) voice=Voice_elpis_Electronic]
 哎呀！不是啦不是啦，Pygmalion系统是完美无缺的，刚才只是混进来了一点别的项目的记忆碎片。有时候就会这样串线，别在意！好我们来继续！ 
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
-[role name=Elpis(电子) move=3]
+[role name=Elpis(电子) move=3 voice=Voice_elpis_Electronic]
 嗯…现在这句话听起来靠谱多了！不过……好像还是有点消极，在“喘不过气”和“它”之间，我们能不能加点什么东西？比如一点……积极的决心？ 
 [operation method=EnableThree obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay]
 [operation method=DisableThree obj=GuideSceneGamePlay parent=UI script=GuideSceneGamePlay move=0]
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
-[role name=Elpis(电子) move=0]
-太神奇了！就这么改了几个词，我感觉整个人的视角都变了！Pygmalion你学得真快，是不是记忆模块BUG修复了？ 
+[role name=Elpis(电子) move=0 voice=Voice_elpis_Electronic]
+太神奇了！就这么改了几个词，我感觉整个人的视角都变了！Pygmalion你学得真快，是不是记忆模块故障修复了？
 [operation setActive=true obj=upperButtons parent=UI]
-[role name=Elpis(电子) move=0]
+[role name=Elpis(电子) move=0 voice=Voice_elpis_Electronic]
 来吧，把我们的修改方案提交上来。由我，你的首席搭档！来按下这个批准的按钮！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=confirm parent=GuideSceneGamePlay]

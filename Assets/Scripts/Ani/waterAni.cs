@@ -13,12 +13,12 @@ namespace Ani
         
         public void closeocean()
         {
-            PygmalionGameManager.Instance.ocean.gameObject.SetActive(false);
+            PygmalionGameManager.instance.ocean.gameObject.SetActive(false);
             PSceneManager.Instance._currentScene = null;
             if(TransAniManager.Instance.target=="elpis" || TransAniManager.Instance.target=="ym")
                 BGM.instance.Play("textGame");
             else
-                BGM.instance.Play("BGM_Emptiness");
+                BGM.instance.Play("emptiness");
         }
 
         public void ShowCodeStream()

@@ -29,6 +29,7 @@ namespace GamePlay
         //Type = 6时，所对应的静态图名字
         public string pic;
         public List<Dialog> dialogList;
+        public List<String> voiceList;
         public string endText;
         public bool enable = false;
         public GameObject click2Board;
@@ -130,7 +131,7 @@ namespace GamePlay
                 return;
             }
             if(!isSingleClick) return;
-            PygmalionGameManager.Instance.upperButtons.SetActive(false);
+            PygmalionGameManager.instance.upperButtons.SetActive(false);
             print("单机"+wordText.text);
             isPanel = true;
             page.ClosePanel();
@@ -143,15 +144,27 @@ namespace GamePlay
                     if(!playedAdd)
                         click1Board.SetActive(true);
                     else
-                        PygmalionGameManager.Instance.upperButtons.SetActive(true);
+                        PygmalionGameManager.instance.upperButtons.SetActive(true);
                     break;
                 case 2://替换或者删除,同样每种小游戏只能玩儿一次
                     changeChoice.SetActive(!playedChange);
                     deleteChoice.SetActive(!playedDelete);
                     click2Board.SetActive(true);
                     break;
-                case 3://单击没反应，双击才有用
-                    PygmalionGameManager.Instance.upperButtons.SetActive(true);
+                case 3://红字进入下一张
+                    print(SentenceManager.instance.paragraphNow);
+                    PygmalionGameManager.instance.upperButtons.SetActive(true);
+                    if (hasSpecial2NextPara && !hasRun)
+                    {
+                        SentenceManager.instance.enable = false;
+                        PygmalionGameManager.instance.Change2ScriptAndReadLine("eSupport",0);
+                        hasRun = true;
+                    }
+                    else
+                    {
+                        PygmalionGameManager.instance.upperButtons.SetActive(true);
+                    }
+                    SentenceManager.instance.NextPara(nextParagraphNumber);
                     break;
                 case 4://删除
                     changeChoice.SetActive(false);
@@ -162,6 +175,11 @@ namespace GamePlay
                     changeChoice.SetActive(!playedChange);
                     deleteChoice.SetActive(false);
                     click2Board.SetActive(true);
+                    break; 
+                case 6:
+                    SentenceManager.instance.DisAbleThisPara();//关闭当前para
+                    PygmalionGameManager.instance.upperButtons.SetActive(false);//关闭存档功能
+                    SentenceDialog.Instance.Show(pic, dialogList, endText,this,voiceList);
                     break;
             }
    
@@ -175,7 +193,7 @@ namespace GamePlay
             // 取消即将执行的单击
             CancelInvoke(nameof(OnSingleClick));
             if(guideTime) return;
-            PygmalionGameManager.Instance.upperButtons.SetActive(false);
+            PygmalionGameManager.instance.upperButtons.SetActive(false);
             isPanel = true;
             page.ClosePanel();
             switch (wordType)
@@ -190,19 +208,7 @@ namespace GamePlay
                     doubleClick2Board.GetComponent<DoubleClick2Board>().Show(playedChange,playedDelete,this);
                     doubleClick2Board.SetActive(true);
                     break;
-                case 3://进入对应的下一个para
-                    if (hasSpecial2NextPara && !hasRun)
-                    {
-                        SentenceManager.instance.enable = false;
-                        print("move");
-                        PygmalionGameManager.Instance.Change2ScriptAndReadLine("eSupport",0);
-                        hasRun = true;
-                    }
-                    else
-                    {
-                        PygmalionGameManager.Instance.upperButtons.SetActive(true);
-                    }
-                    SentenceManager.instance.NextPara(nextParagraphNumber);
+                case 3:
                     break;
                 case 4://删除
                     if (!special)
@@ -217,9 +223,7 @@ namespace GamePlay
                     doubleClick2Board.SetActive(true);
                     break;
                 case 6://出现图
-                    SentenceManager.instance.DisAbleThisPara();//关闭当前para
-                    PygmalionGameManager.Instance.upperButtons.SetActive(false);//关闭存档功能
-                    SentenceDialog.Instance.Show(pic, dialogList, endText,this);
+                    
                     break;
             }
         }
@@ -231,7 +235,7 @@ namespace GamePlay
             SentenceManager.instance.wordClicked = this;
             page.paragraph.gameObject.SetActive(false);
             mainCamera.SetActive(false);
-            PygmalionGameManager.Instance.dialog.SetActive(false);
+            PygmalionGameManager.instance.dialog.SetActive(false);
             KhockManager.instance.word = this;
             KhockManager.instance.guideWord = null;
             print("play");
@@ -251,7 +255,7 @@ namespace GamePlay
             SentenceManager.instance.wordClicked = this;
             page.paragraph.gameObject.SetActive(false);
             mainCamera.SetActive(false);
-            PygmalionGameManager.Instance.dialog.SetActive(false);
+            PygmalionGameManager.instance.dialog.SetActive(false);
             PushBoxGameManager.instance.word = this;
             PushBoxGameManager.instance.guideWord = null;
             PushBoxGameManager.instance.Play();
@@ -279,7 +283,7 @@ namespace GamePlay
             playedDelete = true;
             RefreshBox2d();
             page.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
-            PygmalionGameManager.Instance.upperButtons.SetActive(true);
+            PygmalionGameManager.instance.upperButtons.SetActive(true);
             page.paragraph.gameObject.SetActive(true);
             if (special)
             {
@@ -296,8 +300,7 @@ namespace GamePlay
                             
                         }
                     }
-                print("delete");
-                enable = false;
+                    enable = false;
             }
             else
             {
@@ -313,12 +316,12 @@ namespace GamePlay
             playedChange = true;
             page.layout.gameObject.GetComponent<FlowLayoutGroupCentered>().Refresh();
             {
-                PygmalionGameManager.Instance.upperButtons.SetActive(true);
+                PygmalionGameManager.instance.upperButtons.SetActive(true);
                 page.paragraph.gameObject.SetActive(true);
                 mainCamera.SetActive(true);
                 if (changeDialog)
                 {
-                    PygmalionGameManager.Instance.Change2ScriptAndReadLine(scriptName,scriptLine);
+                    PygmalionGameManager.instance.Change2ScriptAndReadLine(scriptName,scriptLine);
                 }
             }
         }
@@ -336,15 +339,15 @@ namespace GamePlay
             if (guideTime)
             {
                 page.paragraph.gameObject.SetActive(true);
-                PygmalionGameManager.Instance.ReadLine();
+                PygmalionGameManager.instance.ReadLine();
             }
             else
             {
-                PygmalionGameManager.Instance.upperButtons.SetActive(true);
+                PygmalionGameManager.instance.upperButtons.SetActive(true);
                 page.paragraph.gameObject.SetActive(true);
                 if (addDialog)
                 {
-                    PygmalionGameManager.Instance.Change2ScriptAndReadLine(scriptName, scriptLine);
+                    PygmalionGameManager.instance.Change2ScriptAndReadLine(scriptName, scriptLine);
                 }   
             }
         }

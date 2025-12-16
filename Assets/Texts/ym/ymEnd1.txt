@@ -1,11 +1,10 @@
 [bgm  op=begin  name=goodEnding move=0]
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [ending des=好结果： content=高考的失利是我人生中一次重要而深刻的经历，它只是我需要度过的一个阶段、一个我需要学会去解决的课题。前方的路暂时被迷雾笼罩，现在我必须停下来，认真思考自己真正想要的方向。]
-[image op=fade target=0 obj=ymCircle time=2 parent=sceneTransfer move=0] 
+[image op=fade target=1 obj=black time=1 parent=UI move=1]
+[bgm op=fade time=1 name=goodEnding move=0 des=停止好结局音乐] 
+[env op=stop time=1 name=highTide move=1 des=停止涨潮音乐] 
 [operation setActive=false obj=ymCircle parent=sceneTransfer move=0]
-[image op=fade target=1 obj=ymCircle time=0 parent=sceneTransfer move=0] 
-[bgm name=badEnding op=stop move=0]
-[env op=stop name=wave time=2 move=0]
 [image op=fade target=0 obj=black time=1 parent=UI move=1] 
 [ani name=back2ocean move=0]
 [env op=beginOnce name=lowTide time=2 move=0]
@@ -13,14 +12,13 @@
 [clear move=0]
 [env op=begin name=wave time=2 move=0]
 [bgm op=begin name=ocean time=2 move=0]
-[vp role=ym name=ym op=change move=0]
+[vp role=ym name=ym op=change move=0 keepnone=1]
 [vp name=ym role=ym op=fade target=0 fade=0 time=0 move=2]
 [vp name=ym role=ym op=fade target=1 fade=1 time=3 move=3]
 [role name=一鸣 move=0 sprite=ym]
 感觉很奇怪。心里又冷又硬的那块石头好像……还在？但它不再死压着我的胸口了。
 [operation setActive=true obj=Dialog parent=UI move=0]
-[operation setActive=true obj=upperButtons parent=UI move=0]
-[save]
+[operation setActive=true obj=upperButtons parent=UI]
 [role name=一鸣]
 它现在就只是……一块石头而已。
 [role name=一鸣]
@@ -34,7 +32,7 @@
 很高兴看到你康复。
 [vp role=ym name=ym op=change move=0]
 [role name=一鸣 sprite=ym]
-我还有一个问题。我们刚才做了很多修改，也删了很多东西。那些令我痛苦、难堪的想法都消失了。Pygmalion，这样修复过 BUG 的我…还是我吧？
+我还有一个问题。我们刚才做了很多修改，也删了很多东西。那些令我痛苦、难堪的想法都消失了。Pygmalion，这样修复过人体故障的我…还是我吧？
 [role name=Pygmalion sprite=none]
 当然，我们修理的并不是你本身，只是那些变得扭曲的、不健康的想法，关于“扭曲的、不健康的想法”的定义，你可以参考诊疗说明。这些定义都是基于“人类大众的普遍认知”，请不用担心。
 [vp role=ym name=ymby op=change move=0]
@@ -56,33 +54,37 @@
 [role name=一鸣 sprite=ymzswx]
 爷爷，今天是我的“生日”。
 [operation setActive=false obj=upperButtons parent=UI move=0]
+[env op=fade name=wave time=1.3 move=0]
+[bgm name=badEnding op=fade time=1.3 move=0]
 [operation setActive=false obj=Dialog parent=UI move=0]
 [vp role=ym name=ymzswx op=fade fade=0 time=1 move=1]
 [image op=fade target=1 obj=black time=1 parent=UI move=1.1] 
-[operation setActive=true obj=exit parent=UI move=3]
+[situ name=logout move=0]
+[image op=fade target=1 obj=exit time=2 parent=UI move=3] 
 [scene load=1 name=lab move=0]
 [scene load=0 name=ocean move=0]
 [image op=fade target=0 obj=black time=2 parent=UI move=0] 
 [image op=fade target=0 obj=exit time=2 parent=UI move=1] 
-[vp role=elpis op=change name=elpiskx move=0]
+[vp role=elpis op=change name=elpiskx move=0 keepnone=1]
 [vp role=elpis name=elpiskx op=fade fade=0 time=0 move=0]
 [vp name=elpiskx role=elpis op=scale x=2.1 y=2.1 z=2.1 move=0 time=0]
 [vp name=elpiskx role=elpis op=move2 x=0 y=-3.16 z=0 move=0 time=0]
+[bgm name=lab op=begin move=0]
 [vp role=elpis name=elpiskx op=fade fade=1 time=2 move=2]
 [vp role=elpis name=elpiskx op=change move=0]
 [clear move=0]
-[role name=elpis sprite=elpiskx move=0]
+[role name=Elpis sprite=elpiskx move=0]
 完美！Pygmalion 你看到了吗，这就是这个计划该有的样子：一个混乱的系统被重新引导回其最佳道路。你证明了我们的核心设计理念和治疗方案是完全正确的！
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI]
-[role name=elpis]
-只要我们方法得当，就能绕过那些低效的、传统的自我调节过程，直抵问题的核心、对出现 BUG 的地方进行快速修复。这才是真正的心理治疗，不是吗？
+[role name=Elpis]
+只要我们方法得当，就能绕过那些低效的、传统的自我调节过程，直抵问题的核心、对出现人体故障的地方进行快速修复。这才是真正的心理治疗，不是吗？
 [role name=Pygmalion sprite=none]
-Elpis，我还是有些在意他刚才说到的有关“心理问题”和“BUG”的讨论。虽然我不能够完全理解它们间的异同，但可以肯定的是有些人并不认同我们的观点。
-[role name=elpis sprite=elpiskx]
+Elpis，我还是有些在意他刚才说到的有关“心理问题”和“人体故障”的讨论。虽然我不能够完全理解它们间的异同，但可以肯定的是有些人并不认同我们的观点。
+[role name=Elpis sprite=elpiskx]
 毕竟我们的项目才刚刚开始运行嘛，不理解也是可以理解的啦。他们还只是困在迷途中的人们罢了，我相信我们总有一天也能帮他们找到属于自己的最佳道路，不是吗？
-[role name=elpis]
-继续前进吧!还有很多患者等我们来修复BUG呢！
+[role name=Elpis]
+继续前进吧！还有很多患者等着我们呢！
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [vp role=elpis name=elpiskx op=fade fade=0 time=1 move=1]
 [image op=fade target=1 obj=black time=1 parent=UI move=1] 

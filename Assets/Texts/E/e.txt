@@ -26,7 +26,7 @@ The Pygmalion Project……Orpheus，这就是你倾注心血直至生命停止�
 [role name=Elpis（电子） frame=elec]
 Pygmalion……你眼前的这位患者是…皮格马利翁计划创始人之一的妻子。
 [role name=Elpis（电子） frame=elec]
-很遗憾的是，患者的丈夫现在正处于…脑死亡状态。请尽量避免任何关于“身份”“来源”之类的谈话，重点在于通过意识的编程来修理她心中的 BUG 情绪……
+很遗憾的是，患者的丈夫现在正处于…脑死亡状态。请尽量避免任何关于“身份”“来源”之类的谈话，重点在于通过意识的编程来修理她心中的人体故障……
 [role name=Elpis（电子） frame=elec]
 帮助她回归正常。这是最高指令，也是你此刻唯一需要做的事。
 [role name=Pygmalion frame=ori sprite=none]
@@ -56,7 +56,7 @@ Pygmalion……你眼前的这位患者是…皮格马利翁计划创始人之�
 [operation setActive=false obj=upperButtons parent=UI move=0]
 [operation setActive=true obj=labcrash parent=UI move=0]
 [alert]
-/ / /ALERT – Bio-Perception Unit: Illicit emotional input detected. Containment Level Ω engaged. / / /
+Bio-Perception Unit: Illicit emotional input detected. Containment Level Ω engaged.
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis（电子） frame=elec sprite=elpis]
@@ -106,7 +106,7 @@ Eurydice，我只是一个被造来帮助每一位心理存在伤痛的患者找
 [vp role=e name=eqm op=change move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [role name=Eurydice frame=ori sprite=eqm move=0]
-哇哦，你确定这不是 BUG 吗？我们现在正处于一个……
+哇哦，你确定这不是出故障了吗？我们现在正处于一个……
 [operation setActive=true obj=Dialog parent=UI move=0]
 [role name=Eurydice frame=ori]
 解构中的画廊。哈，真符合我现在的状态。你也真会找地方，这里是我与 Orpheus第一次约会的地方，这个时候来这里可真“浪漫”。
@@ -119,7 +119,7 @@ Eurydice，我只是一个被造来帮助每一位心理存在伤痛的患者找
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
-/ / /ALERT – Bio-Perception Unit: Unauthorized environmental detail loaded. Initiating immediate purge sequence. Containment Level Z engaged./ / /
+Bio-Perception Unit: Unauthorized environmental detail loaded. Initiating immediate purge sequence. Containment Level Z engaged.
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI]
 [role name=Elpis（电子） frame=elec sprite=elpisyszz]
@@ -146,7 +146,7 @@ Pygmalion！集中你的处理资源！忽略这些刺激！
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
-/ / / ALERT – Memory Module Error: Unauthorized mnemonic fragment detected. Injecting additional emotional inhibitor into Brain-in-Vat system. Containment Level R engaged. / / /
+Memory Module Error: Unauthorized mnemonic fragment detected. Injecting additional emotional inhibitor into Brain-in-Vat system. Containment Level R engaged.
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
 [clear move=0]
@@ -157,7 +157,7 @@ Pygmalion！我警告过你！过滤所有非关键部分个人记忆与经历�
 ……
 [vp role=e name=e op=change move=0]
 [role name=Eurydice frame=ori sprite=e]
-他说，如果能够找到构成世界的语言，我们就能修复它运行过程中出现的BUG、治愈一切苦痛。
+他说，如果能够找到构成世界的语言，我们就能修复它运行过程中出现的故障、治愈一切苦痛。
 [vp role=e name=eqm op=change move=0]
 [role name=Eurydice frame=ori sprite=eqm]
 很天真…对吧？也很傲慢。
@@ -177,7 +177,7 @@ Pygmalion！我警告过你！过滤所有非关键部分个人记忆与经历�
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
-/ / / ALERT – Neuro-Signal Irregularity Detected.Initiating forced sedation sequence. Containment Level Z engaged. / / /
+Neuro-Signal Irregularity Detected.Initiating forced sedation sequence. Containment Level Z engaged.
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI]
@@ -196,7 +196,7 @@ Pygmalion！她的情感负载非常高，我需要你百分百专注于协议�
 [operation obj=content parent=UI att=enable script=DialogClick content=false move=0]
 [operation setActive=true obj=gallerycrash parent=UI move=0]
 [alert]
-/ / / ALERT – Signal Corruption Detected. HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME / / /
+Signal Corruption Detected. HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME
 [operation obj=content parent=UI att=enable script=DialogClick content=true move=0]
 [operation setActive=true obj=upperButtons parent=UI move=0]
 [operation setActive=true obj=Dialog parent=UI move=0]
@@ -293,7 +293,7 @@ Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
                             [word type=0 content=我们提供的体验在情感细节上比现实更加真实、] 
                             [word type=0 content=更加完美，] 
                             [word type=0 content=因为我们剔除掉了一切争吵、尴尬与误解，以] 
-                            [word type=0 content=及一切那些被称作“意外”的BUG。] 
+                            [word type=0 content=及一切那些被称作“意外”的故障。] 
                         [pageEnd]
                     [end]
                 [word type=0 content=请半天假，来到圣克里夫中心医院的] 
@@ -403,14 +403,14 @@ Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
                 [page]
                     [word type=0 content=我和Orpheus有一个约定：我们总有一天会完成一幅名为]
                     [word type=6 content=《万事归宿》 pic=画廊]
-                            [dialog role=???	 content=这就是我们的归宿。]
-                            [dialog role=??	 content=这就是我们的归宿。]
+                            [dialog  role=???	 content=这就是我们的归宿。]
+                            [dialog voice=Voice_Orpheus role=??	 content=这就是我们的归宿。]
                             [dialogEnd]
                     [word type=0 content=的画，并把它挂在我们第一次约会的画廊里。他说：无论发生什么，我们的故事都一定要是]
                     [word type=6 content=勇敢的 pic=6昏黄灯光下的书]
-                            [dialog role=??	 content=如果勇敢意味着敢于探索未知，那么它也同样意味着接受失败。]
-                            [dialog role=??	 content=敢于在一切结束后继续……放手，继续前行。]
-                            [dialog role=??	 content=Eurydice……无论未来变成什么样，你都要真正的活着。]
+                            [dialog voice=Voice_Orpheus role=??	 content=如果勇敢意味着敢于探索未知，那么它也同样意味着接受失败。]
+                            [dialog voice=Voice_Orpheus role=??	 content=敢于在一切结束后继续……放手，继续前行。]
+                            [dialog voice=Voice_Orpheus role=??	 content=Eurydice……无论未来变成什么样，你都要真正的活着。]
                             [dialogEnd]
                     [word type=0 content=。勇敢，就是我们故事的归宿。]
                     [word type=0 content=现在，我站在迷宫的中央。继续往常的一切，面对的将是]
@@ -429,9 +429,9 @@ Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
             [dialog role=???	 content=你看，他的脑部结构完好无损。没有出血、没有梗死、没有萎缩，没有任何我们已知的、会导致持续性植物状态的器质性病变。它看起来……非常完美。]
             [dialog role=???	 content=完美？一个失去了一切功能的大脑很完美？你在给我开什么玩笑！”]
             [dialog role=???	 content=别激动…这正是我们无法解答的问题。我们已经查遍了所有可能的病因：代谢性、中毒性、免疫性……全部一无所获。”]
-            [dialog role=???	 content=人的大脑就像一台精密的计算机，而以我们目前在医学领域内应用的脑科学技术水平……我们找不到它的BUG在哪里，也就没有任何积极可行的治疗手段可以实施。我们能做的只是维持他的生命体征，然后……等待。]
+            [dialog role=???	 content=人的大脑就像一台精密的计算机，而以我们目前在医学领域内应用的脑科学技术水平……我们找不到它的故障在哪里，也就没有任何积极可行的治疗手段可以实施。我们能做的只是维持他的生命体征，然后……等待。]
             [dialog role=???	 content=等待……等待什么？]
-            [dialog role=???	 content=等待也许在未来的某天，脑科学能够取得我们今日无法想象的突破。也许到那时，会有人能读懂这种BUG、找到重新连接意识与身体的方法……这是一个非常渺茫的希望，但就目前而言，也是唯一一个。]
+            [dialog role=???	 content=等待也许在未来的某天，脑科学能够取得我们今日无法想象的突破。也许到那时，会有人能读懂这种故障、找到重新连接意识与身体的方法……这是一个非常渺茫的希望，但就目前而言，也是唯一一个。]
             [dialog role=???	 content=嗯？Mary，你要说什么吗？]
             [dialog role=Mary	 content=……真是奇怪。按理说……唉，算了。就是每次给他翻身护理的时候，总觉得……他的脑袋，怎么好像比看起来要轻似的……]
             [dialogEnd]
@@ -441,7 +441,7 @@ Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
                 [page]
                     [word type=0 content=我在这幅画前站了很久…这些色彩既像是冰冷而深沉的大海，]
                     [word type=0 content=又像是广阔而静谧的森林。这很了不起，Miss</space>Mitchell。]
-                    [word type=0 content=所以，伟大的程序员先生，你的世界里容得下一个无法被量化的 BUG 吗？]
+                    [word type=0 content=所以，伟大的程序员先生，你的世界里容得下一个无法被量化的错误吗？]
                     [word type=0 content=别人都只会说我在编织谎言，只有你会问我在今天的故事里藏了多少真心。]
                     [word type=0 content=如果我们能找到治愈现实的方法，你愿意和我一起，成为指引迷途者的灯塔吗？]
                     [word type=0 content=记得给那幅画留个位置！等我回来，我们就把它画好，放在我们第一次见面的画廊里。]
@@ -457,4 +457,3 @@ Orpheus 一定会讨厌这里……他最讨厌没有个性的东西。
 [end move=0]
 [sentence op=enableEvery move=1]
 [operation setActive=true obj=upperButtons parent=UI move=0]
-[save]

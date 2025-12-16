@@ -172,7 +172,7 @@ public class VpManager : MonoBehaviour
             DelayGameObject.transform.DOMove(new(0, 0, 0), 0.1f).OnComplete(() =>
             {
                 sr.DOFade(0, 4);
-                PygmalionGameManager.Instance.ReadLine();
+                PygmalionGameManager.instance.ReadLine();
             });
         });
     }

@@ -18,7 +18,7 @@ namespace GamePlay
             word.RefreshBox2d();
             word.Close();
             word.page.layout.GetComponent<FlowLayoutGroupCentered>().Refresh();
-            PygmalionGameManager.Instance.upperButtons.SetActive(true);
+            PygmalionGameManager.instance.upperButtons.SetActive(true);
         }
     }
 }

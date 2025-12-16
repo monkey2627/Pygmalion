@@ -5,17 +5,17 @@ namespace Ani
 {
     public class Back2OceanAni : MonoBehaviour
     {
-        public static Back2OceanAni Instance;
+        public static Back2OceanAni instance;
         private void Awake()
         {
-            Instance  = this;
+            instance  = this;
             gameObject.SetActive(false);
         }
 
         public void Finish()
         {
             gameObject.SetActive(false);
-            PygmalionGameManager.Instance.ReadLine();
+            PygmalionGameManager.instance.ReadLine();
         }
     }
 }

@@ -17,7 +17,8 @@ using Page = GamePlay.Page;
 
 public class PygmalionGameManager : MonoBehaviour
 {
-    public static PygmalionGameManager Instance;
+    public static PygmalionGameManager instance;
+    public GameObject endding;
     public GameObject dialog;
     public TMP_Text roleName;
     public Sprite[] roleSprites;
@@ -37,15 +38,13 @@ public class PygmalionGameManager : MonoBehaviour
     private Dictionary<string, Sprite> _frameDic = new Dictionary<string,  Sprite>();
     //ending
     public TMP_Text endText;
-    //alert
-    public AlertScroll alert;
     public GameObject kiss;
     public GameObject eCircle;
     public GameObject elpisCircle;
     public GameObject ymCircle;
     private  void Awake()
     {
-        Instance = this;
+        instance = this;
         _frameDic =  new Dictionary<string, Sprite>();
         for (int i = 0; i < sprites.Length; i++)
         {
@@ -146,9 +145,49 @@ public class PygmalionGameManager : MonoBehaviour
         TransAniManager.Instance.StartNewGame();
         ReadLine();
     }
+
+    public void Reset2Start()
+    {
+        intersystem.GetComponent<SpriteRenderer>().DOFade(0, 0);
+        dialog.SetActive(false);
+        black.GetComponent<SpriteRenderer>().DOFade(1, 0);
+        isGameTime = false;
+        ocean.gameObject.SetActive(false);
+        lab.gameObject.SetActive(false);
+        home.gameObject.SetActive(false);
+        upperButtons.SetActive(true); 
+        kiss.SetActive(false);
+        content.GetComponent<DialogClick>().enable = true;
+        //所有的ani要false
+        TransAniManager.Instance.eAni.SetActive(false);
+        TransAniManager.Instance.elpisAni.SetActive(false);
+        TransAniManager.Instance.ymAni.SetActive(false);
+        TransAniManager.Instance.ecircle.SetActive(false);
+        TransAniManager.Instance.elpiscircle.SetActive(false);
+        TransAniManager.Instance.ymcircle.SetActive(false);
+        //
+        PSceneManager.Instance._currentScene = null;
+        //DataManager
+        DataManager.Instance.StartNewGame();
+        //SentenceManager
+        SentenceManager.instance.StartNewGame();
+        //VPManager
+        VpManager.instance.StartNewGame();
+        //GuideSceneManager
+        GuideSceneGamePlay.instance.StartNewGame();
+        //transAniManager.
+        TransAniManager.Instance.StartNewGame();
+        //音乐变成序章音乐
+        BGM.instance.Play("prologue");
+        
+    }
     public void Back2Start()
     {
         //GameManager
+        ////返回主界面时保存当前游戏进度
+        upperButtons.SetActive(true);
+        DataManager.Instance.PersonSave();
+        upperButtons.SetActive(false);
         dialog.SetActive(false);
         black.GetComponent<SpriteRenderer>().DOFade(1, 0);
         upperButtons.SetActive(false);
@@ -171,10 +210,13 @@ public class PygmalionGameManager : MonoBehaviour
         VpManager.instance.back2start();
         //
         SentenceManager.instance.Destroyall();
-        //
-        BGM.instance.StopALL();
-        //
+        //BGM
+        BGM.instance.FadeOutAndStop(0.01f);
+        BGM.instance.Play("prologue");
+        //Env
+        Environment.instance.StopAllMusic();
         start.gameObject.SetActive(true);
+
     }
 
     public void TestChange2Ym()
@@ -182,18 +224,7 @@ public class PygmalionGameManager : MonoBehaviour
         DataManager.Instance.LineNow = 192;
         DataManager.Instance.ScriptNow = "e";
     }
-
-    [Serializable]
-    public struct GameManagerSaveStruct
-    {
-        //为了持久化
-        public string objName;       
-        public Vector3 pos;
-        public Vector3 scale;
-        public int isActivate;
-        public Color color;
-    }
-
+    
     public GameObject exit;
     [Serializable]
     public class SaveMyStructData
@@ -219,7 +250,6 @@ public class PygmalionGameManager : MonoBehaviour
         public string bgm;//背景音乐的名字
         public bool isGuidePlayGame;
         public bool isTransAniManager;
-        public List<GameManagerSaveStruct> snapshots;
     }
 
     public GameObject guidePlayGame;
@@ -228,14 +258,17 @@ public class PygmalionGameManager : MonoBehaviour
 
     public GameObject content;
     //存一些其他的状态
-    public void Save(int type = 0)
+    public void Save(int type = 0,string text1 =null)
     {
          
             SaveMyStructData data = new SaveMyStructData();
             data.wave = wave.playing;
             data.highTide = highTide.playing;
             data.lowTide = lowTide.playing;
-            data.text = content.GetComponent<TMP_Text>().text;
+            if (text1 != null)
+                data.text = text1;
+            else
+                data.text = content.GetComponent<TMP_Text>().text;
             data.exitColor = exit.GetComponent<SpriteRenderer>().color;
             data.isExit = exit.activeInHierarchy;
             data.name = roleName.text;
@@ -251,7 +284,6 @@ public class PygmalionGameManager : MonoBehaviour
                 data.spriteNow = roleHead.sprite.name;
             else
                 data.spriteNow = "none";
-            Debug.Log(data.spriteNow);
             data.dialogActive = dialog.activeInHierarchy;
             data.dialogEnbale =  content.GetComponent<DialogClick>().enable;
             data.frameNow = FrameImage.sprite.name;
@@ -265,8 +297,9 @@ public class PygmalionGameManager : MonoBehaviour
                     data.gameRole = "e";
             else if (ymCircle.activeInHierarchy)
                 data.gameRole = "ym";
+            else
+                data.gameRole = "none";
             string json = JsonUtility.ToJson(data, true);
-            print(json);
             if (type == 0)
             {       
                 File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);
@@ -306,7 +339,7 @@ public class PygmalionGameManager : MonoBehaviour
         {
             json = File.ReadAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile)); 
             data = JsonUtility.FromJson<SaveMyStructData>(json);
-        }
+        } 
         //载入现在的音乐
         BGM.instance.Play(data.bgm);
         if (data.highTide)
@@ -342,13 +375,21 @@ public class PygmalionGameManager : MonoBehaviour
         if (isGameTime)
         {
             SentenceManager.instance.ContinueGame(i);
-            BGM.instance.Play("textGame");
         }
         else
         {
             SentenceManager.instance.Destroyall();
-            BGM.instance.Stop("textGame");
-        }
+        }       
+        //先全部关闭
+        elpisCircle.SetActive(false);
+        elpisCircle.SetActive(false);
+        elpisCircle.SetActive(false);
+        if(data.gameRole=="elpis")
+            elpisCircle.SetActive(true);
+        else if(data.gameRole=="e")
+            eCircle.SetActive(true);
+        else if(data.gameRole=="ym")
+            ymCircle.SetActive(true);
         //对话框是否active
         dialog.SetActive(data.dialogActive);
         //
@@ -358,7 +399,6 @@ public class PygmalionGameManager : MonoBehaviour
         //现在的文本框样式
         FrameImage.sprite = _frameDic[data.frameNow];
         //头像
-        Debug.Log(data.spriteNow);
         if (data.spriteNow != "none")
         {
             roleHead.sprite = _roleSpriteDict[data.spriteNow];
@@ -375,21 +415,11 @@ public class PygmalionGameManager : MonoBehaviour
         roleName.text=data.name;
         upperButtons.SetActive(data.isUpperButtons);
         black.gameObject.GetComponent<SpriteRenderer>().color=data.blackColor;
-        //
-        if(data.gameRole=="elpis")
-            elpisCircle.SetActive(true);
-        else if(data.gameRole=="e")
-            eCircle.SetActive(true);
-        else if(data.gameRole=="ym")
-            ymCircle.SetActive(true);
         //如果正在新手引导的阶段
-        guidePlayGame.SetActive(data.isGuidePlayGame);
-        print(data.isGuidePlayGame);
         if (data.isGuidePlayGame)
-        {
-            print("a");
+        {  
+            guidePlayGame.SetActive(data.isGuidePlayGame);
             GuideSceneGamePlay.instance.ContinueGame(i);
-            BGM.instance.Play("textGame");
         }
         //VPManager
         VpManager.instance.ContinueGame(i);
@@ -397,8 +427,6 @@ public class PygmalionGameManager : MonoBehaviour
         if(data.isGameTime || data.isGuidePlayGame)
         {TransAniManager.Instance.ContinueGame(i);print("pppp");}
         String scriptname = DataManager.Instance.ScriptNow;
-        print(scriptname);
-        print(DataManager.Instance.LineNow);
     }
     public async TaskString LoadScript(string storage)
     {
@@ -618,8 +646,11 @@ public class PygmalionGameManager : MonoBehaviour
             case "alert":
                 
                 l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
-                alert.text = l;
-                alert.gameObject.SetActive(true);
+                AlertScroll.instance.alertText.text = l;
+                AlertScroll.instance.gameObject.SetActive(true);
+                break;
+            case "totalEnd":
+                endding.SetActive(true);
                 break;
             case "sentence":
                 switch (parsedTag["op"])
@@ -674,7 +705,7 @@ public class PygmalionGameManager : MonoBehaviour
                         TransAniManager.Instance.ShowTarget();
                         break;
                     case "back2ocean":
-                        Back2OceanAni.Instance.gameObject.SetActive(true);
+                        Back2OceanAni.instance.gameObject.SetActive(true);
                         break;
                     case "ymani1":
                         break;
@@ -713,7 +744,10 @@ public class PygmalionGameManager : MonoBehaviour
                 }
                 break;                
             case "save":
-                DataManager.Instance.Save(0);      
+                if(parsedTag.ContainsKey("text"))
+                    DataManager.Instance.Save(0,parsedTag["text"]);    
+                else
+                    DataManager.Instance.Save(0);    
                 break;
             case "text":
                 switch (parsedTag["op"])
@@ -924,13 +958,14 @@ private void CreateSentence(int fatherSentenceNumber)
                       word.GetComponent<Word>().pic = parsedTag["pic"];
                       l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
                       parsedTag = Utils.ParseLine(l);
-                      print("create word6: "+l);
                       word.GetComponent<Word>().dialogList = new List<Word.Dialog>();
+                      word.GetComponent<Word>().voiceList = new List<String>();
                       while(parsedTag["tag"] != "dialogEnd")
                       {
+                          word.GetComponent<Word>().voiceList
+                              .Add(parsedTag.ContainsKey("voice") ? parsedTag["voice"] : "none");
                           word.GetComponent<Word>().dialogList.Add(new Word.Dialog(){Name = parsedTag["role"],Text = parsedTag["content"]});
                           l = ResourceLoader.textLoader[DataManager.Instance.ScriptNow].Lines[DataManager.Instance.LineNow++];
-                          print("create word6: "+l);
                           parsedTag = Utils.ParseLine(l);
                       }
                       break;

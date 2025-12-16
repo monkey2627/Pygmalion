@@ -56,31 +56,25 @@ public class DataManager : MonoBehaviour
     }
     private static readonly string AutoSaveFile = "AutoSaveDataManagerData.json";
     private static readonly string PersonSaveFile = "PersonSaveDataManagerData.json";
-    public void Save(int type=0)
+    public void Save(int type=0,string text=null)
     {
         SaveDataManagerData data = new SaveDataManagerData();
         data.lineNow = LineNow;
         data.scriptNow = ScriptNow;
         data.SaveTime = DateTime.Now.ToString("yyyyMMddHHmmss");
-        print("save at "+data.SaveTime);
-        string json = JsonUtility.ToJson(data, true);  
-        if (type == 0)//autoSave
-        {
-              File.WriteAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile), json);    
-        }
-        else
-        {
-                File.WriteAllText(Path.Combine(Application.persistentDataPath, PersonSaveFile), json);
-        }   
-        PygmalionGameManager.Instance.Save(type);
-        if (PygmalionGameManager.Instance.isGameTime)
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(
+            type == 0 //autoSave
+                ? Path.Combine(Application.persistentDataPath, AutoSaveFile)
+                : Path.Combine(Application.persistentDataPath, PersonSaveFile), json);
+        PygmalionGameManager.instance.Save(type,text);
+        if (PygmalionGameManager.instance.isGameTime)
         {
                 SentenceManager.instance.Save(type);
         }
         VpManager.instance.SaveAllVp(type);
         GuideSceneGamePlay.instance.Save(type);
         TransAniManager.Instance.Save(type);
-        Debug.Log($"[DataManager] 已保存");
     }
 
     public void PersonSave()
@@ -104,7 +98,6 @@ public class DataManager : MonoBehaviour
 
     public int ContinueGame()
     {
-        int save = 0;
         if (File.Exists(Path.Combine(Application.persistentDataPath, PersonSaveFile)) && File.Exists(Path.Combine(Application.persistentDataPath, AutoSaveFile)))
         {
             string jsonAuto = File.ReadAllText(Path.Combine(Application.persistentDataPath, AutoSaveFile)); 
@@ -128,7 +121,8 @@ public class DataManager : MonoBehaviour
                 _lineNow = autodata.lineNow;
                 _scriptNow =  autodata.scriptNow;
                 return 0;
-            }else if (auto <= person)
+            }
+            if (auto <= person)
             {
                 _lineNow = personData.lineNow;
                 _scriptNow = personData.scriptNow;

@@ -26,8 +26,7 @@ namespace Scene
         public void StartNewGame()
         {
             gameObject.SetActive(false);
-            print(PygmalionGameManager.Instance.name);
-            PygmalionGameManager.Instance.StartNewGame();
+            PygmalionGameManager.instance.StartNewGame();
             BGM.instance.Play("lab");
         }
         private static readonly string AutoSaveFile = "AutoSaveGameManagerData.json";
@@ -44,7 +43,7 @@ namespace Scene
                 return;
             }
             gameObject.SetActive(false);
-            PygmalionGameManager.Instance.ContinueGame();
+            PygmalionGameManager.instance.ContinueGame();
         }
         public void PassStart()
         {
